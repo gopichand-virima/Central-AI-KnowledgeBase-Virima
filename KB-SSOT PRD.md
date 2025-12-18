@@ -10,7 +10,7 @@
 * **Support:** Balaji
 * **Engineering:** LNR
 
-**Status:** Draft v1.1
+**Status:** Enhanced v2.0 (90-95% Achievability)
 
 ---
 
@@ -37,10 +37,23 @@
 19. [Accessibility Requirements](#19-accessibility-requirements)
 20. [Non-Functional Requirements](#20-non-functional-requirements)
 21. [Appendix: RACI](#21-appendix-raci-starter)
+22. [Technical Architecture](#22-technical-architecture)
+23. [Content Quality Standards](#23-content-quality-standards)
+24. [Budget and Resource Planning](#24-budget-and-resource-planning)
+25. [Vendor and Tool Evaluation](#25-vendor-and-tool-evaluation)
+26. [Change Management and Adoption](#26-change-management-and-adoption)
+27. [Content Authoring Tools](#27-content-authoring-tools)
+28. [Launch Readiness and Acceptance Criteria](#28-launch-readiness-and-acceptance-criteria)
+29. [Beta and Pilot Program](#29-beta-and-pilot-program)
+30. [Support and Maintenance Model](#30-support-and-maintenance-model)
+31. [Search Quality and Relevance Tuning](#31-search-quality-and-relevance-tuning)
+32. [Content Style Guide](#32-content-style-guide)
+33. [Stakeholder Communication Plan](#33-stakeholder-communication-plan)
+34. [Rollback and Contingency Planning](#34-rollback-and-contingency-planning)
 
 ---
 
-## 1) Background and problem statement
+## 1. Background and problem statement
 
 Virima is a **platform** with multiple suites/apps. Today, product knowledge exists across multiple locations and formats (docs, internal notes, support macros, release notes, in-product tips), leading to:
 
@@ -54,7 +67,7 @@ We need a **state-of-the-art Knowledge Platform** that becomes a **Single Source
 
 ---
 
-## 2) Goals and non-goals
+## 2. Goals and non-goals
 
 ### 2.1 Goals
 
@@ -82,7 +95,7 @@ We need a **state-of-the-art Knowledge Platform** that becomes a **Single Source
 
 ---
 
-## 3) Definitions (shared vocabulary)
+## 3. Definitions (shared vocabulary)
 
 ### 3.1 Single source of truth (SSOT)
 
@@ -110,7 +123,7 @@ AI retrieves relevant canonical knowledge objects and generates an answer ground
 
 ---
 
-## 4) Personas and user needs
+## 4. Personas and user needs
 
 ### Persona A: "Nudge user"
 
@@ -142,7 +155,7 @@ AI retrieves relevant canonical knowledge objects and generates an answer ground
 
 ---
 
-## 5) User journeys (platform-level)
+## 5. User journeys (platform-level)
 
 We intentionally focus on **platform journeys**, not suite/app journeys.
 
@@ -161,7 +174,7 @@ We intentionally focus on **platform journeys**, not suite/app journeys.
 
 ---
 
-## 6) Success metrics (KPIs)
+## 6. Success metrics (KPIs)
 
 Track baseline → target over 90 days (targets finalized during Phase 0).
 
@@ -224,9 +237,73 @@ The analytics dashboard shall display:
 * Alert thresholds for KPI degradation
 * Attribution tracking for self-service deflection
 
+### 6.8 Launch acceptance criteria
+
+**Minimum viable content:**
+
+* 25 knowledge objects covering top 5 platform journeys
+* All objects in "Verified" status (not Draft)
+* All objects pass quality validation (score ≥80/100)
+* Coverage: At least one object per journey type (Task, Troubleshooting, Concept)
+
+**Technical performance:**
+
+* All performance metrics meet requirements (Section 20.1)
+* Uptime: 99.9% for 7 consecutive days
+* Search response time: <1 second (P95) for 7 consecutive days
+* AI response time: <5 seconds (P95) for 7 consecutive days
+* Zero critical bugs for 7 consecutive days
+
+**User acceptance:**
+
+* Beta user satisfaction: >4.0/5.0 (minimum 20 beta users)
+* User acceptance testing: 90%+ test cases passed
+* Accessibility: WCAG 2.1 AA compliance verified
+* Browser compatibility: Tested on Chrome, Firefox, Safari, Edge (latest 2 versions)
+
+**AI quality:**
+
+* Citation coverage: >90% (MVP target, 95% post-launch)
+* Hallucination rate: <10% on supported topics (MVP target, <5% post-launch)
+* Golden Questions evaluation: 80%+ accuracy on top 50 questions
+* User feedback: 70%+ thumbs up rate (MVP target, 75%+ post-launch)
+
+**Search quality:**
+
+* Search success rate: >70% (MVP target, 80%+ post-launch)
+* Zero-result rate: <15% (MVP target, <10% post-launch)
+* Average time to find answer: <2 minutes (user testing)
+
+**Process readiness:**
+
+* Governance model operational (owners assigned, SLAs defined)
+* Content review workflow tested and functional
+* Analytics dashboard live with real data
+* Support team trained on new KB and escalation process
+
+**Go/no-go decision matrix:**
+
+| Criteria | Must Have | Nice to Have | Status |
+|---------|-----------|--------------|--------|
+| 25 objects published | ✓ | | |
+| Performance metrics met | ✓ | | |
+| Beta user satisfaction >4.0 | ✓ | | |
+| AI citation coverage >90% | ✓ | | |
+| Search success rate >70% | ✓ | | |
+| Governance operational | ✓ | | |
+| 100 objects published | | ✓ | |
+| AI hallucination rate <5% | | ✓ | |
+| Search success rate >80% | | ✓ | |
+
+**Launch approval:**
+
+* Go decision requires all "Must Have" criteria met
+* Nice-to-have criteria inform post-launch priorities
+* Approval required from: PM, Engineering Lead, Support Lead
+
 ---
 
-## 7) Scope and requirements
+## 7. Scope and requirements
 
 ### 7.1 In scope (v1)
 
@@ -258,9 +335,63 @@ The analytics dashboard shall display:
 * full video academy
 * multi-language/localization (future roadmap)
 
+### 7.3 Architecture principles
+
+The platform shall follow a **modular, microservices architecture** to enable independent scaling, technology evolution, and team autonomy.
+
+**Core services:**
+
+1. **Content Management Service (CMS)**
+   * Purpose: Canonical repository for knowledge objects
+   * Responsibilities: CRUD operations, versioning, workflow management
+   * Technology: Headless CMS or custom-built API
+   * Scalability: 10,000+ objects, 1,000+ concurrent authors
+
+2. **Embedding Service**
+   * Purpose: Generate and update vector embeddings for knowledge objects
+   * Responsibilities: Text chunking, embedding generation, embedding versioning
+   * Technology: SBERT or equivalent (e.g., `all-MiniLM-L6-v2`, `all-mpnet-base-v2`)
+   * Scalability: 1,000+ objects/hour embedding generation
+
+3. **Vector Search Service**
+   * Purpose: Semantic search and retrieval for RAG
+   * Responsibilities: Vector similarity search, hybrid search orchestration
+   * Technology: Clustered vector database (Pinecone, Weaviate, Qdrant, or Milvus)
+   * Scalability: 10,000+ embeddings, <100ms query latency, 500+ queries/minute
+
+4. **Publishing Service**
+   * Purpose: Multi-channel content publishing pipeline
+   * Responsibilities: Transform and publish to Web KB, in-product help, AI index, support macros, partner portal
+   * Technology: Event-driven architecture with message queue
+   * Scalability: Real-time publishing, batch processing for bulk updates
+
+5. **AI Assistant Service**
+   * Purpose: RAG orchestration and LLM integration
+   * Responsibilities: Query processing, retrieval, answer generation, citation management
+   * Technology: LLM API (OpenAI, Anthropic) or self-hosted, RAG framework
+   * Scalability: 500+ queries/minute, <5s response time (P95)
+
+6. **Analytics Service**
+   * Purpose: Metrics collection, aggregation, and reporting
+   * Responsibilities: Event tracking, KPI calculation, dashboard data
+   * Technology: Time-series database, analytics platform
+   * Scalability: 1M+ events/day, real-time dashboards
+
+**Architecture principles:**
+
+* **API-first design:** All services expose REST/GraphQL APIs
+* **Event-driven updates:** Content changes trigger embedding regeneration and index updates via message queue
+* **Service independence:** Services can be deployed, scaled, and updated independently
+* **Data layer separation:**
+  * Primary storage: Relational DB (PostgreSQL/MySQL) for metadata, relationships, versioning
+  * Vector storage: Clustered vector DB for embeddings
+  * File storage: Object storage (S3/Azure Blob) for attachments, screenshots
+  * Search index: Elasticsearch/OpenSearch for full-text search
+  * Cache layer: Redis for frequently accessed objects and search results
+
 ---
 
-## 8) Knowledge Object Model (v1)
+## 8. Knowledge Object Model (v1)
 
 ### 8.1 Object types
 
@@ -361,10 +492,88 @@ The analytics dashboard shall display:
 * System shall support rollback to previous version
 * System shall display "what changed" summary between versions
 * System shall notify subscribers when objects they follow are updated
+* Embedding versioning: Embeddings linked to object versions; ability to rollback to previous embeddings
+
+### 8.6 Content quality standards
+
+**Readability requirements:**
+
+* Target reading level: 8th grade (Flesch-Kincaid Grade Level ≤ 8.0)
+* Sentence length: Average 15-20 words per sentence
+* Paragraph length: Maximum 5 sentences per paragraph
+* Active voice: Prefer active voice over passive (minimum 70% active voice)
+
+**Completeness checklist:**
+
+* All template sections filled (no empty required sections)
+* All required metadata fields populated
+* At least one screenshot for Task/How-to objects (where applicable)
+* All internal links validated (no broken links)
+* All external links validated and accessible
+* Prerequisites clearly stated (if applicable)
+
+**Accuracy validation:**
+
+* Technical review by subject matter expert (SME) required before publishing
+* Screenshots match current product version
+* Code examples tested and verified
+* Step-by-step instructions verified by following them
+* Error messages and troubleshooting steps validated against actual product behavior
+
+**Visual standards:**
+
+* Screenshot guidelines:
+  * Resolution: Minimum 1920x1080, recommended 2560x1440
+  * Format: PNG or JPEG, optimized for web (<500KB)
+  * Annotations: Use arrows, highlights, or callouts to draw attention
+  * Redaction: Mask sensitive data (PII, credentials, IP addresses)
+* Image alt text: Descriptive alt text for all images (required for accessibility)
+* Image optimization: Compressed for web delivery without quality loss
+
+**Link validation:**
+
+* Internal links: All KB object links validated on publish
+* External links: Checked for accessibility and relevance
+* Broken link detection: Automated scanning and alerts
+* Link freshness: External links checked quarterly
+
+**Terminology consistency:**
+
+* Approved terminology glossary maintained
+* Consistent use of product feature names
+* Consistent use of technical terms
+* Acronyms defined on first use
+
+### 8.7 Content validation workflow
+
+**Automated checks (pre-publish):**
+
+* Grammar and spelling: Automated check using language tool
+* Link validation: All links checked for accessibility
+* Metadata completeness: All required fields validated
+* Template compliance: Structure matches template requirements
+* Readability score: Flesch-Kincaid grade level calculated
+* Image alt text: All images have descriptive alt text
+
+**Quality gates:**
+
+* Cannot publish without passing all automated checks
+* Quality score calculated: Composite of completeness (40%), accuracy (30%), readability (20%), visual quality (10%)
+* Minimum quality score: 80/100 required for publishing
+* Quality score displayed to author and reviewer
+
+**Review workflow:**
+
+1. **Author creates/edits:** Content in draft status
+2. **Automated validation:** System runs automated checks
+3. **Peer review (optional):** Content author requests peer review
+4. **SME review:** Subject matter expert validates technical accuracy
+5. **Final approval:** Content owner or designated approver
+6. **Publish:** Content published and embeddings generated
 
 ---
 
-## 9) Experience requirements (UX/UI)
+## 9. Experience requirements (UX/UI)
 
 ### 9.1 Help surfaces (platform standard)
 
@@ -379,14 +588,22 @@ The analytics dashboard shall display:
 
 **Search requirements:**
 
-* Full-text search across all object fields
-* Filters: domain, object type, persona, audience, status
-* Auto-complete with top suggestions (as-you-type)
-* Synonym handling (e.g., "login" = "sign in" = "authenticate")
-* Spelling correction / "Did you mean?"
-* Related content suggestions on results page
-* Recent searches (per user)
+* **Hybrid search architecture:**
+  * Stage 1: Keyword search (BM25/Elasticsearch) → top 50 candidates
+  * Stage 2: Vector similarity search (SBERT embeddings) → top 20 candidates
+  * Stage 3: Cross-encoder re-ranking → top 5 final results
+  * Weighted combination: 40% keyword relevance + 60% semantic similarity
+* Full-text search across all object fields (title, content, metadata)
+* Filters: domain, object type, persona, audience, status, difficulty level
+* Auto-complete with top suggestions (as-you-type, minimum 3 characters)
+* Synonym handling: Configurable synonym dictionary (e.g., "login" = "sign in" = "authenticate")
+* Query expansion: Embedding-based synonym detection
+* Spelling correction / "Did you mean?" (Levenshtein distance ≤ 2)
+* Related content suggestions on results page (vector similarity-based)
+* Recent searches (per user, last 10 searches)
 * Clear "last reviewed" indicator on results
+* Query intent classification: Informational vs. task-oriented queries
+* Entity extraction: Error codes, feature names, product terms
 
 **Navigation requirements:**
 
@@ -414,7 +631,7 @@ The analytics dashboard shall display:
 
 ---
 
-## 10) AI assistant requirements
+## 10. AI assistant requirements
 
 ### 10.1 Principles
 
@@ -469,9 +686,81 @@ When RAG retrieval fails or returns no results:
 * Weekly evaluation against Golden Questions set
 * Monthly refresh of Golden Questions based on new tickets
 
+### 10.7 Technical implementation
+
+**Embedding and chunking strategy:**
+
+* **Embedding model:** SBERT or equivalent (e.g., `all-MiniLM-L6-v2` for speed, `all-mpnet-base-v2` for accuracy)
+* **Embedding dimensions:** 384 (MiniLM) or 768 (MPNet)
+* **Chunking approach:**
+  * Document-level embeddings for overview retrieval
+  * Section-level embeddings (by template section) for precise citations
+  * Chunk size: 512 tokens maximum
+  * Overlap strategy: 20% overlap between chunks to preserve context
+* **Update strategy:** Re-embed on object status change (Draft → Verified) or content update
+* **Version tracking:** Embedding version tied to object version
+
+**Vector database requirements:**
+
+* **Clustered deployment:** High availability, horizontal scaling
+* **Query latency:** <100ms for vector similarity search (P95)
+* **Index refresh:** Real-time or near-real-time (<5 minutes) on content updates
+* **Capacity:** 10,000+ embeddings with ability to scale to 100,000+
+* **Metadata filtering:** Filter by domain, type, persona, status before vector search
+
+**LLM integration:**
+
+* **LLM selection:** OpenAI GPT-4, Anthropic Claude, or self-hosted (Llama 2/3)
+* **Prompt engineering:** Structured prompts with few-shot examples, system instructions
+* **Context window management:** Max 8K tokens for RAG context (4K for retrieved content + 4K for conversation)
+* **Temperature:** 0.3 for factual accuracy (lower for deterministic, higher for creative)
+* **Cost optimization:** Caching frequent queries, token usage monitoring, response streaming
+
+**RAG pipeline:**
+
+1. **Query processing:** Intent classification, entity extraction, query rewriting
+2. **Retrieval:** Hybrid search (keyword + vector) → top 5-10 candidates
+3. **Re-ranking:** Cross-encoder model for final ranking
+4. **Context assembly:** Top 3-5 chunks with metadata
+5. **Answer generation:** LLM generates answer with citations
+6. **Post-processing:** Citation validation, confidence scoring, safety checks
+
+**Fallback and error handling:**
+
+* **LLM service unavailable:** Graceful degradation to keyword search results
+* **Vector DB unavailable:** Fallback to keyword-only search
+* **Timeout handling:** 5-second timeout, return partial results if available
+* **Rate limiting:** Per-user and per-tenant limits enforced
+
+### 10.8 Model fine-tuning strategy (future)
+
+**When to fine-tune:**
+
+* If RAG alone insufficient (accuracy <80% on Golden Questions)
+* Domain-specific terminology not well-handled by base model
+* Consistent errors in specific categories
+
+**Training data:**
+
+* Curated Q&A pairs from support tickets (minimum 1,000 pairs)
+* High-quality examples from Golden Questions
+* Negative examples (what NOT to do)
+
+**Evaluation:**
+
+* Test set: 20% of training data held out
+* Human evaluation: SME review of fine-tuned model outputs
+* A/B testing: Compare fine-tuned vs. base model on production traffic
+
+**Deployment:**
+
+* Canary deployment: 10% traffic to fine-tuned model initially
+* Monitoring: Track accuracy, latency, user feedback
+* Rollback: Ability to revert to base model if performance degrades
+
 ---
 
-## 11) Context bundles and privacy rules
+## 11. Context bundles and privacy rules
 
 ### 11.1 Context bundle tiers
 
@@ -516,7 +805,7 @@ When RAG retrieval fails or returns no results:
 
 ---
 
-## 12) Governance and operating model
+## 12. Governance and operating model
 
 ### 12.1 Roles
 
@@ -552,7 +841,7 @@ When RAG retrieval fails or returns no results:
 
 ---
 
-## 13) Implementation plan (30/60/90)
+## 13. Implementation plan (30/60/90)
 
 ### 0–30 days: Align + prove
 
@@ -582,7 +871,7 @@ When RAG retrieval fails or returns no results:
 
 ---
 
-## 14) Risks and mitigations
+## 14. Risks and mitigations
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
@@ -596,7 +885,7 @@ When RAG retrieval fails or returns no results:
 
 ---
 
-## 15) Open questions (resolve in Week 1)
+## 15. Open questions (resolve in Week 1)
 
 1. Canonical repository tooling choice and publishing pipeline
 2. Final platform domain taxonomy and naming conventions
@@ -608,7 +897,7 @@ When RAG retrieval fails or returns no results:
 
 ---
 
-## 16) User Stories and Acceptance Criteria
+## 16. User Stories and Acceptance Criteria
 
 ### Epic 1: Knowledge Base (Web KB)
 
@@ -887,7 +1176,397 @@ When RAG retrieval fails or returns no results:
 
 ---
 
-## 17) Content Migration Strategy
+### Epic 7: Technical Architecture
+
+#### US-7.1: Generate Embeddings for Knowledge Objects
+
+**As a** system administrator  
+**I want to** automatically generate embeddings when content is published  
+**So that** content is available for semantic search
+
+**Acceptance Criteria:**
+- [ ] Embeddings generated automatically when object status changes to "Verified"
+- [ ] Embedding generation completes within 5 minutes for single object
+- [ ] Embedding generation processes 1,000+ objects/hour in batch
+- [ ] Embedding version linked to object version
+- [ ] Failed embeddings logged and retried automatically
+- [ ] Embedding status visible in content management interface
+
+#### US-7.2: Perform Vector Similarity Search
+
+**As a** search service  
+**I want to** perform vector similarity search on embeddings  
+**So that** I can find semantically similar content
+
+**Acceptance Criteria:**
+- [ ] Vector search returns results within 100ms (P95)
+- [ ] Vector search supports metadata filtering (domain, type, persona)
+- [ ] Vector search returns top 20 candidates for re-ranking
+- [ ] Vector search handles 500+ queries/minute
+- [ ] Vector search gracefully degrades if service unavailable
+
+#### US-7.3: Monitor Vector Database Health
+
+**As a** system administrator  
+**I want to** monitor vector database cluster health  
+**So that** I can detect and resolve issues proactively
+
+**Acceptance Criteria:**
+- [ ] Dashboard shows cluster status (healthy, degraded, down)
+- [ ] Dashboard shows query latency (P50, P95, P99)
+- [ ] Dashboard shows index freshness (time since last update)
+- [ ] Alerts triggered when cluster health degrades
+- [ ] Alerts triggered when query latency exceeds 200ms
+
+---
+
+### Epic 8: Content Quality Management
+
+#### US-8.1: Validate Content Quality Before Publishing
+
+**As a** content author  
+**I want to** see content quality score before publishing  
+**So that** I can improve content before submission
+
+**Acceptance Criteria:**
+- [ ] Quality score calculated automatically on save
+- [ ] Quality score displayed in authoring interface
+- [ ] Quality score breakdown shown (completeness, accuracy, readability, visual)
+- [ ] Specific feedback provided for failing criteria
+- [ ] Publishing blocked if quality score <80/100
+- [ ] Suggestions provided to improve quality score
+
+#### US-8.2: Run Automated Content Validation
+
+**As a** content management system  
+**I want to** run automated validation checks on content  
+**So that** only high-quality content is published
+
+**Acceptance Criteria:**
+- [ ] Grammar and spelling checked automatically
+- [ ] Link validation performed (internal and external)
+- [ ] Metadata completeness validated
+- [ ] Template compliance verified
+- [ ] Readability score calculated (Flesch-Kincaid)
+- [ ] Image alt text validated
+- [ ] Validation results displayed to author
+- [ ] Publishing blocked if critical validations fail
+
+#### US-8.3: View Content Quality Dashboard
+
+**As a** content manager  
+**I want to** view content quality metrics  
+**So that** I can identify areas for improvement
+
+**Acceptance Criteria:**
+- [ ] Dashboard shows average quality score
+- [ ] Dashboard shows quality score distribution
+- [ ] Dashboard shows quality trends over time
+- [ ] Dashboard shows quality by domain
+- [ ] Dashboard lists content below quality threshold
+- [ ] Dashboard exportable to CSV
+
+---
+
+### Epic 9: Vendor and Tool Evaluation
+
+#### US-9.1: Evaluate Vector Database Vendors
+
+**As a** technical lead  
+**I want to** evaluate vector database vendors  
+**So that** I can select the best option for our needs
+
+**Acceptance Criteria:**
+- [ ] Evaluation criteria defined (performance, scalability, cost, ease of integration)
+- [ ] Top 3 vendors identified (Pinecone, Weaviate, Qdrant)
+- [ ] POC completed for each vendor (1,000 test objects, 100 test queries)
+- [ ] Performance metrics compared (latency, throughput)
+- [ ] Cost estimates provided for each vendor
+- [ ] Recommendation document created with decision rationale
+- [ ] Decision made within 2 weeks
+
+#### US-9.2: Evaluate LLM Providers
+
+**As an** AI lead  
+**I want to** evaluate LLM providers  
+**So that** I can select the best option for RAG
+
+**Acceptance Criteria:**
+- [ ] Evaluation criteria defined (accuracy, latency, cost, privacy)
+- [ ] Top 3 providers identified (OpenAI, Anthropic, self-hosted)
+- [ ] POC completed with 50 Golden Questions
+- [ ] Accuracy, latency, and cost compared
+- [ ] Recommendation document created
+- [ ] Decision made within 2 weeks
+
+---
+
+### Epic 10: Change Management
+
+#### US-10.1: Receive Training on Authoring Tools
+
+**As a** content author  
+**I want to** receive training on authoring tools  
+**So that** I can create high-quality content efficiently
+
+**Acceptance Criteria:**
+- [ ] 4-hour training session scheduled and delivered
+- [ ] Training covers authoring tool, templates, quality standards
+- [ ] Training materials provided (slides, video recordings)
+- [ ] Hands-on practice session included
+- [ ] Post-training assessment completed
+- [ ] Support available for questions post-training
+
+#### US-10.2: Access Change Management Resources
+
+**As a** platform user  
+**I want to** access resources about the new KB  
+**So that** I can learn how to use it effectively
+
+**Acceptance Criteria:**
+- [ ] Help articles available explaining KB features
+- [ ] Video tutorials available (optional)
+- [ ] FAQ document answers common questions
+- [ ] In-app tooltips guide users
+- [ ] Support team available for questions
+
+---
+
+### Epic 11: Content Authoring Tools
+
+#### US-11.1: Create Content Using Templates
+
+**As a** content author  
+**I want to** create content using pre-defined templates  
+**So that** content is consistent and complete
+
+**Acceptance Criteria:**
+- [ ] Author can select object type (Concept, Task, Troubleshooting, etc.)
+- [ ] Template pre-populates required sections
+- [ ] Template structure enforced (cannot skip required sections)
+- [ ] Template examples available for reference
+- [ ] Author can preview content before publishing
+
+#### US-11.2: Upload and Manage Media Files
+
+**As a** content author  
+**I want to** upload and manage media files  
+**So that** I can include screenshots and images in content
+
+**Acceptance Criteria:**
+- [ ] Author can upload images (PNG, JPEG)
+- [ ] Images automatically optimized (compressed, resized)
+- [ ] Alt text required for all images
+- [ ] Media library shows all uploaded files
+- [ ] Author can replace images with new versions
+- [ ] Usage tracking shows where images are used
+
+#### US-11.3: Collaborate on Content Review
+
+**As a** content reviewer  
+**I want to** review content with comments and suggestions  
+**So that** I can provide feedback to authors
+
+**Acceptance Criteria:**
+- [ ] Reviewer can add inline comments
+- [ ] Reviewer can suggest changes (track changes mode)
+- [ ] Reviewer can @mention authors
+- [ ] Authors receive notifications of comments
+- [ ] Authors can respond to comments
+- [ ] Comments resolved when addressed
+
+---
+
+### Epic 12: Launch Readiness
+
+#### US-12.1: Complete Launch Readiness Checklist
+
+**As a** project manager  
+**I want to** complete launch readiness checklist  
+**So that** I can ensure all requirements are met before launch
+
+**Acceptance Criteria:**
+- [ ] Technical readiness checklist completed (all items checked)
+- [ ] Content readiness checklist completed (25+ objects, quality scores)
+- [ ] Process readiness checklist completed (governance, training)
+- [ ] Launch acceptance criteria met (Section 6.8)
+- [ ] Go/no-go decision made
+- [ ] Launch date confirmed
+
+#### US-12.2: Execute Launch Day Runbook
+
+**As a** launch coordinator  
+**I want to** execute launch day runbook  
+**So that** launch proceeds smoothly
+
+**Acceptance Criteria:**
+- [ ] Pre-launch checks completed (T-1 day)
+- [ ] Beta user rollout executed (10% at 9:00 AM)
+- [ ] Metrics monitored throughout day
+- [ ] Issues logged and escalated as needed
+- [ ] Full rollout executed (100% at 11:00 AM if no issues)
+- [ ] End-of-day review completed
+- [ ] Post-launch plan communicated
+
+---
+
+### Epic 13: Beta and Pilot Program
+
+#### US-13.1: Participate in Beta Program
+
+**As a** beta user  
+**I want to** participate in beta program  
+**So that** I can provide feedback and access new features early
+
+**Acceptance Criteria:**
+- [ ] Beta access granted (20-30 internal users)
+- [ ] Beta features accessible (Web KB, in-product help, AI assistant)
+- [ ] Feedback mechanisms available (surveys, in-app feedback)
+- [ ] Weekly surveys sent (5 questions)
+- [ ] User interviews scheduled (5-10 users)
+- [ ] Feedback collected and analyzed
+
+#### US-13.2: Analyze Beta Feedback
+
+**As a** product manager  
+**I want to** analyze beta feedback  
+**So that** I can improve product before full launch
+
+**Acceptance Criteria:**
+- [ ] Feedback collected from all sources (surveys, interviews, analytics)
+- [ ] Feedback categorized (usability, content, AI, performance)
+- [ ] Quantitative metrics calculated (satisfaction scores, usage rates)
+- [ ] Qualitative feedback summarized
+- [ ] Action items identified and prioritized
+- [ ] Feedback report created and shared with team
+
+---
+
+### Epic 14: Support and Maintenance
+
+#### US-14.1: Report Issue to Support
+
+**As a** platform user  
+**I want to** report issues to support  
+**So that** problems are resolved quickly
+
+**Acceptance Criteria:**
+- [ ] Support ticket can be created from KB/AI escalation
+- [ ] Support ticket includes context bundle (Tier 0 + Tier 1)
+- [ ] User receives ticket number and confirmation
+- [ ] User can track ticket status
+- [ ] Support responds within SLA (4 hours L1, 8 hours L2)
+- [ ] Issue resolved and user notified
+
+#### US-14.2: Access On-Call Support
+
+**As a** system administrator  
+**I want to** access on-call support  
+**So that** critical issues are resolved quickly
+
+**Acceptance Criteria:**
+- [ ] On-call rotation schedule maintained
+- [ ] On-call engineer contactable 24/7
+- [ ] Escalation path defined (primary → secondary → manager)
+- [ ] Critical issues escalated immediately
+- [ ] On-call engineer responds within 15 minutes for critical issues
+
+---
+
+### Epic 15: Search Quality Tuning
+
+#### US-15.1: Evaluate Search Relevance
+
+**As a** search quality engineer  
+**I want to** evaluate search relevance  
+**So that** I can measure and improve search quality
+
+**Acceptance Criteria:**
+- [ ] Evaluation dataset created (100 test queries with expected results)
+- [ ] Evaluation metrics calculated (Precision@5, Recall@10, MRR, NDCG)
+- [ ] Metrics meet targets (Precision@5 >80%, Recall@10 >90%, MRR >0.85)
+- [ ] Evaluation results displayed in dashboard
+- [ ] Evaluation performed quarterly
+
+#### US-15.2: Tune Search Parameters
+
+**As a** search quality engineer  
+**I want to** tune search parameters  
+**So that** I can improve search relevance
+
+**Acceptance Criteria:**
+- [ ] Hybrid search weights adjustable (keyword vs. semantic)
+- [ ] Ranking factors configurable (relevance, freshness, quality, feedback)
+- [ ] A/B testing framework available (50/50 traffic split)
+- [ ] Test results compared (success rate, satisfaction)
+- [ ] Best performing configuration deployed
+- [ ] Tuning performed monthly
+
+---
+
+### Epic 16: Content Style Guide
+
+#### US-16.1: Access Content Style Guide
+
+**As a** content author  
+**I want to** access content style guide  
+**So that** I can write consistent, high-quality content
+
+**Acceptance Criteria:**
+- [ ] Style guide accessible from authoring interface
+- [ ] Style guide covers writing style, tone, formatting
+- [ ] Style guide includes examples
+- [ ] Terminology glossary available
+- [ ] Style guide searchable
+- [ ] Style guide updated quarterly
+
+#### US-16.2: Validate Content Against Style Guide
+
+**As a** content author  
+**I want to** validate content against style guide  
+**So that** content meets standards
+
+**Acceptance Criteria:**
+- [ ] Automated checks for style guide compliance (readability, active voice)
+- [ ] Terminology checker validates approved terms
+- [ ] Formatting validator checks structure
+- [ ] Feedback provided on style guide violations
+- [ ] Style guide violations shown in quality score
+
+---
+
+### Epic 17: Rollback and Contingency
+
+#### US-17.1: Execute Rollback Procedure
+
+**As a** system administrator  
+**I want to** execute rollback procedure  
+**So that** I can quickly recover from issues
+
+**Acceptance Criteria:**
+- [ ] Rollback triggers defined (critical bugs, performance degradation)
+- [ ] Rollback procedures documented (step-by-step)
+- [ ] Rollback can be executed within 1 hour
+- [ ] Data integrity verified after rollback
+- [ ] Rollback tested quarterly
+- [ ] Rollback communicated to users
+
+#### US-17.2: Handle Service Degradation
+
+**As a** system administrator  
+**I want to** handle service degradation gracefully  
+**So that** users experience minimal impact
+
+**Acceptance Criteria:**
+- [ ] Fallback procedures defined for each service (vector DB, LLM, search)
+- [ ] Fallback automatically triggered when service unavailable
+- [ ] Users notified of degraded service
+- [ ] Recovery time estimated and communicated
+- [ ] Post-incident review conducted
+
+---
+
+## 17. Content Migration Strategy
 
 ### 17.1 Content Audit
 
@@ -937,9 +1616,76 @@ During migration period:
 * Analytics track redirect usage to identify external links
 * Broken link monitoring for unmapped legacy URLs
 
+### 17.6 Technical migration tools
+
+**Migration scripts:**
+
+* **Format converters:** Automated transformation from legacy formats (Confluence, Markdown, HTML) to canonical templates
+* **Metadata extractors:** Parse and extract metadata from legacy content
+* **Link validators:** Check and update broken links during migration
+* **Bulk import API:** Programmatic import of transformed content
+* **Progress tracking:** Real-time migration progress dashboard
+
+**Validation tools:**
+
+* **Data quality checks:** Post-migration validation (completeness, accuracy, link integrity)
+* **Content comparison:** Side-by-side comparison of legacy vs. migrated content
+* **Metadata validation:** Ensure all required metadata fields populated
+* **Template compliance:** Verify content matches template structure
+
+**Rollback capability:**
+
+* **Migration snapshots:** Point-in-time snapshots before migration
+* **Rollback scripts:** Ability to revert migration if critical issues found
+* **Data integrity checks:** Verify no data loss during rollback
+
+**Migration monitoring:**
+
+* **Progress dashboard:** Real-time tracking of migration progress (objects migrated, in progress, failed)
+* **Error reporting:** Detailed error logs with remediation suggestions
+* **Success metrics:** Migration completion rate, validation pass rate, content quality scores
+
+### 17.7 Content gap analysis
+
+**Gap identification methods:**
+
+1. **Support ticket analysis:**
+   * Analyze support tickets without KB coverage
+   * Identify recurring questions without answers
+   * Prioritize by ticket volume and resolution time
+
+2. **Search analytics:**
+   * Zero-result queries (queries with no results)
+   * Low-satisfaction searches (user feedback <3/5)
+   * Query refinement patterns (users modifying queries multiple times)
+
+3. **AI feedback:**
+   * Questions AI couldn't answer (no content exists)
+   * Low-confidence AI responses (confidence <0.7)
+   * User corrections to AI answers
+
+4. **User feedback:**
+   * "Content not found" feedback on articles
+   * User requests for new content
+   * Partner training gaps
+
+**Prioritization framework:**
+
+* **Impact score:** Ticket volume × average resolution time
+* **Effort score:** Content creation complexity (1-5 scale)
+* **Priority = Impact / Effort**
+* **Urgency:** Time-sensitive topics (security, compliance)
+
+**Backlog management:**
+
+* **Content request process:** Standardized form for requesting new content
+* **Backlog prioritization:** Quarterly review and prioritization
+* **Gap tracking:** Dashboard showing identified gaps and status
+* **Closure criteria:** Gap closed when content published and validated
+
 ---
 
-## 18) Integration Requirements
+## 18. Integration Requirements
 
 ### 18.1 Platform Integrations
 
@@ -971,9 +1717,60 @@ During migration period:
 - [ ] Alert on stale content approaching SLA
 - [ ] Weekly digest of content health metrics
 
+### 18.4 Internal service APIs
+
+**Content Management API:**
+
+* **Endpoint:** `/api/v1/content`
+* **Operations:** CRUD for knowledge objects
+* **Authentication:** OAuth 2.0 / API key
+* **Rate limiting:** 100 requests/minute per API key
+* **Documentation:** OpenAPI/Swagger specification
+
+**Embedding API:**
+
+* **Endpoint:** `/api/v1/embeddings`
+* **Operations:** Generate embeddings, update embeddings, get embedding status
+* **Authentication:** Service-to-service authentication
+* **Rate limiting:** 1,000 objects/hour
+* **Documentation:** OpenAPI/Swagger specification
+
+**Search API:**
+
+* **Endpoint:** `/api/v1/search`
+* **Operations:** Hybrid search (keyword + vector), filters, auto-complete
+* **Authentication:** OAuth 2.0 / API key
+* **Rate limiting:** 1,000 queries/minute per API key
+* **Response format:** JSON with results, metadata, pagination
+* **Documentation:** OpenAPI/Swagger specification with examples
+
+**AI Assistant API:**
+
+* **Endpoint:** `/api/v1/ai/query`
+* **Operations:** Submit query, get response, provide feedback
+* **Authentication:** OAuth 2.0 / session token
+* **Rate limiting:** Per-user and per-tenant limits (see Section 10.5)
+* **Response format:** JSON with answer, citations, confidence score
+* **Documentation:** OpenAPI/Swagger specification with example queries
+
+**Analytics API:**
+
+* **Endpoint:** `/api/v1/analytics`
+* **Operations:** Get KPIs, export data, get trends
+* **Authentication:** Role-based access (admin only)
+* **Rate limiting:** 100 requests/minute
+* **Response format:** JSON with metrics, time-series data
+* **Documentation:** OpenAPI/Swagger specification
+
+**API versioning:**
+
+* **Version strategy:** URL-based versioning (`/api/v1/`, `/api/v2/`)
+* **Deprecation policy:** 6 months notice before version deprecation
+* **Backward compatibility:** Maintain previous version for 12 months after new version release
+
 ---
 
-## 19) Accessibility Requirements
+## 19. Accessibility Requirements
 
 ### 19.1 WCAG 2.1 AA Compliance
 
@@ -1012,7 +1809,7 @@ All KB and help surfaces shall meet WCAG 2.1 Level AA standards:
 
 ---
 
-## 20) Non-Functional Requirements
+## 20. Non-Functional Requirements
 
 ### 20.1 Performance
 
@@ -1051,9 +1848,169 @@ All KB and help surfaces shall meet WCAG 2.1 Level AA standards:
 | Audit logging | All content changes, access, and escalations logged |
 | Data residency | Configurable by tenant (US, EU, APAC) |
 
+### 20.5 Performance testing plan
+
+**Load testing:**
+
+* **Target load:** 10,000 concurrent users, 1,000 searches/minute, 500 AI queries/minute
+* **Tools:** JMeter, k6, Locust, or cloud load testing (AWS Load Testing, Azure Load Testing)
+* **Test duration:** 1 hour sustained load, 30-minute ramp-up
+* **Success criteria:** All performance metrics met under target load
+
+**Stress testing:**
+
+* **Breaking point identification:** Gradually increase load until system degrades
+* **Resource limits:** Identify CPU, memory, database connection limits
+* **Failure modes:** Understand how system fails (graceful degradation vs. hard failure)
+
+**Endurance testing:**
+
+* **Duration:** 24-hour sustained load at 80% of target capacity
+* **Memory leaks:** Monitor for memory leaks, connection pool exhaustion
+* **Performance degradation:** Ensure performance doesn't degrade over time
+
+**Spike testing:**
+
+* **Scenario:** Sudden 5x increase in traffic (e.g., product launch, outage)
+* **Recovery time:** Measure time to recover to normal performance
+* **Auto-scaling:** Verify auto-scaling triggers and scales appropriately
+
+**Test environment:**
+
+* **Staging environment:** Mirror production configuration
+* **Test data:** Production-like data (synthetic or anonymized)
+* **Monitoring:** Real-time monitoring during tests (CPU, memory, latency, error rates)
+
+### 20.6 Observability
+
+**Metrics:**
+
+* **Embedding generation:**
+  * Latency: P50, P95, P99 embedding generation time
+  * Success rate: % of successful embeddings
+  * Queue depth: Number of objects waiting for embedding
+* **Vector search:**
+  * Query latency: P50, P95, P99 vector search time
+  * Index freshness: Time since last index update
+  * Query volume: Queries per minute/hour
+* **AI assistant:**
+  * Response time: P50, P95, P99 AI response time
+  * Token usage: Average tokens per query, total tokens per day
+  * Quality scores: Citation accuracy, user feedback scores
+  * Error rate: % of failed queries
+* **Content operations:**
+  * Publish latency: Time from approval to live
+  * Embedding update latency: Time from publish to embedding ready
+  * Content quality scores: Average quality score, distribution
+
+**Logging:**
+
+* **AI queries:** All queries with responses, citations, confidence scores, user feedback
+* **Search queries:** Query text, results returned, filters applied, user feedback
+* **Content changes:** All create/update/delete operations with user, timestamp, changes
+* **Errors:** All errors with stack traces, context, user impact
+* **Access logs:** All API calls with user, endpoint, response time, status code
+
+**Alerting:**
+
+* **Critical alerts (immediate):**
+  * Vector DB cluster down
+  * Embedding pipeline failures (>5% failure rate)
+  * AI service degradation (response time >10s)
+  * Search latency spikes (>2s P95)
+* **Warning alerts (within 1 hour):**
+  * Embedding queue depth >100 objects
+  * AI error rate >5%
+  * Content quality score <70
+  * Index freshness >1 hour
+
+**Dashboards:**
+
+* **Real-time operational dashboard:** System health, error rates, latency
+* **Business metrics dashboard:** KPIs from Section 6
+* **Content health dashboard:** Quality scores, review status, stale content
+* **AI performance dashboard:** Query volume, quality metrics, cost tracking
+
+### 20.7 Cost optimization
+
+**Vector database costs:**
+
+* **Estimate:** Based on 10,000 objects, 500 queries/minute
+* **Optimization:** 
+  * Use appropriate tier (starter vs. production)
+  * Monitor and optimize index size
+  * Cache frequent queries
+  * Batch embedding updates
+
+**LLM API costs:**
+
+* **Estimate:** Based on average tokens per query, query volume
+* **Optimization:**
+  * Cache frequent queries (Redis cache, 1-hour TTL)
+  * Use appropriate model (GPT-3.5 for simple queries, GPT-4 for complex)
+  * Monitor token usage and set budgets
+  * Implement response streaming for better UX
+
+**Storage costs:**
+
+* **Estimate:** Based on content volume, attachments, backups
+* **Optimization:**
+  * Compress images and attachments
+  * Implement data retention policies
+  * Archive old content (not delete)
+  * Use appropriate storage tier (hot vs. cold)
+
+**Infrastructure costs:**
+
+* **Estimate:** Compute, database, networking
+* **Optimization:**
+  * Auto-scaling policies (scale down during low traffic)
+  * Reserved instances for predictable workloads
+  * Right-size instances (not over-provisioned)
+  * Monitor and optimize resource utilization
+
+**Cost monitoring:**
+
+* **Budget alerts:** Set monthly budgets with alerts at 50%, 75%, 90%, 100%
+* **Cost attribution:** Track costs by service, feature, tenant
+* **Cost trends:** Monitor cost trends and identify anomalies
+* **Optimization recommendations:** Automated recommendations for cost savings
+
+### 20.8 Security testing
+
+**Penetration testing:**
+
+* **Frequency:** Annual external security audit
+* **Scope:** All public APIs, authentication, authorization, data access
+* **Remediation:** Critical findings remediated within 30 days
+
+**Vulnerability scanning:**
+
+* **Automated scanning:** Weekly scans for OWASP Top 10 vulnerabilities
+* **Dependency scanning:** Automated scanning of third-party libraries
+* **Remediation:** High/critical vulnerabilities patched within 7 days
+
+**Code review:**
+
+* **Security-focused review:** All security-sensitive code reviewed by security team
+* **Checklist:** Authentication, authorization, input validation, output encoding, error handling
+
+**Dependency management:**
+
+* **Vulnerability database:** Monitor CVE database for known vulnerabilities
+* **Update policy:** Security patches applied within 7 days
+* **Approved libraries:** Maintain whitelist of approved libraries
+
+**Security incident response:**
+
+* **Detection:** Automated detection of security events (failed logins, suspicious activity)
+* **Containment:** Immediate isolation of affected systems
+* **Recovery:** Restore from backups, patch vulnerabilities
+* **Post-incident:** Root cause analysis, process improvements
+
 ---
 
-## 21) Appendix: RACI (starter)
+## 21. Appendix: RACI (starter)
 
 | Activity                       | PM  | Docs | UX  | AI  | Support | Eng |
 | ------------------------------ | --- | ---- | --- | --- | ------- | --- |
@@ -1070,6 +2027,879 @@ All KB and help surfaces shall meet WCAG 2.1 Level AA standards:
 | Analytics dashboard            | C   | C    | C   | C   | C       | A/R |
 
 Legend: R=Responsible, A=Accountable, C=Consulted
+
+---
+
+## 22. Technical Architecture
+
+### 22.1 Data architecture
+
+**Storage layers:**
+
+* **Primary storage (PostgreSQL/MySQL):**
+  * Purpose: Metadata, relationships, versioning, workflow state
+  * Schema: Normalized relational schema
+  * Backup: Daily backups with 30-day retention, point-in-time recovery
+  * Replication: Master-replica setup for read scaling
+
+* **Vector storage (Clustered vector DB):**
+  * Purpose: Embeddings for semantic search and RAG
+  * Options: Pinecone, Weaviate, Qdrant, Milvus
+  * Deployment: Clustered for high availability
+  * Backup: Daily snapshots, ability to rebuild from source
+
+* **File storage (S3/Azure Blob):**
+  * Purpose: Attachments, screenshots, media files
+  * Organization: Bucket/container per tenant or shared with tenant prefix
+  * CDN: CloudFront/Azure CDN for fast delivery
+  * Lifecycle: Archive to cold storage after 1 year
+
+* **Search index (Elasticsearch/OpenSearch):**
+  * Purpose: Full-text search, keyword search
+  * Indexing: Real-time indexing on content publish
+  * Sharding: Sharded by domain or tenant for scalability
+  * Backup: Daily snapshots
+
+* **Cache layer (Redis):**
+  * Purpose: Frequently accessed objects, search results, AI responses
+  * TTL: 1 hour for content, 5 minutes for search results
+  * Eviction: LRU (Least Recently Used) policy
+  * Persistence: Optional persistence for critical data
+
+### 22.2 Service communication
+
+**API communication:**
+
+* **REST APIs:** Primary communication protocol
+* **GraphQL:** Optional for complex queries (future)
+* **Authentication:** OAuth 2.0, API keys for service-to-service
+* **Rate limiting:** Per-service rate limits
+* **Circuit breakers:** Prevent cascade failures
+
+**Event-driven architecture:**
+
+* **Message queue:** RabbitMQ, Kafka, or cloud message queue (SQS, Service Bus)
+* **Events:**
+  * Content published → Trigger embedding generation
+  * Content updated → Trigger embedding update, index update
+  * Content deprecated → Remove from indexes
+* **Event schema:** JSON schema for all events
+* **Event replay:** Ability to replay events for recovery
+
+### 22.3 Deployment architecture
+
+**Containerization:**
+
+* **Docker:** All services containerized
+* **Orchestration:** Kubernetes or cloud container service (ECS, AKS)
+* **Service mesh:** Optional (Istio, Linkerd) for advanced traffic management
+
+**Scaling:**
+
+* **Horizontal scaling:** Auto-scaling based on CPU, memory, request rate
+* **Vertical scaling:** Right-size instances for each service
+* **Load balancing:** Application load balancer for traffic distribution
+
+**High availability:**
+
+* **Multi-AZ deployment:** Services deployed across multiple availability zones
+* **Health checks:** Liveness and readiness probes
+* **Graceful shutdown:** 30-second grace period for in-flight requests
+
+---
+
+## 23. Content Quality Standards
+
+### 23.1 Quality metrics
+
+**Completeness score (40%):**
+
+* All required template sections filled: 20 points
+* All required metadata populated: 10 points
+* Screenshots included (where applicable): 5 points
+* Links validated: 5 points
+
+**Accuracy score (30%):**
+
+* Technical accuracy verified by SME: 15 points
+* Screenshots match current version: 10 points
+* Instructions verified by following them: 5 points
+
+**Readability score (20%):**
+
+* Flesch-Kincaid grade level ≤8.0: 10 points
+* Average sentence length 15-20 words: 5 points
+* Active voice ≥70%: 5 points
+
+**Visual quality score (10%):**
+
+* Images optimized for web: 5 points
+* Alt text present: 3 points
+* Annotations clear and helpful: 2 points
+
+**Minimum quality score:** 80/100 required for publishing
+
+### 23.2 Quality assurance process
+
+**Automated checks:**
+
+* Run on every save (draft) and before publish
+* Block publishing if score <80
+* Provide specific feedback on failing criteria
+
+**Manual review:**
+
+* Peer review: Optional, recommended for complex topics
+* SME review: Required for technical accuracy
+* Final approval: Content owner or designated approver
+
+**Quality dashboard:**
+
+* Overall quality metrics: Average score, distribution
+* Quality trends: Improvement over time
+* Low-quality content: List of content below threshold
+* Quality by domain: Identify domains needing improvement
+
+---
+
+## 24. Budget and Resource Planning
+
+### 24.1 Resource allocation
+
+**Phase 0-30 days (Align + Prove):**
+
+* PM: 0.5 FTE
+* Docs/Content: 1.0 FTE (Vignesh, GopiChand)
+* UX: 0.5 FTE (Sourav)
+* AI: 0.5 FTE (Neeraj)
+* Support: 0.25 FTE (Balaji)
+* Engineering: 0.5 FTE (LNR)
+* **Total: 3.25 FTE**
+
+**Phase 31-60 days (MVP Build):**
+
+* PM: 0.5 FTE
+* Docs/Content: 1.5 FTE
+* UX: 1.0 FTE
+* AI: 1.0 FTE
+* Support: 0.5 FTE
+* Engineering: 2.0 FTE (LNR + 1 additional engineer)
+* QA: 0.5 FTE
+* **Total: 7.0 FTE**
+
+**Phase 61-90 days (Scale):**
+
+* PM: 0.5 FTE
+* Docs/Content: 2.0 FTE
+* UX: 0.5 FTE
+* AI: 1.0 FTE
+* Support: 0.5 FTE
+* Engineering: 2.0 FTE
+* QA: 0.5 FTE
+* **Total: 7.0 FTE**
+
+### 24.2 Infrastructure costs (monthly estimates)
+
+**Vector database:**
+
+* Pinecone/Weaviate: $200-500/month (10K objects, 500 queries/min)
+* Self-hosted (Milvus): $300-800/month (compute + storage)
+
+**LLM API:**
+
+* OpenAI GPT-4: $500-2,000/month (500 queries/day, ~2K tokens/query)
+* Anthropic Claude: $400-1,500/month
+* Self-hosted: $1,000-3,000/month (compute + GPU)
+
+**Cloud infrastructure:**
+
+* Compute (Kubernetes/ECS): $500-1,500/month
+* Database (RDS/PostgreSQL): $200-500/month
+* Storage (S3/Blob): $50-200/month
+* CDN: $100-300/month
+* Monitoring/Logging: $100-300/month
+
+**Total infrastructure:** $1,550-5,800/month
+
+### 24.3 Tooling and licenses
+
+* CMS platform: $0-500/month (if using SaaS)
+* Monitoring tools: $200-500/month
+* CI/CD tools: $100-300/month
+* Development tools: $200-500/month
+
+**Total tooling:** $500-1,800/month
+
+### 24.4 Total budget estimate
+
+**90-day MVP:**
+
+* Infrastructure: $4,650-17,400 (3 months)
+* Tooling: $1,500-5,400 (3 months)
+* Contingency (15%): $923-3,420
+* **Total: $7,073-26,220**
+
+**Annual estimate (post-MVP):**
+
+* Infrastructure: $18,600-69,600/year
+* Tooling: $6,000-21,600/year
+* Contingency (15%): $3,690-13,680/year
+* **Total: $28,290-104,880/year**
+
+---
+
+## 25. Vendor and Tool Evaluation
+
+### 25.1 Vector database evaluation
+
+**Evaluation criteria:**
+
+| Criterion | Weight | Pinecone | Weaviate | Qdrant | Milvus |
+|-----------|--------|----------|----------|--------|--------|
+| Performance (<100ms) | 25% | ✓ | ✓ | ✓ | ✓ |
+| Scalability (10K+) | 20% | ✓ | ✓ | ✓ | ✓ |
+| Managed service | 15% | ✓ | ✓ | ✓ | Self-hosted |
+| Cost | 15% | $$ | $$ | $ | $ |
+| Ease of integration | 10% | ✓ | ✓ | ✓ | Medium |
+| Metadata filtering | 10% | ✓ | ✓ | ✓ | ✓ |
+| Support/SLA | 5% | ✓ | ✓ | Good | Community |
+
+**Decision timeline:** Week 1-2: Evaluation, Week 3: POC, Week 4: Decision
+
+### 25.2 LLM provider evaluation
+
+**Evaluation criteria:**
+
+| Criterion | Weight | OpenAI | Anthropic | Self-hosted |
+|-----------|--------|--------|-----------|------------|
+| Accuracy | 30% | ✓ | ✓ | Medium |
+| Response time | 20% | ✓ | ✓ | Variable |
+| Cost | 20% | $$ | $$ | $ (compute) |
+| API reliability | 15% | ✓ | ✓ | Depends |
+| Data privacy | 10% | Medium | High | High |
+| Support | 5% | ✓ | ✓ | Community |
+
+**Decision timeline:** Week 1: Evaluation, Week 2: POC, Week 3: Decision
+
+### 25.3 CMS platform evaluation
+
+**Options:** Custom build, Strapi, Contentful, Sanity
+
+**Evaluation criteria:**
+
+* Template enforcement
+* Workflow management
+* API flexibility
+* Cost
+* Maintenance burden
+
+**Decision timeline:** Week 1: Evaluation, Week 2: Decision
+
+### 25.4 POC plan
+
+**Vector database POC:**
+
+* Load 1,000 test objects
+* Generate embeddings
+* Run 100 test queries
+* Measure latency, accuracy
+* Evaluate ease of integration
+
+**LLM POC:**
+
+* Test with 50 Golden Questions
+* Measure accuracy, latency, cost
+* Evaluate citation quality
+* Test fallback behavior
+
+**Success criteria:** Meet performance requirements, integration <2 days, cost within budget
+
+---
+
+## 26. Change Management and Adoption
+
+### 26.1 Stakeholder communication
+
+**Communication matrix:**
+
+| Stakeholder | Message | Frequency | Channel |
+|-------------|---------|-----------|---------|
+| Executive team | Progress, KPIs, risks | Monthly | Email + meeting |
+| Product teams | New KB, DoD requirements | Biweekly | Slack + email |
+| Support team | Training, escalation process | Weekly | Training + Slack |
+| Content authors | Authoring tools, guidelines | Weekly | Training + docs |
+| End users | New KB launch, how to use | Launch | In-app + email |
+
+### 26.2 Training plan
+
+**Content authors:**
+
+* Authoring tool training: 2-hour session
+* Template usage: 1-hour session
+* Quality standards: 1-hour session
+* **Total: 4 hours**
+
+**Support team:**
+
+* KB navigation: 1-hour session
+* Escalation process: 1-hour session
+* AI assistant usage: 1-hour session
+* **Total: 3 hours**
+
+**End users:**
+
+* Self-service: In-app tooltips, help articles
+* Optional: 30-minute webinar
+
+### 26.3 Adoption metrics
+
+* **Usage:** % of users accessing KB/AI per month
+* **Satisfaction:** User feedback scores
+* **Time-to-proficiency:** Days to first successful self-service resolution
+* **Content creation:** Number of content authors, objects created per month
+
+### 26.4 Change champions
+
+* **Identify champions:** 2-3 champions per team/domain
+* **Training:** Early access, advanced training
+* **Role:** Promote adoption, collect feedback, report issues
+* **Recognition:** Public recognition, rewards
+
+---
+
+## 27. Content Authoring Tools
+
+### 27.1 Authoring interface requirements
+
+**Editor features:**
+
+* WYSIWYG editor with Markdown support
+* Template selector (pre-populates structure)
+* Real-time preview
+* Spell check and grammar suggestions
+* Link validation
+* Image upload and optimization
+* Version comparison
+
+**Workflow features:**
+
+* Draft save (auto-save every 30 seconds)
+* Submit for review
+* Review comments and suggestions
+* Approval workflow
+* Publish with scheduling
+
+### 27.2 Media management
+
+**Media library:**
+
+* Upload screenshots, images, videos
+* Automatic optimization (compression, resizing)
+* Alt text requirement
+* Versioning (replace with new version)
+* Usage tracking (where images are used)
+
+### 27.3 Collaboration features
+
+**Comments and suggestions:**
+
+* Inline comments on content
+* Suggestions mode (track changes)
+* @mentions for reviewers
+* Notification of comments/changes
+
+### 27.4 Author documentation
+
+**Authoring guide:**
+
+* Step-by-step tutorials
+* Template examples
+* Best practices
+* Common mistakes to avoid
+* Video tutorials (optional)
+
+---
+
+## 28. Launch Readiness and Acceptance Criteria
+
+### 28.1 Technical readiness checklist
+
+- [ ] All services deployed and healthy
+- [ ] Performance tests passed
+- [ ] Security tests passed
+- [ ] Monitoring and alerting configured
+- [ ] Backup and recovery tested
+- [ ] Load balancing configured
+- [ ] CDN configured
+- [ ] SSL certificates valid
+- [ ] API documentation complete
+- [ ] Error handling tested
+
+### 28.2 Content readiness checklist
+
+- [ ] 25+ knowledge objects published
+- [ ] All objects in "Verified" status
+- [ ] Quality scores ≥80/100
+- [ ] Coverage of top 5 journeys
+- [ ] All links validated
+- [ ] Screenshots current
+- [ ] Embeddings generated for all objects
+
+### 28.3 Process readiness checklist
+
+- [ ] Governance model operational
+- [ ] Content owners assigned
+- [ ] Review workflow tested
+- [ ] Support team trained
+- [ ] Escalation process documented
+- [ ] Analytics dashboard live
+- [ ] Feedback mechanisms functional
+
+### 28.4 Launch day runbook
+
+**Pre-launch (T-1 day):**
+
+* Final system check
+* Content review
+* Team briefing
+* Rollback plan ready
+
+**Launch day:**
+
+* 9:00 AM: Enable for beta users (10%)
+* 10:00 AM: Monitor metrics, check for issues
+* 11:00 AM: Enable for all users (if no issues)
+* Monitor throughout day
+* End of day: Review metrics, plan next steps
+
+**Post-launch (T+1 to T+7):**
+
+* Daily monitoring
+* Daily standup to review issues
+* User feedback collection
+* Performance monitoring
+* Week 1 review: Go/no-go for full launch
+
+---
+
+## 29. Beta and Pilot Program
+
+### 29.1 Pilot scope
+
+**Participants:**
+
+* Internal users: 20-30 users across personas
+* External beta: 50-100 selected customers (optional)
+* Support team: All support agents
+
+**Features:**
+
+* Web KB: Full access
+* In-product help: Context help, error help
+* AI assistant: Full access with feedback collection
+* Analytics: Basic analytics visible
+
+**Duration:** 4 weeks
+
+### 29.2 Feedback collection
+
+**Methods:**
+
+* Weekly surveys (5 questions)
+* In-app feedback widgets
+* User interviews (5-10 users)
+* Support ticket analysis
+* Analytics (usage patterns)
+
+**Feedback categories:**
+
+* Usability: Easy to use, find information
+* Content quality: Helpful, accurate, complete
+* AI quality: Accurate, helpful, citations correct
+* Performance: Fast, responsive
+* Overall satisfaction: NPS score
+
+### 29.3 Success criteria
+
+* **Usage:** 80%+ of pilot users access KB at least once
+* **Satisfaction:** 4.0+ / 5.0 average satisfaction
+* **Content quality:** 4.0+ / 5.0 average content rating
+* **AI quality:** 70%+ thumbs up rate
+* **Performance:** All metrics meet requirements
+* **Critical bugs:** Zero critical bugs
+
+### 29.4 Production rollout plan
+
+**Phased rollout:**
+
+* Week 1: 10% of users
+* Week 2: 25% of users (if Week 1 successful)
+* Week 3: 50% of users (if Week 2 successful)
+* Week 4: 100% of users (if Week 3 successful)
+
+**Rollback triggers:**
+
+* Critical bug affecting >5% of users
+* Performance degradation (response time >2x target)
+* Security incident
+* User satisfaction <3.0/5.0
+
+---
+
+## 30. Support and Maintenance Model
+
+### 30.1 Support tiers
+
+**L1 (First line):**
+
+* User questions, basic troubleshooting
+* Escalation to L2 if needed
+* Response time: 4 hours
+
+**L2 (Technical support):**
+
+* Technical issues, bug investigation
+* Escalation to L3 if needed
+* Response time: 8 hours
+
+**L3 (Engineering):**
+
+* Critical bugs, system issues
+* Response time: 2 hours (critical), 24 hours (normal)
+
+### 30.2 Escalation procedures
+
+**Bug severity:**
+
+* **Critical:** System down, data loss, security issue → Immediate escalation
+* **High:** Major feature broken, performance degradation → 4-hour escalation
+* **Medium:** Minor feature issue, workaround available → 24-hour escalation
+* **Low:** Cosmetic issue, enhancement request → Next sprint
+
+### 30.3 Maintenance windows
+
+**Planned maintenance:**
+
+* Frequency: Monthly
+* Duration: <4 hours
+* Window: Weekend, 2:00 AM - 6:00 AM (low traffic)
+* Notice: 1 week advance notice
+
+**Emergency maintenance:**
+
+* As needed for critical issues
+* Minimize downtime
+* Post-maintenance review
+
+### 30.4 On-call rotation
+
+* **Primary on-call:** Engineering lead (LNR)
+* **Secondary on-call:** AI lead (Neeraj) for AI issues
+* **Rotation:** Weekly rotation
+* **Coverage:** 24/7 for critical issues
+* **Escalation:** Manager if on-call unavailable
+
+---
+
+## 31. Search Quality and Relevance Tuning
+
+### 31.1 Relevance evaluation framework
+
+**Evaluation dataset:**
+
+* 100 test queries with expected results
+* Queries cover all domains, personas, query types
+* Expected results ranked by relevance
+* Updated quarterly
+
+**Evaluation metrics:**
+
+* **Precision@5:** % of top 5 results that are relevant
+* **Recall@10:** % of relevant results in top 10
+* **MRR (Mean Reciprocal Rank):** Average of 1/rank of first relevant result
+* **NDCG (Normalized Discounted Cumulative Gain):** Ranking quality score
+
+**Target metrics:**
+
+* Precision@5: >80%
+* Recall@10: >90%
+* MRR: >0.85
+* NDCG@10: >0.90
+
+### 31.2 Search analytics
+
+**Query analysis:**
+
+* Top queries (volume, success rate)
+* Zero-result queries
+* Low-satisfaction queries
+* Query refinement patterns (users modifying queries)
+
+**Result analysis:**
+
+* Click-through rate by position
+* Time on page by result
+* Bounce rate (immediate back-click)
+* User feedback on results
+
+### 31.3 Tuning process
+
+**Hybrid search weights:**
+
+* Current: 40% keyword + 60% semantic
+* Tuning: Adjust weights based on query type
+* A/B testing: Test different weight combinations
+
+**Ranking factors:**
+
+* Relevance score (keyword + semantic)
+* Content freshness (last reviewed date)
+* Content quality score
+* User feedback (thumbs up rate)
+* Usage (view count, time on page)
+
+**Tuning frequency:** Monthly review, quarterly major tuning
+
+### 31.4 A/B testing framework
+
+**Test setup:**
+
+* Split traffic: 50% control, 50% variant
+* Test duration: 2 weeks minimum
+* Success metrics: Search success rate, user satisfaction, time to find answer
+
+**Test examples:**
+
+* Different embedding models
+* Different hybrid search weights
+* Different ranking factors
+* Query expansion techniques
+
+---
+
+## 32. Content Style Guide
+
+### 32.1 Writing style and tone
+
+**Tone:**
+
+* Professional but approachable
+* Clear and concise
+* Action-oriented
+* Empathetic (acknowledge user frustration)
+
+**Voice:**
+
+* Second person ("you") for instructions
+* Active voice preferred
+* Present tense for current state
+* Future tense for upcoming features (clearly marked)
+
+### 32.2 Formatting standards
+
+**Headings:**
+
+* H1: Article title (one per article)
+* H2: Main sections (template sections)
+* H3: Subsections
+* H4: Sub-subsections (rarely used)
+
+**Lists:**
+
+* Use numbered lists for sequential steps
+* Use bullet lists for non-sequential items
+* Keep list items parallel in structure
+* Maximum 7 items per list (split if longer)
+
+**Code and technical terms:**
+
+* Inline code: Use backticks for code, commands, field names
+* Code blocks: Use syntax highlighting
+* Technical terms: Define on first use, use consistently
+
+### 32.3 Visual content standards
+
+**Screenshots:**
+
+* Resolution: Minimum 1920x1080
+* Format: PNG for UI, JPEG for photos
+* File size: <500KB (optimized)
+* Annotations: Use arrows, highlights, callouts
+* Redaction: Mask PII, credentials, IP addresses
+
+**Diagrams:**
+
+* Use standard diagramming tools (draw.io, Lucidchart)
+* Include legend for symbols
+* Use consistent color scheme
+* Export as PNG or SVG
+
+### 32.4 Terminology glossary
+
+**Maintained glossary of approved terms:**
+
+* Product feature names (consistent capitalization)
+* Technical terms (consistent usage)
+* Acronyms (define on first use)
+* Deprecated terms (what to use instead)
+
+**Examples:**
+
+* "Sign in" (not "Log in", "Login")
+* "Knowledge Base" (not "KB", "knowledge base" in body text)
+* "Single Source of Truth" (not "SSOT" in body text, OK in titles)
+
+---
+
+## 33. Stakeholder Communication Plan
+
+### 33.1 Communication schedule
+
+**Weekly:**
+
+* Execution standup: 30 minutes, all team members
+* Status email: Friday EOD, progress, blockers, next week
+
+**Biweekly:**
+
+* Knowledge Council: Taxonomy, governance, deprecations
+* Demo: Show progress to stakeholders
+
+**Monthly:**
+
+* KPI review: 45 minutes, metrics, trends, actions
+* Executive update: High-level progress, risks, decisions needed
+
+**Quarterly:**
+
+* Business review: ROI, adoption, next quarter priorities
+
+### 33.2 Status report template
+
+**Sections:**
+
+1. **Progress:** What was accomplished this week
+2. **Metrics:** KPIs, trends
+3. **Blockers:** Issues needing resolution
+4. **Next week:** Planned activities
+5. **Risks:** New or updated risks
+6. **Decisions needed:** Decisions requiring input
+
+### 33.3 Launch communication
+
+**Internal announcement (T-1 week):**
+
+* Email to all employees
+* Demo video
+* FAQ document
+
+**External announcement (Launch day):**
+
+* In-app notification
+* Email to users (if applicable)
+* Blog post (optional)
+* Support team briefing
+
+**Post-launch (T+1 week):**
+
+* Launch results summary
+* User feedback highlights
+* Next steps
+
+---
+
+## 34. Rollback and Contingency Planning
+
+### 34.1 Rollback triggers
+
+**Immediate rollback:**
+
+* Critical security vulnerability
+* Data loss or corruption
+* System-wide outage (>1 hour)
+* Performance degradation (>5x normal response time)
+
+**Planned rollback:**
+
+* User satisfaction <3.0/5.0 for 3 consecutive days
+* Critical bug affecting >10% of users
+* AI hallucination rate >20%
+* Search success rate <50%
+
+### 34.2 Rollback procedures
+
+**Data rollback:**
+
+* Restore database from backup (point-in-time recovery)
+* Restore vector DB from snapshot
+* Restore file storage from backup
+* Verify data integrity
+
+**Code rollback:**
+
+* Revert to previous deployment
+* Verify rollback successful
+* Monitor for issues
+* Communicate to users
+
+**Content rollback:**
+
+* Revert content changes
+* Regenerate embeddings if needed
+* Update search index
+* Verify content accessible
+
+### 34.3 Contingency plans
+
+**Vector DB unavailable:**
+
+* Fallback to keyword-only search
+* Display message to users
+* Estimate recovery time
+* Escalate to vendor support
+
+**LLM service unavailable:**
+
+* Fallback to keyword search results
+* Display message to users
+* Estimate recovery time
+* Consider backup LLM provider
+
+**High traffic spike:**
+
+* Auto-scaling should handle
+* If not, rate limiting
+* Queue requests if needed
+* Monitor and adjust
+
+**Data corruption:**
+
+* Immediate: Isolate affected data
+* Restore from backup
+* Investigate root cause
+* Prevent recurrence
+
+### 34.4 Disaster recovery
+
+**RTO (Recovery Time Objective):** 4 hours
+
+**RPO (Recovery Point Objective):** 1 hour
+
+**Recovery procedures:**
+
+1. Assess damage
+2. Restore from backup
+3. Verify data integrity
+4. Test functionality
+5. Gradual traffic restoration
+6. Post-incident review
+
+**Backup strategy:**
+
+* Database: Daily backups, 30-day retention
+* Vector DB: Daily snapshots
+* File storage: Daily backups, 90-day retention
+* Configuration: Version controlled, backed up
 
 ---
 
