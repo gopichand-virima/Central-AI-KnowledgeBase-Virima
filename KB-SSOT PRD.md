@@ -10,7 +10,7 @@
 * **Support:** Balaji
 * **Engineering:** LNR
 
-**Status:** Enhanced v2.0 (90-95% Achievability)
+**Achievability:** (90-95% Achievability)
 
 ---
 
@@ -39,17 +39,47 @@
 21. [Appendix: RACI](#21-appendix-raci-starter)
 22. [Technical Architecture](#22-technical-architecture)
 23. [Content Quality Standards](#23-content-quality-standards)
-24. [Budget and Resource Planning](#24-budget-and-resource-planning)
-25. [Vendor and Tool Evaluation](#25-vendor-and-tool-evaluation)
-26. [Change Management and Adoption](#26-change-management-and-adoption)
+24. [Vendor and Tool Evaluation](#24-vendor-and-tool-evaluation)
+25. [Change Management and Adoption](#25-change-management-and-adoption)
 27. [Content Authoring Tools](#27-content-authoring-tools)
 28. [Launch Readiness and Acceptance Criteria](#28-launch-readiness-and-acceptance-criteria)
 29. [Beta and Pilot Program](#29-beta-and-pilot-program)
 30. [Support and Maintenance Model](#30-support-and-maintenance-model)
 31. [Search Quality and Relevance Tuning](#31-search-quality-and-relevance-tuning)
 32. [Content Style Guide](#32-content-style-guide)
-33. [Stakeholder Communication Plan](#33-stakeholder-communication-plan)
-34. [Rollback and Contingency Planning](#34-rollback-and-contingency-planning)
+32. [Stakeholder Communication Plan](#32-stakeholder-communication-plan)
+33. [Rollback and Contingency Planning](#33-rollback-and-contingency-planning)
+
+---
+
+## PRD Coverage Summary
+
+This PRD follows industry-standard structure and comprehensively covers all required sections:
+
+| Standard PRD Section | Coverage | Location |
+|---------------------|----------|----------|
+| **1. Problem & Context** | ✅ Complete | Section 1: Background and Problem Statement |
+| **2. Goals & Success Metrics** | ✅ Complete | Section 2: Goals and Non-goals<br>Section 6: Success Metrics (KPIs) |
+| **3. User Stories** | ✅ Complete | Section 4: Personas and User Needs<br>Section 5: User Journeys<br>Section 16: User Stories and Acceptance Criteria |
+| **4. Scope & Requirements** | ✅ Complete | Section 7: Scope and Requirements<br>Section 8: Knowledge Object Model<br>Section 10: AI Assistant Requirements |
+| **4a. Functional Requirements** | ✅ Complete | Section 7.1: In scope<br>Section 9: Experience Requirements<br>Section 11: Context Bundles |
+| **4b. Non-Functional Requirements** | ✅ Complete | Section 20: Non-Functional Requirements |
+| **4c. Out of Scope** | ✅ Complete | Section 7.2: Out of scope (v1) |
+| **5. Phased Roadmap** | ✅ Complete | Section 13: Phased Roadmap and Implementation Plan |
+| **6. Design & UX Considerations** | ✅ Complete | Section 9: Experience Requirements (UX/UI) |
+| **7. Technical Constraints** | ✅ Complete | Section 20.9: Technical Constraints |
+| **8. Dependencies & Risks** | ✅ Complete | Section 14: Dependencies & Risks |
+| **9. Timeline & Milestones** | ✅ Complete | Section 13: Timeline & Milestones |
+| **10. Open Questions** | ✅ Complete | Section 15: Open Questions |
+
+**Additional Comprehensive Sections:**
+- Section 3: Definitions (Shared Vocabulary)
+- Section 12: Governance and Operating Model
+- Section 17: Content Migration Strategy
+- Section 18: Integration Requirements
+- Section 19: Accessibility Requirements
+- Section 22: Technical Architecture
+- Section 23-33: Operational excellence sections (Quality, Tools, Launch, Support, etc.)
 
 ---
 
@@ -841,37 +871,114 @@ When RAG retrieval fails or returns no results:
 
 ---
 
-## 13. Implementation plan (30/60/90)
+## 13. Phased Roadmap and Implementation Plan
 
-### 0–30 days: Align + prove
+### Phase 1: MVP (Days 0-60)
 
-* finalize charter + KPIs baseline
-* taxonomy + object schema v1
-* help surface UX patterns (wireframes)
-* Golden Questions (top 50)
-* publish "Golden 25" canonical objects for top platform journeys
-* complete content audit of existing sources
+**Goal:** Launch core platform with essential functionality to validate approach and gather user feedback.
 
-### 31–60 days: MVP platform capability
+**Key Deliverables:**
 
-* canonical repository + publishing pipeline
-* web KB MVP + in-product entry points
-* AI retrieval with citations for Golden 25
-* escalation with context bundle + tiering
-* analytics dashboard live
-* feedback mechanisms implemented
+* **Days 0-30: Foundation & Alignment**
+  * Finalize charter + KPIs baseline
+  * Complete content audit of existing sources
+  * Taxonomy + object schema v1
+  * Help surface UX patterns (wireframes)
+  * Golden Questions (top 50)
+  * Publish "Golden 25" canonical objects for top platform journeys
+  * **Milestone:** Design review and content audit complete
 
-### 61–90 days: Scale responsibly
+* **Days 31-60: MVP Platform Build**
+  * Canonical repository + publishing pipeline
+  * Web KB MVP + in-product entry points
+  * AI retrieval with citations for Golden 25
+  * Escalation with context bundle + tiering
+  * Analytics dashboard live
+  * Feedback mechanisms implemented
+  * **Milestone:** Beta launch ready
 
-* expand to 100 objects based on telemetry
-* governance fully operational
-* guided flows for Persona B (top 10)
-* enforce DoD and release gate for selected teams
-* partner training materials for MVP topics
+**Success Criteria:**
+* 25+ knowledge objects published and verified
+* Web KB accessible to beta users
+* AI assistant functional with citations
+* Analytics tracking operational
+* Beta user satisfaction >4.0/5.0
+
+### Phase 2: Scale & Enhance (Days 61-90)
+
+**Goal:** Expand content coverage, operationalize governance, and enhance user experience based on Phase 1 learnings.
+
+**Key Deliverables:**
+
+* Expand to 100 objects based on telemetry and user feedback
+* Governance fully operational (owners assigned, SLAs active)
+* Guided flows for Persona B (top 10 decision trees)
+* Enforce DoD and release gate for selected teams
+* Partner training materials for MVP topics
+* **Milestone:** Production launch
+
+**Success Criteria:**
+* 100+ knowledge objects covering top platform journeys
+* Governance model operational (90%+ objects reviewed within SLA)
+* Search success rate >70%
+* AI citation coverage >90%
+* Partner enablement materials available
+
+### Phase 3: Optimization & Expansion (Days 91-180)
+
+**Goal:** Optimize performance, expand to additional journeys, and enhance AI capabilities.
+
+**Key Deliverables (Lighter detail - requirements will evolve):**
+
+* Expand to 500+ objects covering all platform journeys
+* Advanced search features (faceted search, query suggestions)
+* Enhanced AI capabilities (multi-turn conversations, query refinement)
+* Full partner enablement suite (LMS integration, certification)
+* Advanced analytics (predictive insights, content gap analysis)
+* **Milestone:** Full platform coverage
+
+**Future Considerations (Post-Phase 3):**
+
+* Multi-language/localization support
+* Video academy integration
+* Advanced personalization (AI learns user preferences)
+* Community-contributed content
+* Integration with external knowledge sources
+
+### Timeline & Milestones
+
+| Milestone | Target Date | Owner | Dependencies |
+|-----------|-------------|-------|--------------|
+| Design review complete | Day 15 | UX (Sourav) | Wireframes, taxonomy |
+| Content audit complete | Day 30 | Docs (Vignesh, GopiChand) | Access to all sources |
+| Golden 25 objects published | Day 30 | Docs (Vignesh, GopiChand) | Taxonomy, templates |
+| Engineering kickoff | Day 31 | Eng (LNR) | Architecture decisions |
+| Beta launch | Day 60 | PM (Mamatha) | MVP features complete |
+| Production launch | Day 90 | PM (Mamatha) | Phase 2 complete, go/no-go approved |
+| Full coverage | Day 180 | PM (Mamatha) | Phase 3 complete |
+
+**Note:** Dates are estimates and may shift based on learnings, dependencies, and resource availability. Milestones will be reviewed weekly in execution standup.
 
 ---
 
-## 14. Risks and mitigations
+## 14. Dependencies & Risks
+
+### 14.1 Dependencies
+
+| Dependency | Type | Impact | Owner | Mitigation |
+|------------|------|--------|-------|------------|
+| Vector database vendor selection | Technical | High | AI (Neeraj) | POC completed by Week 2, decision by Week 3 |
+| LLM provider selection | Technical | High | AI (Neeraj) | POC completed by Week 2, decision by Week 3 |
+| CMS platform selection | Technical | Medium | Eng (LNR) | Evaluation by Week 1, decision by Week 2 |
+| Virima Auth SSO integration | Integration | High | Eng (LNR) | Early alignment meeting with Auth team, API access by Day 15 |
+| Ticketing system integration | Integration | Medium | Support (Balaji) | API documentation review by Day 20, integration by Day 50 |
+| Content audit completion | Content | High | Docs (Vignesh, GopiChand) | Parallel audit during Phase 0, prioritized by ticket volume |
+| Taxonomy finalization | Content | High | Docs (Vignesh, GopiChand) | Knowledge Council review by Day 15 |
+| Golden Questions creation | Content | Medium | Support (Balaji) | Top 50 questions identified by Day 20 |
+| Design system components | UX | Medium | UX (Sourav) | Reuse existing Virima design system, extend as needed |
+| Infrastructure provisioning | Technical | High | Eng (LNR) | Cloud accounts and clusters provisioned by Day 10 |
+
+### 14.2 Risks and Mitigations
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|------------|--------|------------|
@@ -882,18 +989,34 @@ When RAG retrieval fails or returns no results:
 | Low adoption | Medium | Medium | In-product help hooks + support macros + measurement + training |
 | Content migration delays | High | Medium | Prioritized migration + parallel operation + redirect strategy |
 | Partner content drift | Medium | Medium | Single-source derivation + automated sync + version alerts |
+| Vector DB vendor lock-in | Medium | Medium | Abstract vector DB layer, support multiple vendors |
+| LLM API rate limits/costs | Medium | Medium | Caching strategy, token usage monitoring, budget alerts |
+| Integration delays | High | Medium | Early stakeholder alignment, parallel development where possible |
+| Resource constraints | Medium | High | Clear FTE allocation, escalation path for additional resources |
+| Timeline slippage | Medium | Medium | Weekly progress reviews, scope adjustment if needed |
 
 ---
 
 ## 15. Open questions (resolve in Week 1)
 
-1. Canonical repository tooling choice and publishing pipeline
-2. Final platform domain taxonomy and naming conventions
-3. What data is permitted in context bundles per security/privacy
-4. KPI targets (baseline → target) for 90 days
-5. Which journeys are the "Golden 25" for MVP
-6. Partner enablement surface decision (Partner Portal/LMS): where will partners access training, and what authentication/permissions apply?
-7. Which partner role learning paths are in v1 (Presales vs Implementation vs Support)?
+| Question | Owner | Target Resolution | Impact if Unresolved |
+|----------|-------|-------------------|---------------------|
+| Canonical repository tooling choice and publishing pipeline | Eng (LNR), Docs (Vignesh, GopiChand) | Day 7 | Blocks engineering kickoff |
+| Final platform domain taxonomy and naming conventions | Docs (Vignesh, GopiChand), PM (Mamatha) | Day 10 | Blocks content creation |
+| What data is permitted in context bundles per security/privacy | Security, Support (Balaji) | Day 7 | Blocks escalation feature design |
+| KPI targets (baseline → target) for 90 days | PM (Mamatha), Support (Balaji) | Day 14 | Blocks success measurement |
+| Which journeys are the "Golden 25" for MVP | PM (Mamatha), Support (Balaji), Docs (Vignesh, GopiChand) | Day 10 | Blocks content prioritization |
+| Partner enablement surface decision (Partner Portal/LMS): where will partners access training, and what authentication/permissions apply? | PM (Mamatha), Partner Program | Day 14 | Blocks partner feature design |
+| Which partner role learning paths are in v1 (Presales vs Implementation vs Support)? | PM (Mamatha), Partner Program | Day 14 | Blocks partner content creation |
+| Vector database vendor selection | AI (Neeraj), Eng (LNR) | Day 14 | Blocks AI implementation |
+| LLM provider selection | AI (Neeraj) | Day 14 | Blocks AI implementation |
+| CMS platform selection | Eng (LNR), Docs (Vignesh, GopiChand) | Day 7 | Blocks content management system build |
+
+**Resolution Process:**
+* Weekly review of open questions in execution standup
+* Escalation to PM if resolution delayed beyond target date
+* Decisions documented and communicated to all stakeholders
+* PRD updated when questions resolved
 
 ---
 
@@ -2008,6 +2131,57 @@ All KB and help surfaces shall meet WCAG 2.1 Level AA standards:
 * **Recovery:** Restore from backups, patch vulnerabilities
 * **Post-incident:** Root cause analysis, process improvements
 
+### 20.9 Technical Constraints
+
+**Note:** Architecture decisions belong in Technical Design Doc (Section 22). This section lists constraints that impact product decisions.
+
+**Required Integrations:**
+
+* **Virima Auth:** Must integrate with existing SSO system (OIDC/SAML) for authentication
+* **Virima CMDB:** Must read CI data for context-aware help
+* **Virima Discovery:** Must read error codes for troubleshooting context
+* **Virima Audit:** Must write audit logs for compliance
+* **Ticketing Systems:** Must integrate with ServiceNow or Jira Service Management for escalations
+* **Collaboration Tools:** Must integrate with Slack/Teams for notifications
+
+**Platform Requirements:**
+
+* **Browser Support:** Chrome, Firefox, Safari, Edge (latest 2 versions)
+* **Mobile Responsive:** Must work on tablets (iOS 14+, Android 10+)
+* **Accessibility:** WCAG 2.1 Level AA compliance required (Section 19)
+* **Internationalization:** English only for v1 (multi-language future consideration)
+
+**Data & Compliance Constraints:**
+
+* **GDPR Compliance:** 
+  * Right to deletion: Users can request data deletion
+  * Data portability: Users can export their data
+  * Consent management: Explicit consent for Tier 2 context bundles
+* **Data Residency:** Configurable by tenant (US, EU, APAC regions)
+* **PII Handling:** No PII beyond user ID in logs or context bundles (names, emails, addresses excluded)
+* **Data Retention:** Context bundles retained for 90 days (configurable), audit logs retained per compliance requirements
+* **SOC 2:** Must support audit logging and access controls for SOC 2 compliance
+
+**Performance Constraints:**
+
+* **Response Times:** Must meet performance requirements (Section 20.1) under target load
+* **Scalability:** Must support 10,000+ concurrent users, 10,000+ knowledge objects
+* **Availability:** 99.9% uptime SLA (Section 20.3)
+
+**Technology Constraints:**
+
+* **Vector Database:** Must use managed service or self-hosted cluster (no single-instance deployments)
+* **LLM Provider:** Must support API-based LLM (OpenAI, Anthropic) or self-hosted option
+* **Search:** Must support hybrid search (keyword + semantic) architecture
+* **Content Storage:** Must support versioning, rollback, and audit trail
+
+**Operational Constraints:**
+
+* **Deployment:** Must support blue-green or canary deployments for zero-downtime updates
+* **Monitoring:** Must integrate with existing monitoring infrastructure
+* **Backup:** Must support automated backups with point-in-time recovery
+* **Maintenance Windows:** Monthly maintenance window <4 hours with advance notice
+
 ---
 
 ## 21. Appendix: RACI (starter)
@@ -2162,95 +2336,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 24. Budget and Resource Planning
+## 24. Vendor and Tool Evaluation
 
-### 24.1 Resource allocation
-
-**Phase 0-30 days (Align + Prove):**
-
-* PM: 0.5 FTE
-* Docs/Content: 1.0 FTE (Vignesh, GopiChand)
-* UX: 0.5 FTE (Sourav)
-* AI: 0.5 FTE (Neeraj)
-* Support: 0.25 FTE (Balaji)
-* Engineering: 0.5 FTE (LNR)
-* **Total: 3.25 FTE**
-
-**Phase 31-60 days (MVP Build):**
-
-* PM: 0.5 FTE
-* Docs/Content: 1.5 FTE
-* UX: 1.0 FTE
-* AI: 1.0 FTE
-* Support: 0.5 FTE
-* Engineering: 2.0 FTE (LNR + 1 additional engineer)
-* QA: 0.5 FTE
-* **Total: 7.0 FTE**
-
-**Phase 61-90 days (Scale):**
-
-* PM: 0.5 FTE
-* Docs/Content: 2.0 FTE
-* UX: 0.5 FTE
-* AI: 1.0 FTE
-* Support: 0.5 FTE
-* Engineering: 2.0 FTE
-* QA: 0.5 FTE
-* **Total: 7.0 FTE**
-
-### 24.2 Infrastructure costs (monthly estimates)
-
-**Vector database:**
-
-* Pinecone/Weaviate: $200-500/month (10K objects, 500 queries/min)
-* Self-hosted (Milvus): $300-800/month (compute + storage)
-
-**LLM API:**
-
-* OpenAI GPT-4: $500-2,000/month (500 queries/day, ~2K tokens/query)
-* Anthropic Claude: $400-1,500/month
-* Self-hosted: $1,000-3,000/month (compute + GPU)
-
-**Cloud infrastructure:**
-
-* Compute (Kubernetes/ECS): $500-1,500/month
-* Database (RDS/PostgreSQL): $200-500/month
-* Storage (S3/Blob): $50-200/month
-* CDN: $100-300/month
-* Monitoring/Logging: $100-300/month
-
-**Total infrastructure:** $1,550-5,800/month
-
-### 24.3 Tooling and licenses
-
-* CMS platform: $0-500/month (if using SaaS)
-* Monitoring tools: $200-500/month
-* CI/CD tools: $100-300/month
-* Development tools: $200-500/month
-
-**Total tooling:** $500-1,800/month
-
-### 24.4 Total budget estimate
-
-**90-day MVP:**
-
-* Infrastructure: $4,650-17,400 (3 months)
-* Tooling: $1,500-5,400 (3 months)
-* Contingency (15%): $923-3,420
-* **Total: $7,073-26,220**
-
-**Annual estimate (post-MVP):**
-
-* Infrastructure: $18,600-69,600/year
-* Tooling: $6,000-21,600/year
-* Contingency (15%): $3,690-13,680/year
-* **Total: $28,290-104,880/year**
-
----
-
-## 25. Vendor and Tool Evaluation
-
-### 25.1 Vector database evaluation
+### 24.1 Vector database evaluation
 
 **Evaluation criteria:**
 
@@ -2266,7 +2354,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 **Decision timeline:** Week 1-2: Evaluation, Week 3: POC, Week 4: Decision
 
-### 25.2 LLM provider evaluation
+### 24.2 LLM provider evaluation
 
 **Evaluation criteria:**
 
@@ -2281,7 +2369,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 **Decision timeline:** Week 1: Evaluation, Week 2: POC, Week 3: Decision
 
-### 25.3 CMS platform evaluation
+### 24.3 CMS platform evaluation
 
 **Options:** Custom build, Strapi, Contentful, Sanity
 
@@ -2295,7 +2383,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 **Decision timeline:** Week 1: Evaluation, Week 2: Decision
 
-### 25.4 POC plan
+### 24.4 POC plan
 
 **Vector database POC:**
 
@@ -2316,9 +2404,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 26. Change Management and Adoption
+## 25. Change Management and Adoption
 
-### 26.1 Stakeholder communication
+### 25.1 Stakeholder communication
 
 **Communication matrix:**
 
@@ -2330,7 +2418,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 | Content authors | Authoring tools, guidelines | Weekly | Training + docs |
 | End users | New KB launch, how to use | Launch | In-app + email |
 
-### 26.2 Training plan
+### 25.2 Training plan
 
 **Content authors:**
 
@@ -2351,14 +2439,14 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Self-service: In-app tooltips, help articles
 * Optional: 30-minute webinar
 
-### 26.3 Adoption metrics
+### 25.3 Adoption metrics
 
 * **Usage:** % of users accessing KB/AI per month
 * **Satisfaction:** User feedback scores
 * **Time-to-proficiency:** Days to first successful self-service resolution
 * **Content creation:** Number of content authors, objects created per month
 
-### 26.4 Change champions
+### 25.4 Change champions
 
 * **Identify champions:** 2-3 champions per team/domain
 * **Training:** Early access, advanced training
@@ -2367,9 +2455,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 27. Content Authoring Tools
+## 26. Content Authoring Tools
 
-### 27.1 Authoring interface requirements
+### 26.1 Authoring interface requirements
 
 **Editor features:**
 
@@ -2389,7 +2477,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Approval workflow
 * Publish with scheduling
 
-### 27.2 Media management
+### 26.2 Media management
 
 **Media library:**
 
@@ -2399,7 +2487,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Versioning (replace with new version)
 * Usage tracking (where images are used)
 
-### 27.3 Collaboration features
+### 26.3 Collaboration features
 
 **Comments and suggestions:**
 
@@ -2408,7 +2496,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * @mentions for reviewers
 * Notification of comments/changes
 
-### 27.4 Author documentation
+### 26.4 Author documentation
 
 **Authoring guide:**
 
@@ -2420,9 +2508,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 28. Launch Readiness and Acceptance Criteria
+## 27. Launch Readiness and Acceptance Criteria
 
-### 28.1 Technical readiness checklist
+### 27.1 Technical readiness checklist
 
 - [ ] All services deployed and healthy
 - [ ] Performance tests passed
@@ -2435,7 +2523,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 - [ ] API documentation complete
 - [ ] Error handling tested
 
-### 28.2 Content readiness checklist
+### 27.2 Content readiness checklist
 
 - [ ] 25+ knowledge objects published
 - [ ] All objects in "Verified" status
@@ -2445,7 +2533,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 - [ ] Screenshots current
 - [ ] Embeddings generated for all objects
 
-### 28.3 Process readiness checklist
+### 27.3 Process readiness checklist
 
 - [ ] Governance model operational
 - [ ] Content owners assigned
@@ -2455,7 +2543,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 - [ ] Analytics dashboard live
 - [ ] Feedback mechanisms functional
 
-### 28.4 Launch day runbook
+### 27.4 Launch day runbook
 
 **Pre-launch (T-1 day):**
 
@@ -2482,9 +2570,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 29. Beta and Pilot Program
+## 28. Beta and Pilot Program
 
-### 29.1 Pilot scope
+### 28.1 Pilot scope
 
 **Participants:**
 
@@ -2501,7 +2589,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 **Duration:** 4 weeks
 
-### 29.2 Feedback collection
+### 28.2 Feedback collection
 
 **Methods:**
 
@@ -2519,7 +2607,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Performance: Fast, responsive
 * Overall satisfaction: NPS score
 
-### 29.3 Success criteria
+### 28.3 Success criteria
 
 * **Usage:** 80%+ of pilot users access KB at least once
 * **Satisfaction:** 4.0+ / 5.0 average satisfaction
@@ -2528,7 +2616,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * **Performance:** All metrics meet requirements
 * **Critical bugs:** Zero critical bugs
 
-### 29.4 Production rollout plan
+### 28.4 Production rollout plan
 
 **Phased rollout:**
 
@@ -2546,9 +2634,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 30. Support and Maintenance Model
+## 29. Support and Maintenance Model
 
-### 30.1 Support tiers
+### 29.1 Support tiers
 
 **L1 (First line):**
 
@@ -2567,7 +2655,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Critical bugs, system issues
 * Response time: 2 hours (critical), 24 hours (normal)
 
-### 30.2 Escalation procedures
+### 29.2 Escalation procedures
 
 **Bug severity:**
 
@@ -2576,7 +2664,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * **Medium:** Minor feature issue, workaround available → 24-hour escalation
 * **Low:** Cosmetic issue, enhancement request → Next sprint
 
-### 30.3 Maintenance windows
+### 29.3 Maintenance windows
 
 **Planned maintenance:**
 
@@ -2591,7 +2679,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Minimize downtime
 * Post-maintenance review
 
-### 30.4 On-call rotation
+### 29.4 On-call rotation
 
 * **Primary on-call:** Engineering lead (LNR)
 * **Secondary on-call:** AI lead (Neeraj) for AI issues
@@ -2601,9 +2689,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 31. Search Quality and Relevance Tuning
+## 30. Search Quality and Relevance Tuning
 
-### 31.1 Relevance evaluation framework
+### 30.1 Relevance evaluation framework
 
 **Evaluation dataset:**
 
@@ -2626,7 +2714,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * MRR: >0.85
 * NDCG@10: >0.90
 
-### 31.2 Search analytics
+### 30.2 Search analytics
 
 **Query analysis:**
 
@@ -2642,7 +2730,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Bounce rate (immediate back-click)
 * User feedback on results
 
-### 31.3 Tuning process
+### 30.3 Tuning process
 
 **Hybrid search weights:**
 
@@ -2660,7 +2748,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 **Tuning frequency:** Monthly review, quarterly major tuning
 
-### 31.4 A/B testing framework
+### 30.4 A/B testing framework
 
 **Test setup:**
 
@@ -2677,9 +2765,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 32. Content Style Guide
+## 31. Content Style Guide
 
-### 32.1 Writing style and tone
+### 31.1 Writing style and tone
 
 **Tone:**
 
@@ -2695,7 +2783,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Present tense for current state
 * Future tense for upcoming features (clearly marked)
 
-### 32.2 Formatting standards
+### 31.2 Formatting standards
 
 **Headings:**
 
@@ -2717,7 +2805,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Code blocks: Use syntax highlighting
 * Technical terms: Define on first use, use consistently
 
-### 32.3 Visual content standards
+### 31.3 Visual content standards
 
 **Screenshots:**
 
@@ -2734,7 +2822,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Use consistent color scheme
 * Export as PNG or SVG
 
-### 32.4 Terminology glossary
+### 31.4 Terminology glossary
 
 **Maintained glossary of approved terms:**
 
@@ -2751,9 +2839,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 33. Stakeholder Communication Plan
+## 32. Stakeholder Communication Plan
 
-### 33.1 Communication schedule
+### 32.1 Communication schedule
 
 **Weekly:**
 
@@ -2774,7 +2862,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 * Business review: ROI, adoption, next quarter priorities
 
-### 33.2 Status report template
+### 32.2 Status report template
 
 **Sections:**
 
@@ -2785,7 +2873,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 5. **Risks:** New or updated risks
 6. **Decisions needed:** Decisions requiring input
 
-### 33.3 Launch communication
+### 32.3 Launch communication
 
 **Internal announcement (T-1 week):**
 
@@ -2808,9 +2896,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 34. Rollback and Contingency Planning
+## 33. Rollback and Contingency Planning
 
-### 34.1 Rollback triggers
+### 33.1 Rollback triggers
 
 **Immediate rollback:**
 
@@ -2826,7 +2914,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * AI hallucination rate >20%
 * Search success rate <50%
 
-### 34.2 Rollback procedures
+### 33.2 Rollback procedures
 
 **Data rollback:**
 
@@ -2849,7 +2937,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Update search index
 * Verify content accessible
 
-### 34.3 Contingency plans
+### 33.3 Contingency plans
 
 **Vector DB unavailable:**
 
@@ -2879,7 +2967,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Investigate root cause
 * Prevent recurrence
 
-### 34.4 Disaster recovery
+### 33.4 Disaster recovery
 
 **RTO (Recovery Time Objective):** 4 hours
 
