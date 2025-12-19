@@ -104,14 +104,13 @@ The Virima Knowledge Platform (SSOT) is a state-of-the-art knowledge management 
 23. [Content Quality Standards](#23-content-quality-standards)
 24. [Vendor and Tool Evaluation](#24-vendor-and-tool-evaluation)
 25. [Change Management and Adoption](#25-change-management-and-adoption)
-27. [Content Authoring Tools](#27-content-authoring-tools)
-28. [Launch Readiness and Acceptance Criteria](#28-launch-readiness-and-acceptance-criteria)
-29. [Beta and Pilot Program](#29-beta-and-pilot-program)
-30. [Support and Maintenance Model](#30-support-and-maintenance-model)
-31. [Search Quality and Relevance Tuning](#31-search-quality-and-relevance-tuning)
-32. [Content Style Guide](#32-content-style-guide)
-33. [Stakeholder Communication Plan](#33-stakeholder-communication-plan)
-34. [Rollback and Contingency Planning](#34-rollback-and-contingency-planning)
+26. [Content Authoring Tools](#26-content-authoring-tools)
+27. [Launch Readiness and Acceptance Criteria](#27-launch-readiness-and-acceptance-criteria)
+28. [Beta and Pilot Program](#28-beta-and-pilot-program)
+29. [Support and Maintenance Model](#29-support-and-maintenance-model)
+30. [Search Quality and Relevance Tuning](#30-search-quality-and-relevance-tuning)
+31. [Content Style Guide](#31-content-style-guide)
+32. [Rollback and Contingency Planning](#32-rollback-and-contingency-planning)
 35. [Business Case and ROI](#35-business-case-and-roi)
 36. [Stakeholder Map and Analysis](#36-stakeholder-map-and-analysis)
 37. [Assumptions and Constraints](#37-assumptions-and-constraints)
@@ -128,15 +127,27 @@ The Virima Knowledge Platform (SSOT) is a state-of-the-art knowledge management 
 
 ## 1. Background and problem statement
 
-Virima is a **platform** with multiple suites/apps. Today, product knowledge exists across multiple locations and formats (docs, internal notes, support macros, release notes, in-product tips), leading to:
+### The Challenge
 
-* inconsistent or duplicate answers
-* slower user time-to-value
-* higher support ticket volume and longer time-to-resolution
-* low trust in content freshness
-* AI assistance risk (hallucinations) due to fragmented, ungoverned sources
+Virima is a platform with multiple suites and applications. Currently, we lack a unified AI agent capable of serving both internal and external users with meaningful, contextually relevant responses. When AI agents are developed for specific Virima products, they are constrained to their respective product knowledge bases, creating silos that fragment the user experience.
 
-We need a **state-of-the-art Knowledge Platform** that becomes a **Single Source of Truth (SSOT)** and is consumable via web KB, in-product help, and AI (grounded answers with citations), while supporting four user personas.
+This siloed approach is compounded by product knowledge scattered across multiple locations and formats—online help documentation, internal notes, support macros, release notes, and in-product tips. The resulting fragmentation leads to:
+
+- **Multiple knowledge bases with duplicated content** requiring separate maintenance
+- **Inconsistent or duplicate answers** across different sources
+- **Slower time-to-value** as users struggle to find accurate information
+- **Higher support ticket volume and longer resolution times** due to gaps in self-service capabilities
+- **Stale content** that erodes user trust and confidence
+- **AI hallucination risks** caused by fragmented, ungoverned knowledge sources
+
+### The Solution
+
+To address these challenges, we need a centralized AI knowledge base that consolidates all product knowledge from across locations and formats—including feature documentation, online help articles, release notes, and in-product tips—into a single, governed repository.
+
+We require a **state-of-the-art Knowledge Platform** that serves as a **Single Source of Truth (SSOT)**, consumable through multiple channels: a web-based knowledge base, in-product help, and AI-powered assistance that delivers grounded answers with citations. This platform must support all four user personas while ensuring content remains accurate, current, and trustworthy.
+
+Any AI agent developed on the Virima platform should be able to leverage this centralized knowledge base to provide consistent, accurate responses to both partners and end-users, eliminating the fragmentation and inconsistency that currently plagues our knowledge ecosystem.
+
 
 ---
 
@@ -2006,6 +2017,8 @@ All KB and help surfaces shall meet WCAG 2.1 Level AA standards:
 
 ### 20.4 Security
 
+**Summary:** High-level security requirements. For comprehensive security and compliance requirements, see Section 40.
+
 | Requirement | Description |
 |-------------|-------------|
 | Authentication | SSO via Virima Auth (OIDC/SAML) |
@@ -2013,6 +2026,8 @@ All KB and help surfaces shall meet WCAG 2.1 Level AA standards:
 | Data encryption | TLS 1.2+ in transit, AES-256 at rest |
 | Audit logging | All content changes, access, and escalations logged |
 | Data residency | Configurable by tenant (US, EU, APAC) |
+
+**Note:** Detailed security requirements, compliance requirements (SOC 2, GDPR, WCAG), security testing, and compliance validation are documented in Section 40: Security and Compliance Requirements.
 
 ### 20.5 Performance testing plan
 
@@ -2451,7 +2466,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ### 25.1 Stakeholder communication
 
-**Communication matrix:**
+**Note:** For detailed stakeholder communication plan, see Section 36.3: Stakeholder Communication Plan.
+
+**High-level communication matrix:**
 
 | Stakeholder | Message | Frequency | Channel |
 |-------------|---------|-----------|---------|
@@ -2882,66 +2899,9 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
-## 32. Stakeholder Communication Plan
+## 32. Rollback and Contingency Planning
 
-### 32.1 Communication schedule
-
-**Weekly:**
-
-* Execution standup: 30 minutes, all team members
-* Status email: Friday EOD, progress, blockers, next week
-
-**Biweekly:**
-
-* Knowledge Council: Taxonomy, governance, deprecations
-* Demo: Show progress to stakeholders
-
-**Monthly:**
-
-* KPI review: 45 minutes, metrics, trends, actions
-* Executive update: High-level progress, risks, decisions needed
-
-**Quarterly:**
-
-* Business review: ROI, adoption, next quarter priorities
-
-### 32.2 Status report template
-
-**Sections:**
-
-1. **Progress:** What was accomplished this week
-2. **Metrics:** KPIs, trends
-3. **Blockers:** Issues needing resolution
-4. **Next week:** Planned activities
-5. **Risks:** New or updated risks
-6. **Decisions needed:** Decisions requiring input
-
-### 32.3 Launch communication
-
-**Internal announcement (T-1 week):**
-
-* Email to all employees
-* Demo video
-* FAQ document
-
-**External announcement (Launch day):**
-
-* In-app notification
-* Email to users (if applicable)
-* Blog post (optional)
-* Support team briefing
-
-**Post-launch (T+1 week):**
-
-* Launch results summary
-* User feedback highlights
-* Next steps
-
----
-
-## 33. Rollback and Contingency Planning
-
-### 33.1 Rollback triggers
+### 32.1 Rollback triggers
 
 **Immediate rollback:**
 
@@ -2957,7 +2917,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * AI hallucination rate >20%
 * Search success rate <50%
 
-### 33.2 Rollback procedures
+### 32.2 Rollback procedures
 
 **Data rollback:**
 
@@ -2980,7 +2940,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Update search index
 * Verify content accessible
 
-### 33.3 Contingency plans
+### 32.3 Contingency plans
 
 **Vector DB unavailable:**
 
@@ -3010,7 +2970,7 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Investigate root cause
 * Prevent recurrence
 
-### 33.4 Disaster recovery
+### 32.4 Disaster recovery
 
 **RTO (Recovery Time Objective):** 4 hours
 
@@ -3173,6 +3133,8 @@ All ROI calculations align with success metrics defined in Section 6. Metrics wi
 
 ### 36.3 Stakeholder Communication Plan
 
+**Stakeholder-Specific Communication:**
+
 | Stakeholder | Communication Method | Frequency | Content Focus |
 |-------------|----------------------|-----------|---------------|
 | Executive Leadership | Monthly executive update | Monthly | Progress, KPIs, risks, decisions needed |
@@ -3182,6 +3144,50 @@ All ROI calculations align with success metrics defined in Section 6. Metrics wi
 | Support Team | Weekly training, feedback sessions | Weekly | Feature training, feedback collection |
 | Platform Users | Launch announcement, in-app notifications | Launch + ongoing | Feature availability, how to use |
 | Partners | Partner portal, training sessions | Monthly | Training materials, certification |
+
+**Communication Schedule (Cross-Stakeholder):**
+
+**Weekly:**
+* Execution standup: 30 minutes, all team members
+* Status email: Friday EOD, progress, blockers, next week
+
+**Biweekly:**
+* Knowledge Council: Taxonomy, governance, deprecations
+* Demo: Show progress to stakeholders
+
+**Monthly:**
+* KPI review: 45 minutes, metrics, trends, actions
+* Executive update: High-level progress, risks, decisions needed
+
+**Quarterly:**
+* Business review: ROI, adoption, next quarter priorities
+
+**Status Report Template:**
+
+1. **Progress:** What was accomplished this week
+2. **Metrics:** KPIs, trends
+3. **Blockers:** Issues needing resolution
+4. **Next week:** Planned activities
+5. **Risks:** New or updated risks
+6. **Decisions needed:** Decisions requiring input
+
+**Launch Communication:**
+
+**Internal announcement (T-1 week):**
+* Email to all employees
+* Demo video
+* FAQ document
+
+**External announcement (Launch day):**
+* In-app notification
+* Email to users (if applicable)
+* Blog post (optional)
+* Support team briefing
+
+**Post-launch (T+1 week):**
+* Launch results summary
+* User feedback highlights
+* Next steps
 
 ### 36.4 Stakeholder Concerns and Mitigation
 
