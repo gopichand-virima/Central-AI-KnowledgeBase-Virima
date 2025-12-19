@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRD: Virima Knowledge Platform (SSOT)</title>
+    <style>
+        /* Virima Brand Colors & Design System */
+        :root {
+            --virima-primary: #0066CC;
+            --virima-primary-dark: #0052A3;
+            --virima-primary-light: #E6F2FF;
+            --virima-secondary: #00A86B;
+            --virima-accent: #FF6B35;
+            --virima-text: #1A1A1A;
+            --virima-text-light: #666666;
+            --virima-bg: #FFFFFF;
+            --virima-bg-light: #F8F9FA;
+            --virima-bg-section: #F5F7FA;
+            --virima-border: #E0E4E8;
+            --virima-success: #00A86B;
+            --virima-warning: #FFA500;
+            --virima-error: #DC3545;
+            --virima-info: #0066CC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--virima-text);
+            background-color: var(--virima-bg-light);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--virima-bg);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--virima-primary) 0%, var(--virima-primary-dark) 100%);
+            color: white;
+            padding: 2rem;
+            border-bottom: 4px solid var(--virima-secondary);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .header-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .meta-item {
+            background: rgba(255,255,255,0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+            backdrop-filter: blur(10px);
+        }
+
+        .meta-item strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--virima-bg-section);
+            padding: 1.5rem 2rem;
+            border-bottom: 2px solid var(--virima-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .nav h2 {
+            color: var(--virima-primary);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .nav ol {
+            columns: 3;
+            column-gap: 2rem;
+            list-style: none;
+            counter-reset: item;
+        }
+
+        .nav ol li {
+            counter-increment: item;
+            margin-bottom: 0.5rem;
+            break-inside: avoid;
+        }
+
+        .nav ol li::before {
+            content: counter(item) ". ";
+            color: var(--virima-primary);
+            font-weight: 600;
+        }
+
+        .nav ol li a {
+            color: var(--virima-text);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav ol li a:hover {
+            color: var(--virima-primary);
+            text-decoration: underline;
+        }
+
+        /* Content */
+        .content {
+            padding: 2rem;
+        }
+
+        /* Typography */
+        h1 {
+            color: var(--virima-primary);
+            font-size: 2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--virima-primary);
+        }
+
+        h2 {
+            color: var(--virima-primary-dark);
+            font-size: 1.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--virima-border);
+        }
+
+        h3 {
+            color: var(--virima-text);
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        h4 {
+            color: var(--virima-text);
+            font-size: 1.25rem;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        /* Links */
+        a {
+            color: var(--virima-primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            color: var(--virima-primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: var(--virima-primary);
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid var(--virima-border);
+        }
+
+        tbody tr:hover {
+            background: var(--virima-primary-light);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Code blocks */
+        code {
+            background: var(--virima-bg-section);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: var(--virima-accent);
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid var(--virima-primary);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            color: var(--virima-text-light);
+            font-style: italic;
+        }
+
+        /* Horizontal rules */
+        hr {
+            border: none;
+            border-top: 2px solid var(--virima-border);
+            margin: 2rem 0;
+        }
+
+        /* Badges and Status */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0 0.25rem;
+        }
+
+        .badge-success {
+            background: var(--virima-success);
+            color: white;
+        }
+
+        .badge-warning {
+            background: var(--virima-warning);
+            color: white;
+        }
+
+        .badge-info {
+            background: var(--virima-info);
+            color: white;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            background: var(--virima-bg-section);
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--virima-primary);
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        /* Coverage Summary Table */
+        .coverage-table {
+            margin: 2rem 0;
+        }
+
+        .coverage-table td:first-child {
+            font-weight: 600;
+        }
+
+        .coverage-table td:nth-child(2) {
+            text-align: center;
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav {
+                position: static;
+                page-break-after: always;
+            }
+            
+            .header {
+                page-break-after: avoid;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav ol {
+                columns: 1;
+            }
+            
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--virima-primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--virima-primary-dark);
+            transform: translateY(-2px);
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PRD: Virima Knowledge Platform (SSOT)</h1>
+            <div class="header-meta">
+                <div class="meta-item">
+                    <strong>Owner (PM):</strong>
+                    Mamatha Naganna (Director, Product Management)
+                </div>
+                <div class="meta-item">
+                    <strong>Achievability:</strong>
+                    90-95% Achievability
+                </div>
+                <div class="meta-item">
+                    <strong>Status:</strong>
+                    Enhanced v2.0
+                </div>
+            </div>
+            <div class="header-meta" style="margin-top: 1rem;">
+                <div class="meta-item">
+                    <strong>Workstream Leads:</strong>
+                    Docs/Content Ops: Vignesh, GopiChand | UX/UI: Sourav | AI: Neeraj | Support: Balaji | Engineering: LNR
+                </div>
+            </div>
+        </div>
+
+        <div class="nav">
+            <h2>Table of Contents</h2>
+            <ol id="toc"></ol>
+        </div>
+
+        <div class="content" id="content">
+            <p style="text-align: center; color: var(--virima-text-light); padding: 2rem;">
+                Loading PRD content...
+            </p>
+        </div>
+    </div>
+
+    <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
+
+    <script>
+        // Load and render markdown
+        async function loadPRD() {
+            try {
+                // Try multiple possible file names
+                const possibleFiles = [
+                    'KB-SSOT PRD.md',
+                    './KB-SSOT PRD.md',
+                    'KB-SSOT%20PRD.md'
+                ];
+                
+                let response = null;
+                let markdown = null;
+                
+                for (const filename of possibleFiles) {
+                    try {
+                        response = await fetch(filename);
+                        if (response.ok) {
+                            markdown = await response.text();
+                            break;
+                        }
+                    } catch (e) {
+                        continue;
+                    }
+                }
+                
+                if (!markdown) {
+                    throw new Error('Could not load PRD markdown file. Please ensure "KB-SSOT PRD.md" is accessible.');
+                }
+                
+                // Configure marked
+                if (typeof marked !== 'undefined') {
+                    marked.setOptions({
+                        breaks: true,
+                        gfm: true,
+                        headerIds: true,
+                        mangle: false,
+                        tables: true,
+                        sanitize: false
+                    });
+
+                    // Convert markdown to HTML
+                    const html = marked.parse(markdown);
+                    document.getElementById('content').innerHTML = html;
+
+                    // Generate table of contents
+                    generateTOC();
+
+                    // Style tables
+                    styleTables();
+
+                    // Add scroll to top functionality
+                    setupScrollTop();
+                } else {
+                    throw new Error('Marked.js library failed to load. Please check your internet connection.');
+                }
+            } catch (error) {
+                document.getElementById('content').innerHTML = `
+                    <div style="padding: 2rem; text-align: center; max-width: 600px; margin: 0 auto;">
+                        <h2 style="color: var(--virima-error); margin-bottom: 1rem;">Error Loading PRD</h2>
+                        <p style="color: var(--virima-text-light); margin-bottom: 1rem;">${error.message}</p>
+                        <div style="background: var(--virima-bg-section); padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem;">
+                            <h3 style="margin-bottom: 1rem; color: var(--virima-primary);">Troubleshooting:</h3>
+                            <ul style="text-align: left; margin-left: 2rem;">
+                                <li>Ensure "KB-SSOT PRD.md" is in the same directory as this HTML file</li>
+                                <li>Open this file via a local web server (not file:// protocol)</li>
+                                <li>Use Python: <code>python -m http.server 8000</code></li>
+                                <li>Or use VS Code Live Server extension</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function generateTOC() {
+            const headings = document.querySelectorAll('#content h1, #content h2');
+            const toc = document.getElementById('toc');
+            
+            headings.forEach((heading, index) => {
+                // Skip the main title
+                if (index === 0 && heading.tagName === 'H1') return;
+                
+                const id = heading.id || `heading-${index}`;
+                heading.id = id;
+                
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#${id}`;
+                a.textContent = heading.textContent;
+                li.appendChild(a);
+                toc.appendChild(li);
+            });
+        }
+
+        function styleTables() {
+            const tables = document.querySelectorAll('table');
+            tables.forEach(table => {
+                // Add wrapper for better styling
+                const wrapper = document.createElement('div');
+                wrapper.style.overflowX = 'auto';
+                wrapper.style.margin = '1.5rem 0';
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+            });
+        }
+
+        function setupScrollTop() {
+            const scrollTop = document.getElementById('scrollTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollTop.classList.add('visible');
+                } else {
+                    scrollTop.classList.remove('visible');
+                }
+            });
+        }
+
+        // Load PRD on page load
+        loadPRD();
+    </script>
+</body>
+</html>
+
