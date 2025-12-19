@@ -1,16 +1,79 @@
 # PRD: Virima Knowledge Platform (SSOT)
 
-**Owner (PM):** Mamatha Naganna (Director, Product Management)
+**Document Classification:** Internal Use  
+**Document Status:** Draft → Review → Approved  
+**Confidentiality Level:** Internal
 
-**Workstream leads:**
+---
 
-* **Docs/Content Ops:** Vignesh, GopiChand
-* **UX/UI:** Sourav
-* **AI/Knowledge Engineering:** Neeraj
-* **Support:** Balaji
-* **Engineering:** LNR
+## Document Control
 
-**Achievability:** (90-95% Achievability)
+### Version History
+
+| Version | Date | Author | Changes | Approved By |
+|---------|------|--------|---------|-------------|
+| 1.0 | [Date] | Mamatha Naganna | Initial draft | Pending |
+| 1.1 | [Date] | Mamatha Naganna | Enhanced to enterprise standard | Pending |
+
+### Approval Signatures
+
+| Role | Name | Signature | Date |
+|------|------|-----------|------|
+| Product Owner | Mamatha Naganna | | |
+| Engineering Lead | LNR | | |
+| AI/Knowledge Engineering Lead | Neeraj | | |
+| UX/UI Lead | Sourav | | |
+| Support Lead | Balaji | | |
+| Executive Sponsor | [TBD] | | |
+
+### Document Metadata
+
+* **Document ID:** PRD-KB-SSOT-001
+* **Project Code:** KB-SSOT
+* **Last Updated:** [Date]
+* **Next Review Date:** [Date + 30 days]
+* **Related Documents:**
+  * Technical Design Architecture (TBD)
+  * User Research Report (TBD)
+  * Competitive Analysis (TBD)
+  * Business Case Document (TBD)
+
+---
+
+## Executive Summary
+
+**Product Name:** Virima Knowledge Platform (Single Source of Truth)  
+**Product Owner:** Mamatha Naganna (Director, Product Management)  
+**Target Launch:** Day 90 (Production Launch)  
+**Investment Level:** [TBD - to be filled from business case]  
+**Expected ROI:** [TBD - to be filled from business case]
+
+### Overview
+
+The Virima Knowledge Platform (SSOT) is a state-of-the-art knowledge management system designed to serve as the single source of truth for all Virima product knowledge. The platform addresses critical business problems including fragmented knowledge sources, inconsistent answers, high support ticket volume, and AI hallucination risks.
+
+### Key Objectives
+
+1. **Reduce Support Costs:** Target 30% reduction in support ticket volume for top categories
+2. **Improve User Experience:** Enable self-service with 80%+ search success rate
+3. **Enable AI Assistance:** Provide citation-backed AI answers with <5% hallucination rate
+4. **Partner Enablement:** Reduce partner onboarding time by 40%
+5. **Content Governance:** Establish lifecycle management with 90%+ objects reviewed within SLA
+
+### Business Impact
+
+* **Cost Savings:** Reduced support ticket volume and faster resolution times
+* **Revenue Impact:** Improved customer satisfaction and retention
+* **Operational Efficiency:** Streamlined content creation and maintenance
+* **Risk Mitigation:** Reduced AI hallucination and compliance risks
+
+### Success Criteria
+
+* 25+ knowledge objects published for MVP (Day 60)
+* 100+ knowledge objects for production launch (Day 90)
+* 80%+ search success rate
+* 95%+ AI citation coverage
+* Beta user satisfaction >4.0/5.0
 
 ---
 
@@ -47,8 +110,19 @@
 30. [Support and Maintenance Model](#30-support-and-maintenance-model)
 31. [Search Quality and Relevance Tuning](#31-search-quality-and-relevance-tuning)
 32. [Content Style Guide](#32-content-style-guide)
-32. [Stakeholder Communication Plan](#32-stakeholder-communication-plan)
-33. [Rollback and Contingency Planning](#33-rollback-and-contingency-planning)
+33. [Stakeholder Communication Plan](#33-stakeholder-communication-plan)
+34. [Rollback and Contingency Planning](#34-rollback-and-contingency-planning)
+35. [Business Case and ROI](#35-business-case-and-roi)
+36. [Stakeholder Map and Analysis](#36-stakeholder-map-and-analysis)
+37. [Assumptions and Constraints](#37-assumptions-and-constraints)
+38. [Competitive Analysis](#38-competitive-analysis)
+39. [Data Requirements and Model](#39-data-requirements-and-model)
+40. [Security and Compliance Requirements](#40-security-and-compliance-requirements)
+41. [Testing Strategy](#41-testing-strategy)
+42. [Resource Requirements](#42-resource-requirements)
+43. [Decision Log](#43-decision-log)
+44. [References and Related Documents](#44-references-and-related-documents)
+45. [Glossary](#45-glossary)
 
 ---
 
@@ -2957,6 +3031,1125 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 * Vector DB: Daily snapshots
 * File storage: Daily backups, 90-day retention
 * Configuration: Version controlled, backed up
+
+---
+
+## 35. Business Case and ROI
+
+### 35.1 Business Problem
+
+**Current State Costs:**
+
+* **Support Ticket Volume:** [TBD] tickets/month in top categories
+* **Average Resolution Time:** [TBD] hours per ticket
+* **Support Cost per Ticket:** [TBD] (L1/L2/L3 blended)
+* **Content Maintenance Cost:** [TBD] hours/month across teams
+* **Partner Onboarding Time:** [TBD] days to delivery-ready
+* **AI Hallucination Risk:** [TBD] incidents/month
+
+**Quantified Pain Points:**
+
+* Duplicate content maintenance: [TBD] hours/month
+* Inconsistent answers leading to escalations: [TBD]% of tickets
+* Content staleness causing user frustration: [TBD]% of negative feedback
+* Partner enablement inefficiency: [TBD] hours per partner onboarding
+
+### 35.2 Solution Benefits
+
+**Quantified Benefits (Year 1):**
+
+| Benefit Category | Metric | Baseline | Target | Annual Value |
+|------------------|--------|----------|--------|--------------|
+| Support Cost Reduction | Ticket volume reduction | [TBD] | -30% | $[TBD] |
+| Resolution Time Improvement | Average resolution time | [TBD] hrs | -25% | $[TBD] |
+| Self-Service Adoption | % users using KB | [TBD]% | +40% | $[TBD] |
+| Partner Efficiency | Onboarding time | [TBD] days | -40% | $[TBD] |
+| Content Maintenance | Maintenance hours | [TBD] hrs | -20% | $[TBD] |
+| Risk Mitigation | AI incidents | [TBD] | -80% | $[TBD] |
+
+**Qualitative Benefits:**
+
+* Improved customer satisfaction and retention
+* Enhanced brand reputation through reliable AI assistance
+* Faster time-to-value for new users
+* Better partner enablement and certification
+* Reduced compliance and legal risks
+
+### 35.3 Investment Required
+
+**One-Time Costs:**
+
+| Cost Category | Description | Amount |
+|---------------|-------------|--------|
+| Development | Engineering, AI, UX development | $[TBD] |
+| Infrastructure Setup | Cloud infrastructure, tools | $[TBD] |
+| Content Migration | Content audit, migration, transformation | $[TBD] |
+| Training | Team training, change management | $[TBD] |
+| **Total One-Time** | | **$[TBD]** |
+
+**Recurring Costs (Annual):**
+
+| Cost Category | Description | Annual Amount |
+|---------------|-------------|----------------|
+| Infrastructure | Cloud services, vector DB, LLM APIs | $[TBD] |
+| Licenses | CMS, tools, third-party services | $[TBD] |
+| Maintenance | Ongoing development, support | $[TBD] |
+| Content Operations | Content authoring, review, maintenance | $[TBD] |
+| **Total Recurring** | | **$[TBD]** |
+
+### 35.4 ROI Calculation
+
+**Net Present Value (NPV):** $[TBD] (3-year horizon, [TBD]% discount rate)
+
+**Payback Period:** [TBD] months
+
+**Internal Rate of Return (IRR):** [TBD]%
+
+**Break-Even Analysis:**
+
+* Break-even point: [TBD] months
+* Break-even metric: [TBD]% ticket reduction required
+
+### 35.5 Sensitivity Analysis
+
+**Optimistic Scenario:**
+* 40% ticket reduction (vs. 30% target)
+* 50% faster resolution time (vs. 25% target)
+* ROI: $[TBD]
+
+**Pessimistic Scenario:**
+* 20% ticket reduction (vs. 30% target)
+* 15% faster resolution time (vs. 25% target)
+* ROI: $[TBD]
+
+**Risk-Adjusted ROI:** $[TBD]
+
+### 35.6 Success Metrics Alignment
+
+All ROI calculations align with success metrics defined in Section 6. Metrics will be tracked monthly and reported quarterly to validate business case assumptions.
+
+---
+
+## 36. Stakeholder Map and Analysis
+
+### 36.1 Stakeholder Identification
+
+| Stakeholder Group | Key Individuals | Role | Influence | Interest | Engagement Level |
+|-------------------|------------------|------|-----------|----------|------------------|
+| **Executive Leadership** | [TBD] | Sponsor, decision maker | High | High | Monthly updates |
+| **Product Management** | Mamatha Naganna | Product owner | High | High | Daily |
+| **Engineering** | LNR | Technical lead | High | High | Daily |
+| **AI/Knowledge Engineering** | Neeraj | AI/ML lead | High | High | Daily |
+| **UX/UI** | Sourav | Design lead | Medium | High | Weekly |
+| **Content Operations** | Vignesh, GopiChand | Content owners | High | High | Daily |
+| **Support Team** | Balaji | Support lead | Medium | High | Weekly |
+| **Support Agents** | [TBD] | End users | Low | High | Training, feedback |
+| **Platform Users** | All Virima users | End users | Low | Medium | Launch communication |
+| **Partners** | Partner implementers | End users | Low | High | Training, feedback |
+| **Security/Compliance** | [TBD] | Reviewers | Medium | Medium | As needed |
+| **Legal** | [TBD] | Reviewers | Low | Low | As needed |
+| **Finance** | [TBD] | Budget approval | Medium | Low | Budget reviews |
+
+### 36.2 Stakeholder Influence-Interest Matrix
+
+**High Influence, High Interest (Manage Closely):**
+* Executive Leadership
+* Product Management
+* Engineering
+* AI/Knowledge Engineering
+* Content Operations
+
+**High Influence, Low Interest (Keep Satisfied):**
+* Finance
+* Security/Compliance
+
+**Low Influence, High Interest (Keep Informed):**
+* Support Agents
+* Platform Users
+* Partners
+
+**Low Influence, Low Interest (Monitor):**
+* Legal
+
+### 36.3 Stakeholder Communication Plan
+
+| Stakeholder | Communication Method | Frequency | Content Focus |
+|-------------|----------------------|-----------|---------------|
+| Executive Leadership | Monthly executive update | Monthly | Progress, KPIs, risks, decisions needed |
+| Product Management | Daily standup, weekly status | Daily/Weekly | Execution, blockers, decisions |
+| Engineering | Daily standup, technical reviews | Daily | Technical progress, architecture, dependencies |
+| Content Operations | Weekly content review | Weekly | Content quality, migration progress |
+| Support Team | Weekly training, feedback sessions | Weekly | Feature training, feedback collection |
+| Platform Users | Launch announcement, in-app notifications | Launch + ongoing | Feature availability, how to use |
+| Partners | Partner portal, training sessions | Monthly | Training materials, certification |
+
+### 36.4 Stakeholder Concerns and Mitigation
+
+| Stakeholder | Primary Concerns | Mitigation Strategy |
+|-------------|------------------|---------------------|
+| Executive Leadership | ROI, timeline, resource allocation | Monthly ROI tracking, clear milestones, resource planning |
+| Engineering | Technical complexity, dependencies | Early POCs, vendor selection, dependency management |
+| Content Operations | Migration effort, quality standards | Phased migration, automation tools, training |
+| Support Team | Adoption, training, workflow changes | Early training, feedback loops, gradual rollout |
+| Platform Users | Usability, content quality | Beta testing, user feedback, iterative improvement |
+| Partners | Training materials, certification | Early partner engagement, dedicated portal |
+
+---
+
+## 37. Assumptions and Constraints
+
+### 37.1 Key Assumptions
+
+**Business Assumptions:**
+
+1. **User Adoption:** 80%+ of users will adopt KB/AI within 90 days of launch
+2. **Content Quality:** Content authors can maintain 80+ quality score consistently
+3. **Support Reduction:** 30% ticket reduction achievable in top categories
+4. **Partner Engagement:** Partners will actively use training materials
+5. **AI Performance:** RAG approach will achieve 95%+ citation coverage without fine-tuning
+6. **Vendor Reliability:** Selected vendors (vector DB, LLM) will meet SLA requirements
+7. **Resource Availability:** Required team members available for full project duration
+8. **Integration Readiness:** Virima Auth, CMDB, Discovery APIs available by Day 15
+
+**Technical Assumptions:**
+
+1. **Scalability:** Vector DB and LLM services can scale to 10,000+ objects and 500+ queries/minute
+2. **Performance:** Hybrid search architecture will achieve <1s response time (P95)
+3. **Reliability:** 99.9% uptime achievable with selected infrastructure
+4. **Data Quality:** Legacy content can be migrated with 90%+ accuracy
+5. **Embedding Quality:** SBERT embeddings sufficient for semantic search (no fine-tuning needed)
+6. **Browser Support:** Latest 2 versions of Chrome, Firefox, Safari, Edge sufficient
+
+**Operational Assumptions:**
+
+1. **Governance:** Content owners will adhere to review SLAs (90%+ compliance)
+2. **Training:** 4-hour training sufficient for content authors
+3. **Change Management:** Users will adapt to new KB within 30 days
+4. **Maintenance:** Monthly 4-hour maintenance windows acceptable
+
+### 37.2 Constraints
+
+**Business Constraints:**
+
+* **Budget:** Total project budget: $[TBD] (one-time) + $[TBD]/year (recurring)
+* **Timeline:** Production launch required by Day 90
+* **Resources:** Limited to assigned team members (no additional headcount)
+* **Scope:** MVP scope fixed (no scope creep in Phase 1)
+
+**Technical Constraints:**
+
+* **Platform:** Must integrate with existing Virima platform (no greenfield)
+* **Infrastructure:** Must use approved cloud providers and services
+* **Security:** Must comply with Virima security policies and SOC 2 requirements
+* **Accessibility:** WCAG 2.1 Level AA compliance required
+* **Browser Support:** Latest 2 versions only (no legacy browser support)
+* **Data Residency:** Must support configurable data residency (US, EU, APAC)
+
+**Operational Constraints:**
+
+* **Maintenance Windows:** Monthly, <4 hours, weekend only
+* **Support Hours:** Standard business hours (24/7 on-call for critical issues only)
+* **Content Review:** 90-day SLA for critical content, 180-day for standard
+* **Language:** English only for v1 (no multi-language)
+
+**Regulatory Constraints:**
+
+* **GDPR:** Must support data deletion, portability, consent management
+* **SOC 2:** Must support audit logging and access controls
+* **Data Retention:** Context bundles: 90 days (configurable), audit logs: per compliance requirements
+
+### 37.3 Assumption Validation Plan
+
+| Assumption | Validation Method | Target Date | Owner |
+|------------|-------------------|-------------|-------|
+| User adoption rate | Beta program metrics | Day 60 | PM |
+| Content quality sustainability | Quality dashboard monitoring | Day 90 | Docs |
+| Support ticket reduction | Ticketing system analytics | Day 120 | Support |
+| Vector DB scalability | Load testing | Day 45 | Eng |
+| LLM performance | Golden Questions evaluation | Day 50 | AI |
+| Integration readiness | API availability check | Day 15 | Eng |
+
+### 37.4 Risk if Assumptions Fail
+
+**High-Risk Assumptions (if fail, project at risk):**
+
+* Vendor reliability (vector DB, LLM)
+* Resource availability
+* Integration readiness
+* Scalability of selected technologies
+
+**Medium-Risk Assumptions (if fail, timeline/scope impacted):**
+
+* User adoption rate
+* Content quality sustainability
+* Support ticket reduction target
+* Governance compliance
+
+**Mitigation:** Regular assumption validation, early POCs, fallback plans, stakeholder communication
+
+---
+
+## 38. Competitive Analysis
+
+### 38.1 Market Landscape
+
+**Direct Competitors (Knowledge Management Platforms):**
+
+* **Confluence:** Enterprise wiki, strong collaboration features
+* **Zendesk Guide:** Customer support KB, good search
+* **Notion:** Modern documentation, good UX
+* **GitBook:** Developer-focused, version control
+* **Document360:** Technical documentation platform
+
+**Indirect Competitors (AI-Powered Help):**
+
+* **Intercom:** AI chatbot with knowledge base
+* **Drift:** Conversational AI for support
+* **Zendesk Answer Bot:** AI-powered support
+
+**Competitive Differentiation:**
+
+| Feature | Virima KB (SSOT) | Confluence | Zendesk Guide | Notion |
+|---------|------------------|------------|---------------|--------|
+| **AI with Citations** | ✓ (RAG-based) | ✗ | Limited | ✗ |
+| **Platform Integration** | ✓ (Native) | Limited | Limited | Limited |
+| **Partner Enablement** | ✓ (Derived assets) | ✗ | ✗ | ✗ |
+| **Content Governance** | ✓ (Lifecycle management) | Limited | Limited | Limited |
+| **Hybrid Search** | ✓ (Keyword + Semantic) | Keyword only | Keyword only | Keyword only |
+| **Multi-Channel Publishing** | ✓ (Web, in-product, AI) | Web only | Web only | Web only |
+
+### 38.2 Competitive Advantages
+
+1. **Native Platform Integration:** Deep integration with Virima platform (CMDB, Discovery, Auth)
+2. **AI-First Design:** Built for RAG from ground up, not retrofitted
+3. **Partner Enablement:** Unique capability to derive training materials from SSOT
+4. **Governance Model:** Structured lifecycle management with SLAs
+5. **Multi-Channel Publishing:** Single source, multiple consumption channels
+
+### 38.3 Competitive Gaps (Areas for Improvement)
+
+1. **Video Content:** No video academy (competitors have video support)
+2. **Community Features:** No user-contributed content (future consideration)
+3. **Multi-Language:** English only (competitors support multiple languages)
+4. **Advanced Analytics:** Basic analytics (competitors have advanced insights)
+
+### 38.4 Market Positioning
+
+**Positioning Statement:**
+
+"Virima Knowledge Platform is the only knowledge management system purpose-built for enterprise IT platforms, combining native platform integration, AI-powered assistance with citations, and partner enablement capabilities in a single, governed SSOT."
+
+**Target Market:**
+
+* Enterprise IT platform vendors (like Virima)
+* Companies with complex product knowledge
+* Organizations requiring AI-powered help with citations
+* Partner ecosystems requiring training enablement
+
+### 38.5 Competitive Response Strategy
+
+**If Competitors Launch Similar Features:**
+
+* **Short-term:** Accelerate roadmap, emphasize native integration advantage
+* **Medium-term:** Enhance AI capabilities, expand partner enablement
+* **Long-term:** Build moat through platform-specific features, data network effects
+
+---
+
+## 39. Data Requirements and Model
+
+### 39.1 Data Architecture Overview
+
+**Data Domains:**
+
+1. **Content Domain:** Knowledge objects, metadata, relationships, versions
+2. **User Domain:** Users, roles, permissions, preferences
+3. **Analytics Domain:** Events, metrics, feedback, usage patterns
+4. **AI Domain:** Embeddings, queries, responses, citations
+5. **Integration Domain:** External system data, context bundles, tickets
+
+### 39.2 Core Data Entities
+
+**Knowledge Object Entity:**
+
+```
+KnowledgeObject {
+  id: UUID (primary key)
+  objectId: String (KB-001234, unique, stable)
+  title: String (max 100 chars)
+  type: Enum (Concept, Task, Troubleshooting, Reference, Policy, ChangeNote)
+  content: Text (structured by template)
+  platformDomain: String (taxonomy category)
+  personaFit: Array[Enum] (A, B, C, D)
+  audienceTags: Array[String]
+  prerequisites: Text
+  appliesTo: Object { cloud: Boolean, onPrem: Boolean, versionRange: String }
+  owner: String (team/role)
+  lastReviewedDate: Date
+  reviewSLA: Integer (days)
+  status: Enum (Draft, Verified, Stale, Deprecated)
+  relatedObjects: Array[UUID] (foreign keys)
+  keywords: Array[String]
+  difficultyLevel: Enum (Beginner, Intermediate, Advanced)
+  qualityScore: Integer (0-100)
+  createdAt: Timestamp
+  updatedAt: Timestamp
+  version: Integer
+}
+```
+
+**Embedding Entity:**
+
+```
+Embedding {
+  id: UUID (primary key)
+  knowledgeObjectId: UUID (foreign key)
+  objectVersion: Integer
+  embeddingVersion: Integer
+  chunkType: Enum (Document, Section)
+  chunkIndex: Integer
+  chunkText: Text (max 512 tokens)
+  embeddingVector: Array[Float] (384 or 768 dimensions)
+  metadata: JSON
+  createdAt: Timestamp
+}
+```
+
+**User Interaction Entity:**
+
+```
+UserInteraction {
+  id: UUID (primary key)
+  userId: UUID (foreign key)
+  sessionId: UUID
+  interactionType: Enum (Search, AIQuery, ArticleView, Feedback, Escalation)
+  query: String
+  results: Array[UUID] (knowledge object IDs)
+  selectedResult: UUID
+  feedback: Object { helpful: Boolean, comment: String }
+  timestamp: Timestamp
+  context: JSON (page, feature, error code, etc.)
+}
+```
+
+### 39.3 Data Relationships
+
+**Entity Relationship Diagram (High-Level):**
+
+```
+KnowledgeObject (1) ----< (N) Embedding
+KnowledgeObject (1) ----< (N) KnowledgeObject (self-referential, related objects)
+KnowledgeObject (1) ----< (N) UserInteraction
+User (1) ----< (N) UserInteraction
+KnowledgeObject (1) ----< (N) ContentVersion
+```
+
+### 39.4 Data Quality Requirements
+
+**Completeness:**
+
+* All required fields populated: 100%
+* Optional fields: >80% populated for Verified objects
+* Related objects: At least 1 related object for 70%+ of objects
+
+**Accuracy:**
+
+* Object IDs: 100% unique, stable, no duplicates
+* Metadata: 100% accurate (validated against taxonomy)
+* Links: 100% valid (no broken links)
+* Embeddings: 100% aligned with object versions
+
+**Consistency:**
+
+* Terminology: Consistent use of approved glossary
+* Formatting: Consistent template structure
+* Naming: Consistent object ID format (KB-XXXXXX)
+
+**Timeliness:**
+
+* Content updates: Published within 24 hours of approval
+* Embeddings: Generated within 5 minutes of publish
+* Analytics: Real-time for operational metrics, daily for aggregated metrics
+
+### 39.5 Data Governance
+
+**Data Ownership:**
+
+* **Content Data:** Content Operations team (Vignesh, GopiChand)
+* **User Data:** Platform team (LNR)
+* **Analytics Data:** Product Management (Mamatha)
+* **AI Data:** AI/Knowledge Engineering (Neeraj)
+
+**Data Retention:**
+
+* **Knowledge Objects:** Indefinite (with versioning)
+* **User Interactions:** 2 years (anonymized after 1 year)
+* **Context Bundles:** 90 days (configurable)
+* **Audit Logs:** Per compliance requirements (typically 7 years)
+* **Embeddings:** Retained as long as associated object exists
+
+**Data Privacy:**
+
+* **PII Handling:** No PII beyond user ID in logs or context bundles
+* **Data Minimization:** Collect only necessary data for functionality
+* **Consent Management:** Explicit consent for Tier 2 context bundles
+* **Right to Deletion:** Users can request data deletion (GDPR compliance)
+
+**Data Security:**
+
+* **Encryption:** TLS 1.2+ in transit, AES-256 at rest
+* **Access Control:** Role-based access control (RBAC)
+* **Audit Logging:** All data access and changes logged
+* **Data Residency:** Configurable by tenant (US, EU, APAC)
+
+### 39.6 Data Migration Requirements
+
+**Source Data Mapping:**
+
+| Source System | Data Type | Mapping to Target | Transformation Required |
+|---------------|-----------|-------------------|------------------------|
+| Confluence | Documents | Knowledge Objects | Template conversion, metadata extraction |
+| Support Macros | Text | Knowledge Objects | Template conversion |
+| In-Product Tips | Short text | Knowledge Objects | Template conversion, enrichment |
+| Release Notes | Change notes | Change Note objects | Template conversion |
+| Internal Runbooks | Procedures | Task/Troubleshooting objects | Template conversion |
+
+**Data Validation:**
+
+* Pre-migration: Data quality assessment, completeness check
+* During migration: Real-time validation, error logging
+* Post-migration: Comparison reports, quality score validation
+* Rollback: Ability to revert migration if critical issues found
+
+---
+
+## 40. Security and Compliance Requirements
+
+### 40.1 Security Requirements
+
+**Authentication:**
+
+* **SSO Integration:** Must integrate with Virima Auth (OIDC/SAML 2.0)
+* **Multi-Factor Authentication:** Support MFA for admin users
+* **Session Management:** Session timeout after 30 minutes of inactivity
+* **Password Policy:** Enforced by Virima Auth (not managed by KB)
+
+**Authorization:**
+
+* **Role-Based Access Control (RBAC):** 
+  * **Viewer:** Read-only access to published content
+  * **Author:** Create and edit content (own objects)
+  * **Reviewer:** Review and approve content
+  * **Admin:** Full access, system configuration
+  * **Partner:** Access to partner-specific content
+* **Object-Level Permissions:** Content owners can restrict access to specific objects
+* **API Access:** API keys with scoped permissions
+
+**Data Protection:**
+
+* **Encryption in Transit:** TLS 1.2+ for all communications
+* **Encryption at Rest:** AES-256 encryption for databases and file storage
+* **Key Management:** Use cloud provider key management (AWS KMS, Azure Key Vault)
+* **Data Masking:** Automatic masking of PII in logs and context bundles
+* **Secure Storage:** Credentials and secrets stored in secure vault, never in code
+
+**Network Security:**
+
+* **Firewall Rules:** Restrict access to necessary ports only
+* **VPC/Network Isolation:** Services in private subnets, load balancer in public subnet
+* **DDoS Protection:** Cloud provider DDoS protection enabled
+* **WAF (Web Application Firewall):** Protect against OWASP Top 10 vulnerabilities
+
+**Application Security:**
+
+* **Input Validation:** All user inputs validated and sanitized
+* **Output Encoding:** Prevent XSS attacks through output encoding
+* **SQL Injection Prevention:** Parameterized queries, ORM usage
+* **CSRF Protection:** CSRF tokens for state-changing operations
+* **Rate Limiting:** Per-user and per-tenant rate limits (see Section 10.5)
+
+**Vulnerability Management:**
+
+* **Dependency Scanning:** Automated scanning of third-party libraries (weekly)
+* **Code Scanning:** Static code analysis in CI/CD pipeline
+* **Penetration Testing:** Annual external security audit
+* **Patch Management:** Security patches applied within 7 days of release
+
+### 40.2 Compliance Requirements
+
+**SOC 2 Type II:**
+
+* **Control Objectives:**
+  * Access controls and authentication
+  * System operations and change management
+  * Logical and physical security
+  * System monitoring and incident response
+* **Audit Logging:** All access, changes, and security events logged
+* **Access Reviews:** Quarterly access reviews for admin users
+* **Incident Response:** Documented incident response procedures
+
+**GDPR Compliance:**
+
+* **Right to Access:** Users can request their data
+* **Right to Rectification:** Users can correct their data
+* **Right to Erasure:** Users can request data deletion
+* **Right to Portability:** Users can export their data
+* **Consent Management:** Explicit consent for Tier 2 context bundles
+* **Data Protection Officer (DPO):** [TBD - if required]
+
+**Data Residency:**
+
+* **Configurable Regions:** Support US, EU, APAC data residency
+* **Data Localization:** Data stored in selected region only
+* **Cross-Region Transfer:** Explicit user consent required for cross-region transfers
+
+**Accessibility (WCAG 2.1 Level AA):**
+
+* **Perceivable:** Alt text, color contrast, captions
+* **Operable:** Keyboard navigation, no time limits
+* **Understandable:** Clear language, consistent navigation
+* **Robust:** Valid HTML, screen reader compatible
+
+### 40.3 Security Testing
+
+**Automated Security Testing:**
+
+* **SAST (Static Application Security Testing):** Integrated in CI/CD
+* **DAST (Dynamic Application Security Testing):** Weekly scans
+* **Dependency Scanning:** Weekly scans for known vulnerabilities
+* **Container Scanning:** Scan Docker images for vulnerabilities
+
+**Manual Security Testing:**
+
+* **Penetration Testing:** Annual external audit
+* **Code Review:** Security-focused code reviews for sensitive operations
+* **Threat Modeling:** Threat modeling for new features
+
+**Security Monitoring:**
+
+* **SIEM Integration:** Security events sent to SIEM
+* **Anomaly Detection:** Automated detection of suspicious activity
+* **Alerting:** Real-time alerts for security incidents
+* **Incident Response:** 24/7 on-call for security incidents
+
+### 40.4 Compliance Validation
+
+**Compliance Checklist:**
+
+- [ ] SOC 2 controls implemented and documented
+- [ ] GDPR requirements implemented (data deletion, portability, consent)
+- [ ] Data residency configurable and tested
+- [ ] WCAG 2.1 Level AA compliance verified
+- [ ] Security testing completed (SAST, DAST, penetration testing)
+- [ ] Audit logging operational and tested
+- [ ] Access controls tested and validated
+- [ ] Incident response procedures documented and tested
+
+**Compliance Validation Timeline:**
+
+* **Pre-Launch:** All compliance requirements validated
+* **Post-Launch:** Quarterly compliance reviews
+* **Annual:** External compliance audit (SOC 2)
+
+---
+
+## 41. Testing Strategy
+
+### 41.1 Testing Levels
+
+**Unit Testing:**
+
+* **Coverage Target:** 80%+ code coverage
+* **Scope:** All business logic, utilities, API handlers
+* **Tools:** Jest, pytest, or equivalent
+* **Execution:** Automated in CI/CD pipeline
+
+**Integration Testing:**
+
+* **API Testing:** All REST APIs tested with various inputs
+* **Database Testing:** Data operations, transactions, constraints
+* **Service Integration:** Inter-service communication tested
+* **Tools:** Postman, Newman, or equivalent
+* **Execution:** Automated in CI/CD, manual for complex scenarios
+
+**System Testing:**
+
+* **End-to-End Testing:** Complete user journeys tested
+* **Performance Testing:** Load, stress, endurance testing (see Section 20.5)
+* **Security Testing:** Penetration testing, vulnerability scanning
+* **Accessibility Testing:** WCAG compliance testing
+* **Tools:** Selenium, Cypress, Playwright, or equivalent
+* **Execution:** Automated for regression, manual for exploratory
+
+**User Acceptance Testing (UAT):**
+
+* **Beta Program:** 20-30 internal users (see Section 28)
+* **Pilot Program:** 50-100 external users (optional)
+* **Test Scenarios:** Based on user stories (Section 16)
+* **Feedback Collection:** Surveys, interviews, analytics
+* **Execution:** 4-week beta program before production launch
+
+### 41.2 Test Types
+
+**Functional Testing:**
+
+* **Requirements Coverage:** All functional requirements tested
+* **User Stories:** All user stories validated (Section 16)
+* **Acceptance Criteria:** All acceptance criteria verified
+* **Edge Cases:** Boundary conditions, error scenarios tested
+
+**Non-Functional Testing:**
+
+* **Performance Testing:** Response times, throughput, scalability (Section 20.5)
+* **Security Testing:** Authentication, authorization, data protection (Section 40)
+* **Accessibility Testing:** WCAG 2.1 Level AA compliance (Section 19)
+* **Usability Testing:** User experience, ease of use
+* **Compatibility Testing:** Browser, device, OS compatibility
+
+**Regression Testing:**
+
+* **Automated Test Suite:** Comprehensive test suite for regression
+* **Execution:** Run on every code change, before releases
+* **Coverage:** Critical paths, high-risk areas
+* **Maintenance:** Test suite updated with new features
+
+**Exploratory Testing:**
+
+* **Scope:** New features, complex workflows, edge cases
+* **Execution:** Manual testing by QA team
+* **Documentation:** Issues logged, test notes maintained
+
+### 41.3 Test Data Management
+
+**Test Data Requirements:**
+
+* **Synthetic Data:** Generated test data for unit/integration tests
+* **Anonymized Production Data:** For system testing (GDPR compliant)
+* **Golden Data Set:** Standardized test data for regression testing
+* **Test Data Refresh:** Regular refresh to maintain data quality
+
+**Test Data Privacy:**
+
+* **No PII:** No real PII in test data
+* **Anonymization:** Production data anonymized before use
+* **Access Control:** Test data access restricted to QA team
+* **Retention:** Test data retained only as long as needed
+
+### 41.4 Test Environment Strategy
+
+**Environments:**
+
+* **Development:** For developer testing
+* **Staging:** Mirror of production, for integration/system testing
+* **Production:** Live environment (limited testing only)
+
+**Environment Management:**
+
+* **Data Refresh:** Staging refreshed from production (anonymized) monthly
+* **Configuration:** Environments match production configuration
+* **Isolation:** Environments isolated, no cross-environment data access
+* **Monitoring:** All environments monitored for issues
+
+### 41.5 Test Automation Strategy
+
+**Automation Targets:**
+
+* **Unit Tests:** 100% automated
+* **Integration Tests:** 80%+ automated
+* **E2E Tests:** Critical paths automated (60%+ coverage)
+* **Regression Tests:** 90%+ automated
+
+**Automation Tools:**
+
+* **Unit Testing:** Jest, pytest, or equivalent
+* **API Testing:** Postman, Newman, or equivalent
+* **E2E Testing:** Selenium, Cypress, Playwright
+* **Performance Testing:** JMeter, k6, Locust
+* **Security Testing:** OWASP ZAP, Burp Suite
+
+**CI/CD Integration:**
+
+* **Pre-Commit:** Unit tests run on pre-commit hooks
+* **Pull Request:** All automated tests run on PR
+* **Merge:** Tests must pass before merge
+* **Deployment:** Tests run before deployment to staging/production
+
+### 41.6 Test Metrics and Reporting
+
+**Test Metrics:**
+
+* **Test Coverage:** Code coverage, requirements coverage
+* **Test Execution:** Tests run, passed, failed, skipped
+* **Defect Metrics:** Defects found, severity, resolution time
+* **Test Efficiency:** Time to execute test suite, automation percentage
+
+**Test Reporting:**
+
+* **Daily:** Test execution summary, defect status
+* **Weekly:** Test progress, coverage metrics, risk assessment
+* **Release:** Test summary report, release readiness assessment
+
+### 41.7 Defect Management
+
+**Defect Lifecycle:**
+
+1. **Discovery:** Defect found and logged
+2. **Triage:** Severity and priority assigned
+3. **Assignment:** Assigned to developer
+4. **Fix:** Developer fixes and tests
+5. **Verification:** QA verifies fix
+6. **Closure:** Defect closed
+
+**Defect Severity:**
+
+* **Critical:** System down, data loss, security issue → Fix immediately
+* **High:** Major feature broken, workaround available → Fix within 24 hours
+* **Medium:** Minor feature issue → Fix within 1 week
+* **Low:** Cosmetic issue, enhancement → Fix in next sprint
+
+**Defect Tracking:**
+
+* **Tool:** Jira, Azure DevOps, or equivalent
+* **Fields:** Title, description, severity, priority, steps to reproduce, expected vs. actual, environment, attachments
+* **Reporting:** Weekly defect report, release defect summary
+
+---
+
+## 42. Resource Requirements
+
+### 42.1 Team Structure
+
+**Core Team (Full-Time):**
+
+| Role | Count | Names | Allocation | Duration |
+|------|-------|-------|------------|----------|
+| Product Manager | 1 | Mamatha Naganna | 100% | Full project |
+| Engineering Lead | 1 | LNR | 100% | Full project |
+| AI/Knowledge Engineer | 1 | Neeraj | 100% | Full project |
+| UX/UI Designer | 1 | Sourav | 50% | Days 0-60 |
+| Content Operations | 2 | Vignesh, GopiChand | 100% | Full project |
+| Support Lead | 1 | Balaji | 25% | Full project |
+| Backend Engineers | 2 | [TBD] | 100% | Days 31-90 |
+| Frontend Engineers | 2 | [TBD] | 100% | Days 31-90 |
+| QA Engineers | 2 | [TBD] | 100% | Days 31-90 |
+| DevOps Engineer | 1 | [TBD] | 50% | Days 0-90 |
+
+**Extended Team (Part-Time/Consulted):**
+
+| Role | Count | Allocation | Duration |
+|------|-------|------------|----------|
+| Security Engineer | 1 | 25% | Days 0-90 |
+| Data Engineer | 1 | 25% | Days 0-60 |
+| Technical Writer | 1 | 50% | Days 15-90 |
+| Change Management | 1 | 25% | Days 30-90 |
+
+### 42.2 Skill Requirements
+
+**Required Skills:**
+
+* **Product Management:** Product strategy, requirements definition, stakeholder management
+* **Engineering:** Microservices architecture, API development, cloud infrastructure
+* **AI/ML:** RAG, embeddings, vector databases, LLM integration
+* **UX/UI:** User research, wireframing, design systems, accessibility
+* **Content:** Technical writing, content strategy, information architecture
+* **QA:** Test automation, performance testing, security testing
+* **DevOps:** CI/CD, containerization, monitoring, infrastructure as code
+
+**Training Needs:**
+
+* **RAG/Vector DBs:** Team training on RAG architecture, vector database concepts
+* **Content Tools:** Authoring tool training for content team (4 hours)
+* **Accessibility:** WCAG training for UX and engineering teams
+* **Security:** Security best practices training
+
+### 42.3 Resource Timeline
+
+**Phase 1 (Days 0-30): Foundation**
+
+* **Full-Time:** PM, Eng Lead, AI Lead, Content Ops (2), Support Lead
+* **Part-Time:** UX/UI (50%), DevOps (50%), Security (25%)
+* **Key Activities:** Design, architecture, content audit, taxonomy
+
+**Phase 2 (Days 31-60): MVP Build**
+
+* **Full-Time:** All core team + Backend (2), Frontend (2), QA (2)
+* **Part-Time:** DevOps (50%), Security (25%), Technical Writer (50%)
+* **Key Activities:** Development, testing, content creation
+
+**Phase 3 (Days 61-90): Scale & Launch**
+
+* **Full-Time:** All core team + Backend (2), Frontend (2), QA (2)
+* **Part-Time:** DevOps (50%), Security (25%), Technical Writer (50%), Change Management (25%)
+* **Key Activities:** Content expansion, governance, launch preparation
+
+### 42.4 Resource Constraints
+
+**Constraints:**
+
+* **Headcount:** No additional headcount approved; must use existing team
+* **Budget:** Limited budget for contractors/consultants
+* **Availability:** Team members may have other commitments
+* **Skills:** Some skills may need to be developed (training required)
+
+**Mitigation:**
+
+* **Cross-Training:** Team members cross-trained on multiple areas
+* **Prioritization:** Clear priorities to focus resources on critical path
+* **External Support:** Limited use of contractors for specialized skills
+* **Flexible Timeline:** Buffer built into timeline for resource constraints
+
+### 42.5 Resource Planning Assumptions
+
+**Assumptions:**
+
+1. All team members available for full project duration
+2. No major competing priorities
+3. Training can be completed within project timeline
+4. External dependencies (vendors, APIs) available on schedule
+5. No unexpected team member departures
+
+**Risk Mitigation:**
+
+* **Backup Resources:** Identify backup resources for critical roles
+* **Knowledge Sharing:** Document knowledge to reduce bus factor
+* **Early Training:** Training completed early to avoid delays
+* **Stakeholder Alignment:** Early alignment to avoid competing priorities
+
+---
+
+## 43. Decision Log
+
+### 43.1 Decision Tracking
+
+| Decision ID | Date | Decision | Rationale | Decision Maker | Status | Impact |
+|-------------|------|----------|-----------|----------------|--------|--------|
+| DEC-001 | [Date] | Use RAG approach (not fine-tuning) | Faster time-to-market, proven approach | AI Lead (Neeraj) | Approved | High |
+| DEC-002 | [Date] | Modular microservices architecture | Scalability, team autonomy | Eng Lead (LNR) | Approved | High |
+| DEC-003 | [Date] | Vector DB vendor: [TBD] | [TBD - after POC] | AI Lead, Eng Lead | Pending | High |
+| DEC-004 | [Date] | LLM provider: [TBD] | [TBD - after POC] | AI Lead | Pending | High |
+| DEC-005 | [Date] | CMS platform: [TBD] | [TBD - after evaluation] | Eng Lead, Docs | Pending | Medium |
+| DEC-006 | [Date] | English only for v1 | Scope management, faster launch | PM (Mamatha) | Approved | Medium |
+| DEC-007 | [Date] | 25 objects for MVP | Minimum viable content | PM, Docs | Approved | Medium |
+| DEC-008 | [Date] | Hybrid search (40% keyword, 60% semantic) | Balance precision and recall | AI Lead | Approved | Low |
+| DEC-009 | [Date] | SBERT embedding model: [TBD] | [TBD - after evaluation] | AI Lead | Pending | Medium |
+| DEC-010 | [Date] | Partner enablement in v1 | Business requirement | PM, Executive | Approved | High |
+
+### 43.2 Decision Process
+
+**Decision-Making Authority:**
+
+* **Strategic Decisions:** Executive sponsor, PM
+* **Technical Decisions:** Engineering Lead, AI Lead
+* **Content Decisions:** Content Operations, PM
+* **UX Decisions:** UX Lead, PM
+
+**Decision Process:**
+
+1. **Identify Need:** Decision needed identified
+2. **Gather Input:** Stakeholder input gathered
+3. **Evaluate Options:** Options evaluated with pros/cons
+4. **Make Decision:** Decision maker makes decision
+5. **Document:** Decision logged in decision log
+6. **Communicate:** Decision communicated to stakeholders
+7. **Review:** Decision reviewed if assumptions change
+
+**Decision Criteria:**
+
+* **Alignment:** Aligns with goals and objectives
+* **Feasibility:** Technically and operationally feasible
+* **Risk:** Acceptable risk level
+* **Cost:** Within budget constraints
+* **Timeline:** Fits within timeline
+* **Stakeholder Impact:** Acceptable impact on stakeholders
+
+### 43.3 Decision Review
+
+**Review Triggers:**
+
+* Assumptions change
+* New information available
+* Stakeholder feedback indicates need for review
+* Decision not achieving expected outcomes
+
+**Review Process:**
+
+1. **Assess Impact:** Assess impact of changing decision
+2. **Evaluate Options:** Re-evaluate options with new information
+3. **Make New Decision:** Make new decision if warranted
+4. **Update Log:** Update decision log with new decision
+5. **Communicate:** Communicate decision change to stakeholders
+
+---
+
+## 44. References and Related Documents
+
+### 44.1 Internal Documents
+
+**Product Documents:**
+
+* **Technical Design Architecture:** [TBD - to be created]
+* **User Research Report:** [TBD - if available]
+* **Competitive Analysis:** [TBD - if available]
+* **Business Case Document:** [TBD - if separate document]
+
+**Platform Documents:**
+
+* **Virima Platform Architecture:** [Reference]
+* **Virima Auth Integration Guide:** [Reference]
+* **Virima CMDB API Documentation:** [Reference]
+* **Virima Discovery API Documentation:** [Reference]
+
+**Process Documents:**
+
+* **Content Style Guide:** Section 31 (this document)
+* **Governance Operating Model:** Section 12 (this document)
+* **Change Management Plan:** Section 25 (this document)
+
+### 44.2 External References
+
+**Technical Standards:**
+
+* **WCAG 2.1:** https://www.w3.org/WAI/WCAG21/quickref/
+* **OAuth 2.0:** https://oauth.net/2/
+* **SAML 2.0:** http://saml.xml.org/saml-specifications
+* **REST API Design:** https://restfulapi.net/
+
+**Industry Best Practices:**
+
+* **RAG Architecture:** [Research papers, blog posts]
+* **Vector Database Comparison:** [Vendor documentation]
+* **LLM Best Practices:** [OpenAI, Anthropic documentation]
+* **Knowledge Management:** [Industry reports, case studies]
+
+**Vendor Documentation:**
+
+* **Vector DB:** [Pinecone/Weaviate/Qdrant/Milvus documentation]
+* **LLM Provider:** [OpenAI/Anthropic documentation]
+* **CMS Platform:** [Selected CMS documentation]
+
+### 44.3 Related Projects
+
+**Dependencies:**
+
+* **Virima Auth SSO:** Must be available for integration
+* **Virima CMDB:** Must provide API access
+* **Virima Discovery:** Must provide error code API
+* **Ticketing System:** Must provide integration API
+
+**Related Initiatives:**
+
+* **Platform UX Improvements:** May share design system components
+* **Partner Program:** Partner enablement alignment
+* **Support Transformation:** Support process improvements
+
+### 44.4 Document Maintenance
+
+**Update Frequency:**
+
+* **Weekly:** Progress updates, decision log
+* **Monthly:** Metrics, risks, open questions
+* **Quarterly:** Business case review, competitive analysis
+* **As Needed:** When major changes occur
+
+**Version Control:**
+
+* **Repository:** [Git repository URL]
+* **Branching:** Main branch for approved versions, feature branches for updates
+* **Review Process:** PR review required before merge to main
+
+---
+
+## 45. Glossary
+
+### 45.1 Acronyms and Abbreviations
+
+| Acronym | Full Form | Definition |
+|---------|-----------|------------|
+| **AI** | Artificial Intelligence | Technology enabling machines to perform tasks requiring human intelligence |
+| **API** | Application Programming Interface | Interface for software components to communicate |
+| **BM25** | Best Matching 25 | Ranking function used in information retrieval |
+| **CMS** | Content Management System | System for managing digital content |
+| **CMDB** | Configuration Management Database | Database storing IT infrastructure information |
+| **CSRF** | Cross-Site Request Forgery | Security attack exploiting user authentication |
+| **DoD** | Definition of Done | Criteria that must be met for work to be considered complete |
+| **E2E** | End-to-End | Complete user journey from start to finish |
+| **FTE** | Full-Time Equivalent | Unit of work representing one full-time employee |
+| **GDPR** | General Data Protection Regulation | EU data protection regulation |
+| **IRR** | Internal Rate of Return | Financial metric for investment evaluation |
+| **KB** | Knowledge Base | Repository of information and knowledge |
+| **LLM** | Large Language Model | AI model trained on large text datasets |
+| **LMS** | Learning Management System | Platform for managing educational content |
+| **MRR** | Mean Reciprocal Rank | Metric for evaluating search result quality |
+| **MVP** | Minimum Viable Product | Product with minimum features for launch |
+| **NDCG** | Normalized Discounted Cumulative Gain | Metric for evaluating ranking quality |
+| **NPV** | Net Present Value | Financial metric for investment evaluation |
+| **OIDC** | OpenID Connect | Authentication protocol built on OAuth 2.0 |
+| **OWASP** | Open Web Application Security Project | Organization focused on web security |
+| **PII** | Personally Identifiable Information | Data that can identify an individual |
+| **POC** | Proof of Concept | Demonstration of feasibility |
+| **PRD** | Product Requirements Document | This document |
+| **QA** | Quality Assurance | Process of ensuring product quality |
+| **RAG** | Retrieval-Augmented Generation | AI technique combining retrieval and generation |
+| **RBAC** | Role-Based Access Control | Access control based on user roles |
+| **ROI** | Return on Investment | Financial metric for investment evaluation |
+| **RPO** | Recovery Point Objective | Maximum acceptable data loss |
+| **RTO** | Recovery Time Objective | Maximum acceptable downtime |
+| **SAML** | Security Assertion Markup Language | Authentication protocol |
+| **SBERT** | Sentence-BERT | Sentence embedding model |
+| **SLA** | Service Level Agreement | Agreement on service quality metrics |
+| **SME** | Subject Matter Expert | Expert in specific domain |
+| **SOC 2** | System and Organization Controls 2 | Security compliance framework |
+| **SSO** | Single Sign-On | Authentication allowing access to multiple systems |
+| **SSOT** | Single Source of Truth | One authoritative source of information |
+| **TLS** | Transport Layer Security | Encryption protocol |
+| **UAT** | User Acceptance Testing | Testing by end users |
+| **UI** | User Interface | Visual interface for user interaction |
+| **UX** | User Experience | Overall experience of using a product |
+| **VPC** | Virtual Private Cloud | Isolated cloud network |
+| **WAF** | Web Application Firewall | Security system protecting web applications |
+| **WCAG** | Web Content Accessibility Guidelines | Accessibility standards |
+| **WYSIWYG** | What You See Is What You Get | Editor showing formatted output |
+| **XSS** | Cross-Site Scripting | Security attack injecting malicious scripts |
+
+### 45.2 Technical Terms
+
+| Term | Definition |
+|------|------------|
+| **Canonical Knowledge Object** | The smallest "unit of truth" treated as authoritative in the knowledge base |
+| **Chunking** | Process of breaking documents into smaller pieces for embedding |
+| **Citation** | Reference to source knowledge object in AI response |
+| **Context Bundle** | Package of user/session context attached to support request |
+| **Cross-Encoder** | Model for re-ranking search results based on query-document relevance |
+| **Embedding** | Vector representation of text for semantic similarity |
+| **Golden Questions** | Curated set of questions used to evaluate AI assistant quality |
+| **Hallucination** | AI generating incorrect or unsupported information |
+| **Hybrid Search** | Combination of keyword and semantic search |
+| **Knowledge Object Model** | Data model defining structure and metadata of knowledge objects |
+| **Metadata Filtering** | Filtering search results by metadata (domain, type, persona) before vector search |
+| **Pogo-Sticking** | User behavior of clicking back immediately after viewing result |
+| **Query Expansion** | Technique of expanding search query with synonyms or related terms |
+| **Re-ranking** | Process of re-ordering search results to improve relevance |
+| **Semantic Search** | Search based on meaning rather than exact keyword matching |
+| **Vector Database** | Database optimized for storing and querying vector embeddings |
+| **Vector Similarity** | Measure of similarity between vectors (typically cosine similarity) |
+
+### 45.3 Business Terms
+
+| Term | Definition |
+|------|------------|
+| **Beta Program** | Limited release to selected users for testing and feedback |
+| **Content Gap** | Topic or question without adequate knowledge base coverage |
+| **Content Migration** | Process of moving content from legacy systems to new knowledge base |
+| **Content Owner** | Team or role accountable for accuracy and review of knowledge objects |
+| **Governance Model** | Framework for managing content lifecycle, quality, and ownership |
+| **Launch Readiness** | Criteria that must be met before production launch |
+| **Partner Enablement** | Process of training and enabling partners to deliver Virima |
+| **Platform Domain** | Taxonomy category organizing knowledge by platform area (e.g., Identity & Access) |
+| **Review SLA** | Service level agreement for content review cadence |
+| **Self-Service** | Users finding answers independently without support assistance |
+| **Stale Content** | Content that has not been reviewed within review SLA |
+| **Support Deflection** | Reducing support tickets through self-service |
+| **Taxonomy** | Hierarchical classification system for organizing knowledge |
 
 ---
 
