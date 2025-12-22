@@ -1,56 +1,24 @@
 # PRD: Virima Knowledge Platform (SSOT)
 
-**Document Classification:** Internal Use  
-**Document Status:** Draft → Review → Approved  
-**Confidentiality Level:** Internal
+**Owner (PM):** Mamatha Naganna (Director, Product Management)
 
----
+**Workstream leads:**
 
-## Document Control
+* **Docs/Content Ops:** Vignesh, GopiChand
+* **UX/UI:** Sourav
+* **AI/Knowledge Engineering:** Neeraj
+* **Support:** Balaji
+* **Engineering:** LNR
 
-### Version History
-
-| Version | Date | Author | Changes | Approved By |
-|---------|------|--------|---------|-------------|
-| 1.0 | [Date] | Mamatha Naganna | Initial draft | Pending |
-| 1.1 | [Date] | Mamatha Naganna | Enhanced to enterprise standard | Pending |
-
-### Approval Signatures
-
-| Role | Name | Signature | Date |
-|------|------|-----------|------|
-| Product Owner | Mamatha Naganna | | |
-| Engineering Lead | LNR | | |
-| AI/Knowledge Engineering Lead | Neeraj | | |
-| UX/UI Lead | Sourav | | |
-| Support Lead | Balaji | | |
-| Executive Sponsor | [TBD] | | |
-
-### Document Metadata
-
-* **Document ID:** PRD-KB-SSOT-001
-* **Project Code:** KB-SSOT
-* **Last Updated:** [Date]
-* **Next Review Date:** [Date + 30 days]
-* **Related Documents:**
-  * Technical Design Architecture (TBD)
-  * User Research Report (TBD)
-  * Competitive Analysis (TBD)
-  * Business Case Document (TBD)
-
----
-
-## Executive Summary
-
-**Product Name:** Virima Knowledge Platform (Single Source of Truth)  
-**Product Owner:** Mamatha Naganna (Director, Product Management)  
-**Target Launch:** Day 90 (Production Launch)  
-**Investment Level:** [TBD - to be filled from business case]  
-**Expected ROI:** [TBD - to be filled from business case]
+**Status:** Draft v1.1
 
 ### Overview
 
-The Virima Knowledge Platform (SSOT) is a state-of-the-art knowledge management system designed to serve as the single source of truth for all Virima product knowledge. The platform addresses critical business problems including fragmented knowledge sources, inconsistent answers, high support ticket volume, and AI hallucination risks.
+Imagine a world where every Virima user—whether they're a new customer, a partner implementing solutions, or a support agent—can find accurate, up-to-date answers instantly. That's what the Virima Knowledge Platform (SSOT) aims to deliver.
+
+This platform brings together all our product knowledge into one trusted source, solving real problems we face every day: information scattered across multiple places, conflicting answers that confuse users, support teams overwhelmed with tickets, and AI assistants that sometimes make things up because they can't find the right information.
+
+By creating a single source of truth that everyone can access—through a web knowledge base, in-product help, or AI-powered assistance—we're not just building a tool; we're transforming how people learn and work with Virima.
 
 ### Key Objectives
 
@@ -91,8 +59,8 @@ The Virima Knowledge Platform (SSOT) is a state-of-the-art knowledge management 
 10. [AI Assistant Requirements](#10-ai-assistant-requirements)
 11. [Context Bundles and Privacy Rules](#11-context-bundles-and-privacy-rules)
 12. [Governance and Operating Model](#12-governance-and-operating-model)
-13. [Implementation Plan (30/60/90)](#13-implementation-plan-306090)
-14. [Risks and Mitigations](#14-risks-and-mitigations)
+13. [Phased Roadmap and Implementation Plan](#13-phased-roadmap-and-implementation-plan)
+14. [Dependencies & Risks](#14-dependencies--risks)
 15. [Open Questions](#15-open-questions-resolve-in-week-1)
 16. [User Stories and Acceptance Criteria](#16-user-stories-and-acceptance-criteria)
 17. [Content Migration Strategy](#17-content-migration-strategy)
@@ -111,6 +79,8 @@ The Virima Knowledge Platform (SSOT) is a state-of-the-art knowledge management 
 30. [Search Quality and Relevance Tuning](#30-search-quality-and-relevance-tuning)
 31. [Content Style Guide](#31-content-style-guide)
 32. [Rollback and Contingency Planning](#32-rollback-and-contingency-planning)
+33. [Lessons Learned and Continuous Improvement](#33-lessons-learned-and-continuous-improvement)
+34. [Post-Launch Roadmap](#34-post-launch-roadmap)
 35. [Business Case and ROI](#35-business-case-and-roi)
 36. [Stakeholder Map and Analysis](#36-stakeholder-map-and-analysis)
 37. [Assumptions and Constraints](#37-assumptions-and-constraints)
@@ -129,9 +99,9 @@ The Virima Knowledge Platform (SSOT) is a state-of-the-art knowledge management 
 
 ### The Challenge
 
-Virima is a platform with multiple suites and applications. Currently, we lack a unified AI agent capable of serving both internal and external users with meaningful, contextually relevant responses. When AI agents are developed for specific Virima products, they are constrained to their respective product knowledge bases, creating silos that fragment the user experience.
+Virima is a platform with multiple suites and applications. Currently, we do not have a unified AI agent that can serve internal or external users with semantically relevant responses. Even when AI agents are developed for specific Virima products, they are limited to their respective product knowledge bases, resulting in fragmented responses and poor management of information delivered to end-users.
 
-This siloed approach is compounded by product knowledge scattered across multiple locations and formats—online help documentation, internal notes, support macros, release notes, and in-product tips. The resulting fragmentation leads to:
+This problem is compounded by product knowledge scattered across multiple locations and formats—documentation, internal notes, support macros, release notes, and in-product tips. The resulting fragmentation leads to:
 
 - **Multiple knowledge bases with duplicated content** requiring separate maintenance
 - **Inconsistent or duplicate answers** across different sources
@@ -140,13 +110,30 @@ This siloed approach is compounded by product knowledge scattered across multipl
 - **Stale content** that erodes user trust and confidence
 - **AI hallucination risks** caused by fragmented, ungoverned knowledge sources
 
+### Problem Statement
+
+The core problem is that Virima's knowledge ecosystem is fragmented across multiple silos, preventing the delivery of consistent, accurate, and timely information to users. This fragmentation manifests in three critical dimensions:
+
+1. **Knowledge Fragmentation:** Product knowledge exists in isolated repositories (product-specific knowledge bases, Confluence, support macros, release notes, in-product tips), each maintained independently with no single source of truth.
+
+2. **AI Agent Limitations:** AI agents built for individual Virima products can only access their respective knowledge bases, resulting in incomplete or inconsistent responses when users need cross-product information or when knowledge overlaps between products.
+
+3. **Content Governance Gaps:** Without a centralized governance model, content becomes stale, duplicates proliferate, and inconsistencies emerge across different sources, leading to user confusion and reduced trust.
+
+**Impact:** This fragmentation directly contributes to increased support costs, slower user onboarding, reduced self-service effectiveness, and elevated risk of AI-generated misinformation (hallucinations) that could damage brand reputation and user trust.
+
 ### The Solution
 
-To address these challenges, we need a centralized AI knowledge base that consolidates all product knowledge from across locations and formats—including feature documentation, online help articles, release notes, and in-product tips—into a single, governed repository.
+Here's our plan: bring all that scattered knowledge together into one place—a centralized knowledge base that pulls from everywhere: feature documentation, online help articles, release notes, in-product tips, you name it. Everything lives in one governed repository that stays accurate and up-to-date.
 
-We require a **state-of-the-art Knowledge Platform** that serves as a **Single Source of Truth (SSOT)**, consumable through multiple channels: a web-based knowledge base, in-product help, and AI-powered assistance that delivers grounded answers with citations. This platform must support all four user personas while ensuring content remains accurate, current, and trustworthy.
+This isn't just a knowledge base—it's a **Single Source of Truth (SSOT)** that works wherever our users need it:
+* **Web knowledge base** for those who want to browse and search
+* **In-product help** that appears right when and where users need it
+* **AI-powered assistance** that gives real answers with citations, not guesses
 
-Any AI agent developed on the Virima platform should be able to leverage this centralized knowledge base to provide consistent, accurate responses to both partners and end-users, eliminating the fragmentation and inconsistency that currently plagues our knowledge ecosystem.
+The best part? It's built for all four of our user personas. Whether you're Sarah who needs quick steps, Mike who wants fast answers, Alex who loves deep dives, or Jamie who's training customers—everyone gets what they need.
+
+And here's the game-changer: any AI agent we build on the Virima platform can tap into this same knowledge base. That means consistent, accurate answers for partners and end-users, no matter which product or feature they're asking about. No more fragmentation. No more confusion. Just one source of truth that everyone can trust.
 
 
 ---
@@ -155,27 +142,31 @@ Any AI agent developed on the Virima platform should be able to leverage this ce
 
 ### 2.1 Goals
 
-1. Establish a **platform-level SSOT** for Virima knowledge that all suites/apps consume.
-2. Deliver **persona-based help experiences**:
+1. **Create one source of truth:** Build a platform-level SSOT that all our suites and apps can use. No more hunting through multiple places—everything lives here.
 
-   * Persona A: "Nudge user" (actionable playbooks)
-   * Persona B: "Support-first user" (guided flows + fast escalation)
-   * Persona C: "Reader/power learner" (deep docs + tutorials)
-   * **Persona D: "Partner/Implementer"** (training and enablement materials derived from SSOT)
-3. Enable **AI assistance** that is:
+2. **Deliver help that fits each user:** We're building persona-based experiences because different users need different things:
+   * **Persona A (Nudge user):** Quick, actionable playbooks that get them moving
+   * **Persona B (Support-first user):** Guided flows with fast escalation when needed
+   * **Persona C (Reader/power learner):** Deep documentation and tutorials for those who want to master everything
+   * **Persona D (Partner/Implementer):** Training and enablement materials that stay in sync with the product
 
-   * grounded in canonical knowledge objects
-   * citation-backed
-   * measurable and safe (escalation when uncertain)
-4. Implement **governance + lifecycle** so knowledge stays accurate as the platform changes.
-5. Ensure partner-facing enablement assets (training decks, runbooks, labs) are **generated/derived from SSOT**, minimizing drift.
+3. **Make AI assistance trustworthy:** Our AI will be:
+   * Grounded in real knowledge objects (no making things up)
+   * Citation-backed (so users can verify answers)
+   * Measurable and safe (it knows when to escalate instead of guessing)
+
+4. **Keep knowledge fresh:** Implement governance and lifecycle management so content stays accurate as our platform evolves. No more stale documentation.
+
+5. **Eliminate partner content drift:** Partner training materials will be generated from the SSOT, so they automatically stay current. No more outdated training decks.
 
 ### 2.2 Non-goals (v1)
 
-* Migrating/re-writing every legacy document before MVP
-* Fine-tuning a proprietary model as the primary approach (start with RAG)
-* Creating a full video academy as a prerequisite
-* Designing app-specific help systems (platform pattern + components only)
+We're being intentional about what we're *not* doing in v1, so we can focus on what matters most:
+
+* **Not migrating everything:** We won't rewrite every legacy document before MVP. We'll prioritize the most important content and migrate the rest over time.
+* **Not fine-tuning models yet:** We're starting with RAG (Retrieval-Augmented Generation) rather than fine-tuning a proprietary model. We can explore fine-tuning later if needed.
+* **Not building a video academy:** Video content is great, but it's not a prerequisite for launch. We'll focus on text-based content first.
+* **Not building app-specific help:** We're creating platform patterns and reusable components, not custom help systems for each app. This keeps things consistent and maintainable.
 
 ---
 
@@ -183,11 +174,11 @@ Any AI agent developed on the Virima platform should be able to leverage this ce
 
 ### 3.1 Single source of truth (SSOT)
 
-One authoritative source where the current, correct knowledge lives; all publishing surfaces either **link to it** or are **generated from it**.
+Think of this as the "master copy" of our knowledge—one place where the current, correct information lives. Everything else (web KB, in-product help, AI responses, partner training materials) either links directly to it or gets generated from it. This way, when we update something, it updates everywhere.
 
 ### 3.2 Canonical knowledge objects
 
-The smallest "unit of truth" treated as authoritative, e.g., a Task, Troubleshooting guide, Concept, Reference, Policy/Permissions, or Change note.
+These are the building blocks of our knowledge base—the smallest "unit of truth" we treat as authoritative. Think of them as individual articles or guides: a Task (how to do something), a Troubleshooting guide (how to fix something), a Concept (what something is), a Reference (technical details), a Policy/Permissions doc, or a Change note (what's new). Each one is owned, reviewed, and kept current.
 
 ### 3.3 Canonical objects + ownership
 
@@ -203,7 +194,7 @@ Rules for what data may be collected/attached/stored/visible, with tiering, cons
 
 ### 3.6 RAG (Retrieval-Augmented Generation)
 
-AI retrieves relevant canonical knowledge objects and generates an answer grounded in those sources, typically with citations.
+This is how our AI assistant works: instead of just making things up, it first searches for relevant knowledge objects, then uses that real information to generate an answer. Think of it like a research assistant—it finds the sources first, then writes the answer based on what it found. And it always cites where it got the information, so you can verify it yourself.
 
 ---
 
@@ -211,23 +202,39 @@ AI retrieves relevant canonical knowledge objects and generates an answer ground
 
 ### Persona A: "Nudge user"
 
-* Will act with small guidance.
-* Needs short, reliable, step-by-step playbooks with verification and pitfalls.
+Meet Sarah, a new Virima user who's eager to get things done but needs a bit of guidance. She's not looking for a deep dive—just clear, actionable steps that get her where she needs to go. When she hits a problem, she wants to know: "What do I do next?" and "How do I know it worked?"
+
+**What Sarah needs:**
+* Short, reliable, step-by-step playbooks that she can follow confidently
+* Clear verification steps so she knows when she's succeeded
+* Heads-up about common pitfalls so she can avoid them
 
 ### Persona B: "Support-first user"
 
-* Avoids reading; wants fast resolution.
-* Needs guided flows/decision trees + one-click escalation with context.
+This is Mike, who just wants to solve his problem and move on. He's not interested in reading lengthy documentation—he wants answers fast. If self-service doesn't work immediately, he wants to escalate quickly without losing context.
+
+**What Mike needs:**
+* Guided flows and decision trees that get him to the answer quickly
+* One-click escalation that automatically includes all the context support needs
+* Fast resolution paths, not deep learning experiences
 
 ### Persona C: "Reader/power learner"
 
-* Reads deep docs/tutorials.
-* Needs structured documentation, navigation, conceptual clarity, and references.
+Alex is the person who wants to understand everything. They read documentation for fun, love tutorials, and want to master the platform. When they have a question, they're looking for comprehensive answers with all the details.
+
+**What Alex needs:**
+* Deep documentation and tutorials that cover concepts thoroughly
+* Structured navigation that helps them explore related topics
+* Clear conceptual explanations with references to dive deeper
 
 ### Persona D: "Partner/Implementer"
 
-* Needs to **learn, deliver, and support** Virima for customers (implementations, onboarding, basic troubleshooting).
-* Requires **consistent training assets** that match the product and can be reused across partner onboarding and delivery.
+Jamie is a partner who needs to learn, deliver, and support Virima for their customers. They're juggling implementations, onboarding new clients, and troubleshooting issues. They need training materials that are always current and match what they see in the product.
+
+**What Jamie needs:**
+* Consistent training assets (decks, runbooks, labs) that stay in sync with the product
+* Role-based learning paths (Sales/Presales, Implementation, Support)
+* Clear alerts when the platform changes so they can update their approach
 
 **Experience requirements (Partner):**
 
@@ -241,74 +248,64 @@ AI retrieves relevant canonical knowledge objects and generates an answer ground
 
 ## 5. User journeys (platform-level)
 
-We intentionally focus on **platform journeys**, not suite/app journeys.
+We're taking a platform-first approach here, which means we're focusing on **platform journeys** that span across all our suites and apps, rather than building help for individual applications.
 
-**Examples of platform journeys (initial candidates):**
+Think of it this way: when someone needs to understand how authentication works, they shouldn't have to know which specific Virima app they're using—the knowledge should be consistent across the platform.
 
-* Identity & Access: users/roles/permissions
-* Navigation & Global Search
-* Core Data Model: key entities and relationships
-* Integrations & Connectivity: connectors, credential patterns
-* Automation & Workflows: triggers, rules, approvals
-* Reporting & Exports: reports/dashboards
-* Administration: configuration, environment
-* Troubleshooting & Diagnostics: error codes/logs
+**Examples of platform journeys we're starting with:**
 
-**MVP selection principle:** start with the journeys that drive the highest support volume or onboarding friction.
+* **Identity & Access:** Understanding users, roles, and permissions across the platform
+* **Navigation & Global Search:** How to find what you need, wherever you are
+* **Core Data Model:** The key entities and relationships that power everything
+* **Integrations & Connectivity:** How connectors work and credential patterns
+* **Automation & Workflows:** Setting up triggers, rules, and approvals
+* **Reporting & Exports:** Creating reports and dashboards, exporting data
+* **Administration:** Configuration and environment management
+* **Troubleshooting & Diagnostics:** Understanding error codes and logs
+
+**How we're prioritizing:** We're starting with the journeys that cause the most support tickets or create the biggest hurdles for new users. This way, we solve the most painful problems first.
 
 ---
 
 ## 6. Success metrics (KPIs)
 
-Track baseline → target over 90 days (targets finalized during Phase 0).
+We'll track our progress from baseline to target over 90 days. Don't worry—we'll finalize the exact targets during Phase 0 once we have real data to work with.
 
 ### 6.1 Self-serve & Support
 
-| Metric | Baseline | Target (90 days) | Measurement Method |
-|--------|----------|------------------|-------------------|
-| Ticket volume reduction (top categories) | TBD | -30% | Ticketing system analytics |
-| Time-to-resolution | TBD | -25% | Ticketing system analytics |
-| First-contact resolution | TBD | +15% | Support team metrics |
+1. **Ticket volume reduction (top categories):** Baseline: TBD | Target (90 days): -30% | Measurement Method: Ticketing system analytics
+2. **Time-to-resolution:** Baseline: TBD | Target (90 days): -25% | Measurement Method: Ticketing system analytics
+3. **First-contact resolution:** Baseline: TBD | Target (90 days): +15% | Measurement Method: Support team metrics
 
 ### 6.2 Findability
 
-| Metric | Baseline | Target (90 days) | Measurement Method |
-|--------|----------|------------------|-------------------|
-| Search success rate | TBD | 80%+ | KB analytics |
-| Zero-result rate | TBD | <10% | KB analytics |
-| Pogo-sticking rate | TBD | <20% | KB analytics (click-back within 30s) |
+1. **Search success rate:** Baseline: TBD | Target (90 days): 80%+ | Measurement Method: KB analytics
+2. **Zero-result rate:** Baseline: TBD | Target (90 days): <10% | Measurement Method: KB analytics
+3. **Pogo-sticking rate:** Baseline: TBD | Target (90 days): <20% | Measurement Method: KB analytics (click-back within 30s)
 
 ### 6.3 In-product help
 
-| Metric | Baseline | Target (90 days) | Measurement Method |
-|--------|----------|------------------|-------------------|
-| Help-open → task-complete conversion | TBD | 60%+ | In-app analytics |
-| Helpfulness feedback score | TBD | 4.0+ / 5.0 | User feedback widget |
+1. **Help-open → task-complete conversion:** Baseline: TBD | Target (90 days): 60%+ | Measurement Method: In-app analytics
+2. **Helpfulness feedback score:** Baseline: TBD | Target (90 days): 4.0+ / 5.0 | Measurement Method: User feedback widget
 
 ### 6.4 AI assistant
 
-| Metric | Baseline | Target (90 days) | Measurement Method |
-|--------|----------|------------------|-------------------|
-| Usefulness score (thumbs up rate) | N/A | 75%+ | AI feedback widget |
-| Escalation correctness rate | N/A | 90%+ | Manual review sampling |
-| Citation coverage | N/A | 95%+ | Automated audit |
-| Hallucination rate (on supported topics) | N/A | <5% | Golden Questions evaluation |
+1. **Usefulness score (thumbs up rate):** Baseline: N/A | Target (90 days): 75%+ | Measurement Method: AI feedback widget
+2. **Escalation correctness rate:** Baseline: N/A | Target (90 days): 90%+ | Measurement Method: Manual review sampling
+3. **Citation coverage:** Baseline: N/A | Target (90 days): 95%+ | Measurement Method: Automated audit
+4. **Hallucination rate (on supported topics):** Baseline: N/A | Target (90 days): <5% | Measurement Method: Golden Questions evaluation
 
 ### 6.5 Content health
 
-| Metric | Baseline | Target (90 days) | Measurement Method |
-|--------|----------|------------------|-------------------|
-| % objects reviewed within SLA | TBD | 90%+ | Content management system |
-| Duplicate/conflicting objects count | TBD | <5 | Governance council audit |
+1. **% objects reviewed within SLA:** Baseline: TBD | Target (90 days): 90%+ | Measurement Method: Content management system
+2. **Duplicate/conflicting objects count:** Baseline: TBD | Target (90 days): <5 | Measurement Method: Governance council audit
 
 ### 6.6 Partner enablement
 
-| Metric | Baseline | Target (90 days) | Measurement Method |
-|--------|----------|------------------|-------------------|
-| Partner onboarding time (days to "delivery-ready") | TBD | -40% | Partner program tracking |
-| Partner certification pass rate | N/A | 80%+ | LMS/assessment system |
-| Partner-generated support escalations | TBD | -25% | Ticketing system |
-| Partner training satisfaction score | TBD | 4.2+ / 5.0 | Post-training survey |
+1. **Partner onboarding time (days to "delivery-ready"):** Baseline: TBD | Target (90 days): -40% | Measurement Method: Partner program tracking
+2. **Partner certification pass rate:** Baseline: N/A | Target (90 days): 80%+ | Measurement Method: LMS/assessment system
+3. **Partner-generated support escalations:** Baseline: TBD | Target (90 days): -25% | Measurement Method: Ticketing system
+4. **Partner training satisfaction score:** Baseline: TBD | Target (90 days): 4.2+ / 5.0 | Measurement Method: Post-training survey
 
 ### 6.7 Analytics Dashboard Requirements
 
@@ -367,17 +364,18 @@ The analytics dashboard shall display:
 
 **Go/no-go decision matrix:**
 
-| Criteria | Must Have | Nice to Have | Status |
-|---------|-----------|--------------|--------|
-| 25 objects published | ✓ | | |
-| Performance metrics met | ✓ | | |
-| Beta user satisfaction >4.0 | ✓ | | |
-| AI citation coverage >90% | ✓ | | |
-| Search success rate >70% | ✓ | | |
-| Governance operational | ✓ | | |
-| 100 objects published | | ✓ | |
-| AI hallucination rate <5% | | ✓ | |
-| Search success rate >80% | | ✓ | |
+**Must Have Criteria:**
+1. **25 objects published:** ✓
+2. **Performance metrics met:** ✓
+3. **Beta user satisfaction >4.0:** ✓
+4. **AI citation coverage >90%:** ✓
+5. **Search success rate >70%:** ✓
+6. **Governance operational:** ✓
+
+**Nice to Have Criteria:**
+1. **100 objects published:** ✓
+2. **AI hallucination rate <5%:** ✓
+3. **Search success rate >80%:** ✓
 
 **Launch approval:**
 
@@ -479,34 +477,33 @@ The platform shall follow a **modular, microservices architecture** to enable in
 
 ### 8.1 Object types
 
-| Type | Purpose | Primary Persona |
-|------|---------|-----------------|
-| Concept | Explain what something is and why it matters | C, D |
-| Task/How-to | Step-by-step instructions to accomplish a goal | A, B, C, D |
-| Troubleshooting | Diagnose and resolve issues | A, B, D |
-| Reference | Technical specifications, API docs, field definitions | C, D |
-| Policy/Permissions | Access control, security policies, compliance | C, D |
-| Change note | What changed in a release and impact | A, B, C, D |
+1. **Concept:** Purpose: Explain what something is and why it matters | Primary Persona: C, D
+2. **Task/How-to:** Purpose: Step-by-step instructions to accomplish a goal | Primary Persona: A, B, C, D
+3. **Troubleshooting:** Purpose: Diagnose and resolve issues | Primary Persona: A, B, D
+4. **Reference:** Purpose: Technical specifications, API docs, field definitions | Primary Persona: C, D
+5. **Policy/Permissions:** Purpose: Access control, security policies, compliance | Primary Persona: C, D
+6. **Change note:** Purpose: What changed in a release and impact | Primary Persona: A, B, C, D
 
 ### 8.2 Required metadata (minimum)
 
-| Field | Description | Required |
-|-------|-------------|----------|
-| Object ID | Stable unique identifier (e.g., KB-001234) | Yes |
-| Title | Clear, descriptive title (max 100 chars) | Yes |
-| Type | One of: Concept, Task, Troubleshooting, Reference, Policy, Change note | Yes |
-| Platform domain | Taxonomy category (e.g., Identity & Access, Integrations) | Yes |
-| Persona fit | One or more: A, B, C, D | Yes |
-| Audience tag(s) | One or more: End User, Admin, Support Agent, Partner | Yes |
-| Prerequisites | Required role/permissions/modules/environment | Yes (if applicable) |
-| Applies to | Cloud/On-prem, version range | Yes |
-| Owner | Team/role accountable for accuracy | Yes |
-| Last reviewed date | Date of last review | Yes |
-| Review SLA | Review cadence (e.g., 90/180 days) | Yes |
-| Status | Verified / Draft / Deprecated | Yes |
-| Related objects | Links to related KB objects | No |
-| Keywords/tags | Search optimization terms | No |
-| Difficulty level | Beginner / Intermediate / Advanced | No |
+**Required Fields:**
+1. **Object ID:** Stable unique identifier (e.g., KB-001234) | Required: Yes
+2. **Title:** Clear, descriptive title (max 100 chars) | Required: Yes
+3. **Type:** One of: Concept, Task, Troubleshooting, Reference, Policy, Change note | Required: Yes
+4. **Platform domain:** Taxonomy category (e.g., Identity & Access, Integrations) | Required: Yes
+5. **Persona fit:** One or more: A, B, C, D | Required: Yes
+6. **Audience tag(s):** One or more: End User, Admin, Support Agent, Partner | Required: Yes
+7. **Prerequisites:** Required role/permissions/modules/environment | Required: Yes (if applicable)
+8. **Applies to:** Cloud/On-prem, version range | Required: Yes
+9. **Owner:** Team/role accountable for accuracy | Required: Yes
+10. **Last reviewed date:** Date of last review | Required: Yes
+11. **Review SLA:** Review cadence (e.g., 90/180 days) | Required: Yes
+12. **Status:** Verified / Draft / Deprecated | Required: Yes
+
+**Optional Fields:**
+1. **Related objects:** Links to related KB objects | Required: No
+2. **Keywords/tags:** Search optimization terms | Required: No
+3. **Difficulty level:** Beginner / Intermediate / Advanced | Required: No
 
 ### 8.3 Templates (must-use)
 
@@ -562,12 +559,10 @@ The platform shall follow a **modular, microservices architecture** to enable in
 
 ### 8.4 Object lifecycle states
 
-| Status | Description | AI Behavior |
-|--------|-------------|-------------|
-| Draft | In progress, not published | Not indexed for AI retrieval |
-| Verified | Reviewed and approved | Indexed and cited normally |
-| Stale | Past review SLA | Indexed with freshness warning |
-| Deprecated | No longer valid | Not indexed; redirects to replacement |
+1. **Draft:** Description: In progress, not published | AI Behavior: Not indexed for AI retrieval
+2. **Verified:** Description: Reviewed and approved | AI Behavior: Indexed and cited normally
+3. **Stale:** Description: Past review SLA | AI Behavior: Indexed with freshness warning
+4. **Deprecated:** Description: No longer valid | AI Behavior: Not indexed; redirects to replacement
 
 ### 8.5 Versioning requirements
 
@@ -661,12 +656,10 @@ The platform shall follow a **modular, microservices architecture** to enable in
 
 ### 9.1 Help surfaces (platform standard)
 
-| Surface | Trigger | Content Priority |
-|---------|---------|------------------|
-| **Global Help** | Persistent icon/menu | Search, popular topics, AI assistant |
-| **Context Help** | ? icon on pages/components | Relevant tasks for current context |
-| **Error Help** | Error state/message | Troubleshooting for specific error |
-| **Onboarding Help** | First-time user detection | Getting started, key concepts |
+1. **Global Help:** Trigger: Persistent icon/menu | Content Priority: Search, popular topics, AI assistant
+2. **Context Help:** Trigger: ? icon on pages/components | Content Priority: Relevant tasks for current context
+3. **Error Help:** Trigger: Error state/message | Content Priority: Troubleshooting for specific error
+4. **Onboarding Help:** Trigger: First-time user detection | Content Priority: Getting started, key concepts
 
 ### 9.2 Search and navigation
 
@@ -699,12 +692,10 @@ The platform shall follow a **modular, microservices architecture** to enable in
 
 ### 9.3 Persona handling
 
-| Persona | Default Experience |
-|---------|-------------------|
-| Persona A | Short playbooks first; collapsible details |
-| Persona B | Guided flow first; prominent escalation button |
-| Persona C | Full documentation with navigation; show all sections |
-| Persona D | Learning path view; progress tracking; assessments |
+1. **Persona A:** Default Experience: Short playbooks first; collapsible details
+2. **Persona B:** Default Experience: Guided flow first; prominent escalation button
+3. **Persona C:** Default Experience: Full documentation with navigation; show all sections
+4. **Persona D:** Default Experience: Learning path view; progress tracking; assessments
 
 ### 9.4 Feedback mechanisms
 
@@ -727,14 +718,12 @@ The platform shall follow a **modular, microservices architecture** to enable in
 
 ### 10.2 Answer policy
 
-| Scenario | AI Behavior |
-|----------|-------------|
-| Canonical object exists, high confidence | Provide answer with citation(s) |
-| Canonical object exists, low confidence | Provide answer with citation(s) + "Verify with support if needed" |
-| No canonical object exists | "I don't have information on this topic. [Escalate to support]" + capture topic for backlog |
-| Content is stale (past review SLA) | Provide answer with warning: "This information may be outdated" + suggest escalation |
-| High-risk action (destructive, security-sensitive) | Provide answer + explicit warning + recommend verification |
-| Out of scope (competitor, pricing, legal) | "I can only help with Virima product questions. [Contact Sales/Legal]" |
+1. **Canonical object exists, high confidence:** AI Behavior: Provide answer with citation(s)
+2. **Canonical object exists, low confidence:** AI Behavior: Provide answer with citation(s) + "Verify with support if needed"
+3. **No canonical object exists:** AI Behavior: "I don't have information on this topic. [Escalate to support]" + capture topic for backlog
+4. **Content is stale (past review SLA):** AI Behavior: Provide answer with warning: "This information may be outdated" + suggest escalation
+5. **High-risk action (destructive, security-sensitive):** AI Behavior: Provide answer + explicit warning + recommend verification
+6. **Out of scope (competitor, pricing, legal):** AI Behavior: "I can only help with Virima product questions. [Contact Sales/Legal]"
 
 ### 10.3 Fallback behavior
 
@@ -908,11 +897,9 @@ When RAG retrieval fails or returns no results:
 
 ### 12.3 SLAs
 
-| Object Type | Review Cadence | Grace Period | Action if Overdue |
-|-------------|---------------|--------------|-------------------|
-| Critical (Task, Troubleshooting) | 90 days | 14 days | Flag as stale, notify owner |
-| Standard (Concept, Reference) | 180 days | 30 days | Flag as stale, notify owner |
-| Change note | N/A (point-in-time) | N/A | Auto-archive after 1 year |
+1. **Critical (Task, Troubleshooting):** Review Cadence: 90 days | Grace Period: 14 days | Action if Overdue: Flag as stale, notify owner
+2. **Standard (Concept, Reference):** Review Cadence: 180 days | Grace Period: 30 days | Action if Overdue: Flag as stale, notify owner
+3. **Change note:** Review Cadence: N/A (point-in-time) | Grace Period: N/A | Action if Overdue: Auto-archive after 1 year
 
 ### 12.4 Definition of Done for product changes
 
@@ -929,7 +916,7 @@ When RAG retrieval fails or returns no results:
 
 ### Phase 1: MVP (Days 0-60)
 
-**Goal:** Launch core platform with essential functionality to validate approach and gather user feedback.
+**Goal:** Get a working version out the door that proves our approach works and gives us real feedback from actual users. Think of this as our "proof of concept" that shows the platform can deliver value.
 
 **Key Deliverables:**
 
@@ -960,7 +947,7 @@ When RAG retrieval fails or returns no results:
 
 ### Phase 2: Scale & Enhance (Days 61-90)
 
-**Goal:** Expand content coverage, operationalize governance, and enhance user experience based on Phase 1 learnings.
+**Goal:** Take what we learned from Phase 1 and scale it up. We'll add more content, get our governance processes running smoothly, and make the experience even better based on what users told us.
 
 **Key Deliverables:**
 
@@ -980,7 +967,7 @@ When RAG retrieval fails or returns no results:
 
 ### Phase 3: Optimization & Expansion (Days 91-180)
 
-**Goal:** Optimize performance, expand to additional journeys, and enhance AI capabilities.
+**Goal:** Fine-tune everything, cover all the platform journeys, and make our AI assistant even smarter. By this point, the platform should feel complete and polished.
 
 **Key Deliverables (Lighter detail - requirements will evolve):**
 
@@ -1001,17 +988,15 @@ When RAG retrieval fails or returns no results:
 
 ### Timeline & Milestones
 
-| Milestone | Target Date | Owner | Dependencies |
-|-----------|-------------|-------|--------------|
-| Design review complete | Day 15 | UX (Sourav) | Wireframes, taxonomy |
-| Content audit complete | Day 30 | Docs (Vignesh, GopiChand) | Access to all sources |
-| Golden 25 objects published | Day 30 | Docs (Vignesh, GopiChand) | Taxonomy, templates |
-| Engineering kickoff | Day 31 | Eng (LNR) | Architecture decisions |
-| Beta launch | Day 60 | PM (Mamatha) | MVP features complete |
-| Production launch | Day 90 | PM (Mamatha) | Phase 2 complete, go/no-go approved |
-| Full coverage | Day 180 | PM (Mamatha) | Phase 3 complete |
+1. **Design review complete:** Target Date: Day 15 | Owner: UX (Sourav) | Dependencies: Wireframes, taxonomy
+2. **Content audit complete:** Target Date: Day 30 | Owner: Docs (Vignesh, GopiChand) | Dependencies: Access to all sources
+3. **Golden 25 objects published:** Target Date: Day 30 | Owner: Docs (Vignesh, GopiChand) | Dependencies: Taxonomy, templates
+4. **Engineering kickoff:** Target Date: Day 31 | Owner: Eng (LNR) | Dependencies: Architecture decisions
+5. **Beta launch:** Target Date: Day 60 | Owner: PM (Mamatha) | Dependencies: MVP features complete
+6. **Production launch:** Target Date: Day 90 | Owner: PM (Mamatha) | Dependencies: Phase 2 complete, go/no-go approved
+7. **Full coverage:** Target Date: Day 180 | Owner: PM (Mamatha) | Dependencies: Phase 3 complete
 
-**Note:** Dates are estimates and may shift based on learnings, dependencies, and resource availability. Milestones will be reviewed weekly in execution standup.
+**A note on timelines:** These dates are our best estimates, but we're realistic—things might shift as we learn, encounter dependencies, or adjust to resource availability. That's okay! We'll review progress weekly in our execution standup and adjust as needed. The important thing is making steady progress toward our goals.
 
 ---
 
@@ -1019,58 +1004,52 @@ When RAG retrieval fails or returns no results:
 
 ### 14.1 Dependencies
 
-| Dependency | Type | Impact | Owner | Mitigation |
-|------------|------|--------|-------|------------|
-| Vector database vendor selection | Technical | High | AI (Neeraj) | POC completed by Week 2, decision by Week 3 |
-| LLM provider selection | Technical | High | AI (Neeraj) | POC completed by Week 2, decision by Week 3 |
-| CMS platform selection | Technical | Medium | Eng (LNR) | Evaluation by Week 1, decision by Week 2 |
-| Virima Auth SSO integration | Integration | High | Eng (LNR) | Early alignment meeting with Auth team, API access by Day 15 |
-| Ticketing system integration | Integration | Medium | Support (Balaji) | API documentation review by Day 20, integration by Day 50 |
-| Content audit completion | Content | High | Docs (Vignesh, GopiChand) | Parallel audit during Phase 0, prioritized by ticket volume |
-| Taxonomy finalization | Content | High | Docs (Vignesh, GopiChand) | Knowledge Council review by Day 15 |
-| Golden Questions creation | Content | Medium | Support (Balaji) | Top 50 questions identified by Day 20 |
-| Design system components | UX | Medium | UX (Sourav) | Reuse existing Virima design system, extend as needed |
-| Infrastructure provisioning | Technical | High | Eng (LNR) | Cloud accounts and clusters provisioned by Day 10 |
+1. **Vector database vendor selection:** Type: Technical | Impact: High | Owner: AI (Neeraj) | Mitigation: POC completed by Week 2, decision by Week 3
+2. **LLM provider selection:** Type: Technical | Impact: High | Owner: AI (Neeraj) | Mitigation: POC completed by Week 2, decision by Week 3
+3. **CMS platform selection:** Type: Technical | Impact: Medium | Owner: Eng (LNR) | Mitigation: Evaluation by Week 1, decision by Week 2
+4. **Virima Auth SSO integration:** Type: Integration | Impact: High | Owner: Eng (LNR) | Mitigation: Early alignment meeting with Auth team, API access by Day 15
+5. **Ticketing system integration:** Type: Integration | Impact: Medium | Owner: Support (Balaji) | Mitigation: API documentation review by Day 20, integration by Day 50
+6. **Content audit completion:** Type: Content | Impact: High | Owner: Docs (Vignesh, GopiChand) | Mitigation: Parallel audit during Phase 0, prioritized by ticket volume
+7. **Taxonomy finalization:** Type: Content | Impact: High | Owner: Docs (Vignesh, GopiChand) | Mitigation: Knowledge Council review by Day 15
+8. **Golden Questions creation:** Type: Content | Impact: Medium | Owner: Support (Balaji) | Mitigation: Top 50 questions identified by Day 20
+9. **Design system components:** Type: UX | Impact: Medium | Owner: UX (Sourav) | Mitigation: Reuse existing Virima design system, extend as needed
+10. **Infrastructure provisioning:** Type: Technical | Impact: High | Owner: Eng (LNR) | Mitigation: Cloud accounts and clusters provisioned by Day 10
 
 ### 14.2 Risks and Mitigations
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|------------|--------|------------|
-| Duplication persists | Medium | High | Canonicalization rules + redirects + governance council |
-| Stale content | High | High | Ownership + review SLAs + release DoD + automated alerts |
-| AI hallucinations | Medium | High | Citations required + escalation policy + Golden Questions eval |
-| Privacy violations | Low | Critical | Tiering + consent + redaction + retention + audit logging |
-| Low adoption | Medium | Medium | In-product help hooks + support macros + measurement + training |
-| Content migration delays | High | Medium | Prioritized migration + parallel operation + redirect strategy |
-| Partner content drift | Medium | Medium | Single-source derivation + automated sync + version alerts |
-| Vector DB vendor lock-in | Medium | Medium | Abstract vector DB layer, support multiple vendors |
-| LLM API rate limits/costs | Medium | Medium | Caching strategy, token usage monitoring, budget alerts |
-| Integration delays | High | Medium | Early stakeholder alignment, parallel development where possible |
-| Resource constraints | Medium | High | Clear FTE allocation, escalation path for additional resources |
-| Timeline slippage | Medium | Medium | Weekly progress reviews, scope adjustment if needed |
+1. **Duplication persists:** Likelihood: Medium | Impact: High | Mitigation: Canonicalization rules + redirects + governance council
+2. **Stale content:** Likelihood: High | Impact: High | Mitigation: Ownership + review SLAs + release DoD + automated alerts
+3. **AI hallucinations:** Likelihood: Medium | Impact: High | Mitigation: Citations required + escalation policy + Golden Questions eval
+4. **Privacy violations:** Likelihood: Low | Impact: Critical | Mitigation: Tiering + consent + redaction + retention + audit logging
+5. **Low adoption:** Likelihood: Medium | Impact: Medium | Mitigation: In-product help hooks + support macros + measurement + training
+6. **Content migration delays:** Likelihood: High | Impact: Medium | Mitigation: Prioritized migration + parallel operation + redirect strategy
+7. **Partner content drift:** Likelihood: Medium | Impact: Medium | Mitigation: Single-source derivation + automated sync + version alerts
+8. **Vector DB vendor lock-in:** Likelihood: Medium | Impact: Medium | Mitigation: Abstract vector DB layer, support multiple vendors
+9. **LLM API rate limits/costs:** Likelihood: Medium | Impact: Medium | Mitigation: Caching strategy, token usage monitoring, budget alerts
+10. **Integration delays:** Likelihood: High | Impact: Medium | Mitigation: Early stakeholder alignment, parallel development where possible
+11. **Resource constraints:** Likelihood: Medium | Impact: High | Mitigation: Clear FTE allocation, escalation path for additional resources
+12. **Timeline slippage:** Likelihood: Medium | Impact: Medium | Mitigation: Weekly progress reviews, scope adjustment if needed
 
 ---
 
 ## 15. Open questions (resolve in Week 1)
 
-| Question | Owner | Target Resolution | Impact if Unresolved |
-|----------|-------|-------------------|---------------------|
-| Canonical repository tooling choice and publishing pipeline | Eng (LNR), Docs (Vignesh, GopiChand) | Day 7 | Blocks engineering kickoff |
-| Final platform domain taxonomy and naming conventions | Docs (Vignesh, GopiChand), PM (Mamatha) | Day 10 | Blocks content creation |
-| What data is permitted in context bundles per security/privacy | Security, Support (Balaji) | Day 7 | Blocks escalation feature design |
-| KPI targets (baseline → target) for 90 days | PM (Mamatha), Support (Balaji) | Day 14 | Blocks success measurement |
-| Which journeys are the "Golden 25" for MVP | PM (Mamatha), Support (Balaji), Docs (Vignesh, GopiChand) | Day 10 | Blocks content prioritization |
-| Partner enablement surface decision (Partner Portal/LMS): where will partners access training, and what authentication/permissions apply? | PM (Mamatha), Partner Program | Day 14 | Blocks partner feature design |
-| Which partner role learning paths are in v1 (Presales vs Implementation vs Support)? | PM (Mamatha), Partner Program | Day 14 | Blocks partner content creation |
-| Vector database vendor selection | AI (Neeraj), Eng (LNR) | Day 14 | Blocks AI implementation |
-| LLM provider selection | AI (Neeraj) | Day 14 | Blocks AI implementation |
-| CMS platform selection | Eng (LNR), Docs (Vignesh, GopiChand) | Day 7 | Blocks content management system build |
+1. **Canonical repository tooling choice and publishing pipeline:** Owner: Eng (LNR), Docs (Vignesh, GopiChand) | Target Resolution: Day 7 | Impact if Unresolved: Blocks engineering kickoff
+2. **Final platform domain taxonomy and naming conventions:** Owner: Docs (Vignesh, GopiChand), PM (Mamatha) | Target Resolution: Day 10 | Impact if Unresolved: Blocks content creation
+3. **What data is permitted in context bundles per security/privacy:** Owner: Security, Support (Balaji) | Target Resolution: Day 7 | Impact if Unresolved: Blocks escalation feature design
+4. **KPI targets (baseline → target) for 90 days:** Owner: PM (Mamatha), Support (Balaji) | Target Resolution: Day 14 | Impact if Unresolved: Blocks success measurement
+5. **Which journeys are the "Golden 25" for MVP:** Owner: PM (Mamatha), Support (Balaji), Docs (Vignesh, GopiChand) | Target Resolution: Day 10 | Impact if Unresolved: Blocks content prioritization
+6. **Partner enablement surface decision (Partner Portal/LMS): where will partners access training, and what authentication/permissions apply?:** Owner: PM (Mamatha), Partner Program | Target Resolution: Day 14 | Impact if Unresolved: Blocks partner feature design
+7. **Which partner role learning paths are in v1 (Presales vs Implementation vs Support)?:** Owner: PM (Mamatha), Partner Program | Target Resolution: Day 14 | Impact if Unresolved: Blocks partner content creation
+8. **Vector database vendor selection:** Owner: AI (Neeraj), Eng (LNR) | Target Resolution: Day 14 | Impact if Unresolved: Blocks AI implementation
+9. **LLM provider selection:** Owner: AI (Neeraj) | Target Resolution: Day 14 | Impact if Unresolved: Blocks AI implementation
+10. **CMS platform selection:** Owner: Eng (LNR), Docs (Vignesh, GopiChand) | Target Resolution: Day 7 | Impact if Unresolved: Blocks content management system build
 
-**Resolution Process:**
-* Weekly review of open questions in execution standup
-* Escalation to PM if resolution delayed beyond target date
-* Decisions documented and communicated to all stakeholders
-* PRD updated when questions resolved
+**How we'll resolve these:**
+* We'll review all open questions weekly in our execution standup—no question gets forgotten
+* If something is taking longer than expected, we'll escalate to the PM so we can get unblocked
+* Once decisions are made, we'll document them clearly and share with everyone who needs to know
+* We'll keep this PRD updated as questions get resolved, so everyone stays in the loop
 
 ---
 
@@ -1082,7 +1061,7 @@ When RAG retrieval fails or returns no results:
 
 **As a** platform user  
 **I want to** search the knowledge base using keywords  
-**So that** I can find answers to my questions quickly
+**So that** I can find answers to my questions quickly without having to dig through multiple pages or ask support
 
 **Acceptance Criteria:**
 - [ ] User can enter search query in search bar
@@ -1185,8 +1164,8 @@ When RAG retrieval fails or returns no results:
 #### US-3.1: Ask AI Assistant a Question
 
 **As a** platform user  
-**I want to** ask the AI assistant a question in natural language  
-**So that** I can get a quick answer without searching
+**I want to** ask the AI assistant a question in my own words (like I'm talking to a colleague)  
+**So that** I can get a quick, helpful answer without having to figure out the right search terms
 
 **Acceptance Criteria:**
 - [ ] User can type question in chat interface
@@ -1749,13 +1728,11 @@ When RAG retrieval fails or returns no results:
 
 **Phase 0 (Days 1-15):** Complete audit of existing content sources
 
-| Source | Owner | Est. Objects | Priority |
-|--------|-------|--------------|----------|
-| Confluence docs | Docs team | TBD | TBD |
-| Support macros | Support team | TBD | TBD |
-| In-product tips | UX team | TBD | TBD |
-| Release notes | PM team | TBD | TBD |
-| Internal runbooks | Engineering | TBD | TBD |
+1. **Confluence docs:** Owner: Docs team | Est. Objects: TBD | Priority: TBD
+2. **Support macros:** Owner: Support team | Est. Objects: TBD | Priority: TBD
+3. **In-product tips:** Owner: UX team | Est. Objects: TBD | Priority: TBD
+4. **Release notes:** Owner: PM team | Est. Objects: TBD | Priority: TBD
+5. **Internal runbooks:** Owner: Engineering | Est. Objects: TBD | Priority: TBD
 
 ### 17.2 Prioritization Framework
 
@@ -1866,20 +1843,16 @@ During migration period:
 
 ### 18.1 Platform Integrations
 
-| System | Integration Type | Purpose |
-|--------|-----------------|---------|
-| Virima CMDB | Read | Context-aware help based on CI data |
-| Virima Discovery | Read | Error codes and troubleshooting context |
-| Virima Auth | SSO | Single sign-on for KB and partner portal |
-| Virima Audit | Write | Log KB access and actions for compliance |
+1. **Virima CMDB:** Integration Type: Read | Purpose: Context-aware help based on CI data
+2. **Virima Discovery:** Integration Type: Read | Purpose: Error codes and troubleshooting context
+3. **Virima Auth:** Integration Type: SSO | Purpose: Single sign-on for KB and partner portal
+4. **Virima Audit:** Integration Type: Write | Purpose: Log KB access and actions for compliance
 
 ### 18.2 External Integrations
 
-| System | Integration Type | Purpose |
-|--------|-----------------|---------|
-| Ticketing (ServiceNow, Jira SM) | Bidirectional | Escalation creation, ticket status sync |
-| Slack/Teams | Notifications | Content update alerts, stale content reminders |
-| LMS (if selected) | Content sync | Partner training content publication |
+1. **Ticketing (ServiceNow, Jira SM):** Integration Type: Bidirectional | Purpose: Escalation creation, ticket status sync
+2. **Slack/Teams:** Integration Type: Notifications | Purpose: Content update alerts, stale content reminders
+3. **LMS (if selected):** Integration Type: Content sync | Purpose: Partner training content publication
 
 ### 18.3 Integration Requirements
 
@@ -1990,42 +1963,34 @@ All KB and help surfaces shall meet WCAG 2.1 Level AA standards:
 
 ### 20.1 Performance
 
-| Metric | Requirement |
-|--------|-------------|
-| KB page load time | < 2 seconds (P95) |
-| Search response time | < 1 second (P95) |
-| AI response time | < 5 seconds (P95) |
-| Help panel open time | < 500ms |
+1. **KB page load time:** Requirement: < 2 seconds (P95)
+2. **Search response time:** Requirement: < 1 second (P95)
+3. **AI response time:** Requirement: < 5 seconds (P95)
+4. **Help panel open time:** Requirement: < 500ms
 
 ### 20.2 Scalability
 
-| Dimension | Requirement |
-|-----------|-------------|
-| Concurrent users | 10,000+ |
-| Knowledge objects | 10,000+ |
-| Search queries/minute | 1,000+ |
-| AI queries/minute | 500+ |
+1. **Concurrent users:** Requirement: 10,000+
+2. **Knowledge objects:** Requirement: 10,000+
+3. **Search queries/minute:** Requirement: 1,000+
+4. **AI queries/minute:** Requirement: 500+
 
 ### 20.3 Availability
 
-| Metric | Requirement |
-|--------|-------------|
-| Uptime SLA | 99.9% |
-| Planned maintenance window | Monthly, < 4 hours, with notice |
-| Recovery Time Objective (RTO) | 4 hours |
-| Recovery Point Objective (RPO) | 1 hour |
+1. **Uptime SLA:** Requirement: 99.9%
+2. **Planned maintenance window:** Requirement: Monthly, < 4 hours, with notice
+3. **Recovery Time Objective (RTO):** Requirement: 4 hours
+4. **Recovery Point Objective (RPO):** Requirement: 1 hour
 
 ### 20.4 Security
 
 **Summary:** High-level security requirements. For comprehensive security and compliance requirements, see Section 40.
 
-| Requirement | Description |
-|-------------|-------------|
-| Authentication | SSO via Virima Auth (OIDC/SAML) |
-| Authorization | Role-based access for admin functions |
-| Data encryption | TLS 1.2+ in transit, AES-256 at rest |
-| Audit logging | All content changes, access, and escalations logged |
-| Data residency | Configurable by tenant (US, EU, APAC) |
+1. **Authentication:** Description: SSO via Virima Auth (OIDC/SAML)
+2. **Authorization:** Description: Role-based access for admin functions
+3. **Data encryption:** Description: TLS 1.2+ in transit, AES-256 at rest
+4. **Audit logging:** Description: All content changes, access, and escalations logged
+5. **Data residency:** Description: Configurable by tenant (US, EU, APAC)
 
 **Note:** Detailed security requirements, compliance requirements (SOC 2, GDPR, WCAG), security testing, and compliance validation are documented in Section 40: Security and Compliance Requirements.
 
@@ -2244,21 +2209,19 @@ All KB and help surfaces shall meet WCAG 2.1 Level AA standards:
 
 ## 21. Appendix: RACI (starter)
 
-| Activity                       | PM  | Docs | UX  | AI  | Support | Eng |
-| ------------------------------ | --- | ---- | --- | --- | ------- | --- |
-| Charter + KPIs                 | A/R | C    | C   | C   | C       | C   |
-| Taxonomy + schema              | A   | R    | C   | C   | C       | C   |
-| Content ops + QA               | C   | A/R  | C   | C   | C       | C   |
-| Help surfaces UX               | C   | C    | A/R | C   | C       | C   |
-| AI retrieval + eval            | C   | C    | C   | A/R | C       | C   |
-| Ticket taxonomy + feedback     | C   | C    | C   | C   | A/R     | C   |
-| Instrumentation + release gate | C   | C    | C   | C   | C       | A/R |
-| Content migration              | C   | A/R  | C   | C   | C       | C   |
-| Partner enablement             | A   | R    | C   | C   | C       | C   |
-| Accessibility compliance       | C   | C    | A/R | C   | C       | C   |
-| Analytics dashboard            | C   | C    | C   | C   | C       | A/R |
+**Legend:** R=Responsible, A=Accountable, C=Consulted
 
-Legend: R=Responsible, A=Accountable, C=Consulted
+1. **Charter + KPIs:** PM: A/R | Docs: C | UX: C | AI: C | Support: C | Eng: C
+2. **Taxonomy + schema:** PM: A | Docs: R | UX: C | AI: C | Support: C | Eng: C
+3. **Content ops + QA:** PM: C | Docs: A/R | UX: C | AI: C | Support: C | Eng: C
+4. **Help surfaces UX:** PM: C | Docs: C | UX: A/R | AI: C | Support: C | Eng: C
+5. **AI retrieval + eval:** PM: C | Docs: C | UX: C | AI: A/R | Support: C | Eng: C
+6. **Ticket taxonomy + feedback:** PM: C | Docs: C | UX: C | AI: C | Support: A/R | Eng: C
+7. **Instrumentation + release gate:** PM: C | Docs: C | UX: C | AI: C | Support: C | Eng: A/R
+8. **Content migration:** PM: C | Docs: A/R | UX: C | AI: C | Support: C | Eng: C
+9. **Partner enablement:** PM: A | Docs: R | UX: C | AI: C | Support: C | Eng: C
+10. **Accessibility compliance:** PM: C | Docs: C | UX: A/R | AI: C | Support: C | Eng: C
+11. **Analytics dashboard:** PM: C | Docs: C | UX: C | AI: C | Support: C | Eng: A/R
 
 ---
 
@@ -2400,15 +2363,13 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 **Evaluation criteria:**
 
-| Criterion | Weight | Pinecone | Weaviate | Qdrant | Milvus |
-|-----------|--------|----------|----------|--------|--------|
-| Performance (<100ms) | 25% | ✓ | ✓ | ✓ | ✓ |
-| Scalability (10K+) | 20% | ✓ | ✓ | ✓ | ✓ |
-| Managed service | 15% | ✓ | ✓ | ✓ | Self-hosted |
-| Cost | 15% | $$ | $$ | $ | $ |
-| Ease of integration | 10% | ✓ | ✓ | ✓ | Medium |
-| Metadata filtering | 10% | ✓ | ✓ | ✓ | ✓ |
-| Support/SLA | 5% | ✓ | ✓ | Good | Community |
+1. **Performance (<100ms):** Weight: 25% | Pinecone: ✓ | Weaviate: ✓ | Qdrant: ✓ | Milvus: ✓
+2. **Scalability (10K+):** Weight: 20% | Pinecone: ✓ | Weaviate: ✓ | Qdrant: ✓ | Milvus: ✓
+3. **Managed service:** Weight: 15% | Pinecone: ✓ | Weaviate: ✓ | Qdrant: ✓ | Milvus: Self-hosted
+4. **Cost:** Weight: 15% | Pinecone: $$ | Weaviate: $$ | Qdrant: $ | Milvus: $
+5. **Ease of integration:** Weight: 10% | Pinecone: ✓ | Weaviate: ✓ | Qdrant: ✓ | Milvus: Medium
+6. **Metadata filtering:** Weight: 10% | Pinecone: ✓ | Weaviate: ✓ | Qdrant: ✓ | Milvus: ✓
+7. **Support/SLA:** Weight: 5% | Pinecone: ✓ | Weaviate: ✓ | Qdrant: Good | Milvus: Community
 
 **Decision timeline:** Week 1-2: Evaluation, Week 3: POC, Week 4: Decision
 
@@ -2416,14 +2377,12 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 **Evaluation criteria:**
 
-| Criterion | Weight | OpenAI | Anthropic | Self-hosted |
-|-----------|--------|--------|-----------|------------|
-| Accuracy | 30% | ✓ | ✓ | Medium |
-| Response time | 20% | ✓ | ✓ | Variable |
-| Cost | 20% | $$ | $$ | $ (compute) |
-| API reliability | 15% | ✓ | ✓ | Depends |
-| Data privacy | 10% | Medium | High | High |
-| Support | 5% | ✓ | ✓ | Community |
+1. **Accuracy:** Weight: 30% | OpenAI: ✓ | Anthropic: ✓ | Self-hosted: Medium
+2. **Response time:** Weight: 20% | OpenAI: ✓ | Anthropic: ✓ | Self-hosted: Variable
+3. **Cost:** Weight: 20% | OpenAI: $$ | Anthropic: $$ | Self-hosted: $ (compute)
+4. **API reliability:** Weight: 15% | OpenAI: ✓ | Anthropic: ✓ | Self-hosted: Depends
+5. **Data privacy:** Weight: 10% | OpenAI: Medium | Anthropic: High | Self-hosted: High
+6. **Support:** Weight: 5% | OpenAI: ✓ | Anthropic: ✓ | Self-hosted: Community
 
 **Decision timeline:** Week 1: Evaluation, Week 2: POC, Week 3: Decision
 
@@ -2470,13 +2429,11 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 **High-level communication matrix:**
 
-| Stakeholder | Message | Frequency | Channel |
-|-------------|---------|-----------|---------|
-| Executive team | Progress, KPIs, risks | Monthly | Email + meeting |
-| Product teams | New KB, DoD requirements | Biweekly | Slack + email |
-| Support team | Training, escalation process | Weekly | Training + Slack |
-| Content authors | Authoring tools, guidelines | Weekly | Training + docs |
-| End users | New KB launch, how to use | Launch | In-app + email |
+1. **Executive team:** Message: Progress, KPIs, risks | Frequency: Monthly | Channel: Email + meeting
+2. **Product teams:** Message: New KB, DoD requirements | Frequency: Biweekly | Channel: Slack + email
+3. **Support team:** Message: Training, escalation process | Frequency: Weekly | Channel: Training + Slack
+4. **Content authors:** Message: Authoring tools, guidelines | Frequency: Weekly | Channel: Training + docs
+5. **End users:** Message: New KB launch, how to use | Frequency: Launch | Channel: In-app + email
 
 ### 25.2 Training plan
 
@@ -2994,6 +2951,96 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 ---
 
+## 33. Lessons Learned and Continuous Improvement
+
+### 33.1 Learning Culture
+
+Building a knowledge platform isn't a one-and-done project—it's an ongoing journey. We're committed to learning from what works and what doesn't, and continuously improving based on real user feedback and data.
+
+**How we'll capture learnings:**
+
+* **Weekly retrospectives:** What went well? What didn't? What should we change?
+* **User feedback analysis:** Regular deep dives into what users are telling us
+* **Metrics review:** Monthly analysis of KPIs to spot trends and opportunities
+* **Post-mortems:** When things go wrong (or right!), we document what we learned
+
+### 33.2 Improvement Process
+
+**Quarterly improvement cycles:**
+
+1. **Review:** Analyze metrics, feedback, and support tickets
+2. **Identify:** What's working? What's not? What's missing?
+3. **Prioritize:** Focus on changes that will have the biggest impact
+4. **Implement:** Make the improvements
+5. **Measure:** Track whether the changes actually helped
+
+**Continuous refinement areas:**
+
+* Search quality and relevance tuning
+* AI response accuracy and citation quality
+* Content coverage gaps
+* User experience improvements
+* Performance optimization
+* Governance process efficiency
+
+### 33.3 Knowledge Sharing
+
+We'll share what we learn across the organization:
+
+* **Monthly knowledge sharing sessions:** What we've learned, what we're trying next
+* **Documentation:** Keep this PRD and related docs updated with learnings
+* **Best practices:** Build a library of what works for content creation, governance, and user engagement
+
+---
+
+## 34. Post-Launch Roadmap
+
+### 34.1 Immediate Post-Launch (Days 91-120)
+
+**Focus:** Stabilization and optimization
+
+* Monitor all systems closely for the first 30 days
+* Address any critical issues that emerge
+* Gather and analyze user feedback
+* Optimize based on real usage patterns
+* Expand content to cover top 10 support ticket categories
+
+### 34.2 Short-Term Enhancements (Days 121-180)
+
+**Focus:** Expanding capabilities and coverage
+
+* Complete coverage of all platform journeys (500+ objects)
+* Enhanced AI capabilities (multi-turn conversations, query refinement)
+* Advanced search features (faceted search, query suggestions)
+* Full partner enablement suite (LMS integration, certification)
+* Advanced analytics and predictive insights
+
+### 34.3 Medium-Term Vision (Days 181-365)
+
+**Focus:** Innovation and expansion
+
+* Multi-language/localization support
+* Video academy integration
+* Advanced personalization (AI learns user preferences)
+* Community-contributed content
+* Integration with external knowledge sources
+* Mobile app for knowledge access
+
+### 34.4 Long-Term Vision (Year 2+)
+
+**Focus:** Platform evolution
+
+* AI-powered content generation assistance
+* Predictive content recommendations
+* Advanced analytics and business intelligence
+* Integration with more external systems
+* Enterprise features (advanced permissions, workflows)
+* API ecosystem for third-party integrations
+
+**Note:** This roadmap will evolve based on user feedback, business priorities, and technological advances. We'll review and update quarterly.
+
+---
+
 ## 35. Business Case and ROI
 
 ### 35.1 Business Problem
@@ -3018,14 +3065,12 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 **Quantified Benefits (Year 1):**
 
-| Benefit Category | Metric | Baseline | Target | Annual Value |
-|------------------|--------|----------|--------|--------------|
-| Support Cost Reduction | Ticket volume reduction | [TBD] | -30% | $[TBD] |
-| Resolution Time Improvement | Average resolution time | [TBD] hrs | -25% | $[TBD] |
-| Self-Service Adoption | % users using KB | [TBD]% | +40% | $[TBD] |
-| Partner Efficiency | Onboarding time | [TBD] days | -40% | $[TBD] |
-| Content Maintenance | Maintenance hours | [TBD] hrs | -20% | $[TBD] |
-| Risk Mitigation | AI incidents | [TBD] | -80% | $[TBD] |
+1. **Support Cost Reduction:** Metric: Ticket volume reduction | Baseline: [TBD] | Target: -30% | Annual Value: $[TBD]
+2. **Resolution Time Improvement:** Metric: Average resolution time | Baseline: [TBD] hrs | Target: -25% | Annual Value: $[TBD]
+3. **Self-Service Adoption:** Metric: % users using KB | Baseline: [TBD]% | Target: +40% | Annual Value: $[TBD]
+4. **Partner Efficiency:** Metric: Onboarding time | Baseline: [TBD] days | Target: -40% | Annual Value: $[TBD]
+5. **Content Maintenance:** Metric: Maintenance hours | Baseline: [TBD] hrs | Target: -20% | Annual Value: $[TBD]
+6. **Risk Mitigation:** Metric: AI incidents | Baseline: [TBD] | Target: -80% | Annual Value: $[TBD]
 
 **Qualitative Benefits:**
 
@@ -3039,23 +3084,19 @@ Legend: R=Responsible, A=Accountable, C=Consulted
 
 **One-Time Costs:**
 
-| Cost Category | Description | Amount |
-|---------------|-------------|--------|
-| Development | Engineering, AI, UX development | $[TBD] |
-| Infrastructure Setup | Cloud infrastructure, tools | $[TBD] |
-| Content Migration | Content audit, migration, transformation | $[TBD] |
-| Training | Team training, change management | $[TBD] |
-| **Total One-Time** | | **$[TBD]** |
+1. **Development:** Description: Engineering, AI, UX development | Amount: $[TBD]
+2. **Infrastructure Setup:** Description: Cloud infrastructure, tools | Amount: $[TBD]
+3. **Content Migration:** Description: Content audit, migration, transformation | Amount: $[TBD]
+4. **Training:** Description: Team training, change management | Amount: $[TBD]
+5. **Total One-Time:** Amount: $[TBD]
 
 **Recurring Costs (Annual):**
 
-| Cost Category | Description | Annual Amount |
-|---------------|-------------|----------------|
-| Infrastructure | Cloud services, vector DB, LLM APIs | $[TBD] |
-| Licenses | CMS, tools, third-party services | $[TBD] |
-| Maintenance | Ongoing development, support | $[TBD] |
-| Content Operations | Content authoring, review, maintenance | $[TBD] |
-| **Total Recurring** | | **$[TBD]** |
+1. **Infrastructure:** Description: Cloud services, vector DB, LLM APIs | Annual Amount: $[TBD]
+2. **Licenses:** Description: CMS, tools, third-party services | Annual Amount: $[TBD]
+3. **Maintenance:** Description: Ongoing development, support | Annual Amount: $[TBD]
+4. **Content Operations:** Description: Content authoring, review, maintenance | Annual Amount: $[TBD]
+5. **Total Recurring:** Annual Amount: $[TBD]
 
 ### 35.4 ROI Calculation
 
@@ -3094,21 +3135,19 @@ All ROI calculations align with success metrics defined in Section 6. Metrics wi
 
 ### 36.1 Stakeholder Identification
 
-| Stakeholder Group | Key Individuals | Role | Influence | Interest | Engagement Level |
-|-------------------|------------------|------|-----------|----------|------------------|
-| **Executive Leadership** | [TBD] | Sponsor, decision maker | High | High | Monthly updates |
-| **Product Management** | Mamatha Naganna | Product owner | High | High | Daily |
-| **Engineering** | LNR | Technical lead | High | High | Daily |
-| **AI/Knowledge Engineering** | Neeraj | AI/ML lead | High | High | Daily |
-| **UX/UI** | Sourav | Design lead | Medium | High | Weekly |
-| **Content Operations** | Vignesh, GopiChand | Content owners | High | High | Daily |
-| **Support Team** | Balaji | Support lead | Medium | High | Weekly |
-| **Support Agents** | [TBD] | End users | Low | High | Training, feedback |
-| **Platform Users** | All Virima users | End users | Low | Medium | Launch communication |
-| **Partners** | Partner implementers | End users | Low | High | Training, feedback |
-| **Security/Compliance** | [TBD] | Reviewers | Medium | Medium | As needed |
-| **Legal** | [TBD] | Reviewers | Low | Low | As needed |
-| **Finance** | [TBD] | Budget approval | Medium | Low | Budget reviews |
+1. **Executive Leadership:** Key Individuals: [TBD] | Role: Sponsor, decision maker | Influence: High | Interest: High | Engagement Level: Monthly updates
+2. **Product Management:** Key Individuals: Mamatha Naganna | Role: Product owner | Influence: High | Interest: High | Engagement Level: Daily
+3. **Engineering:** Key Individuals: LNR | Role: Technical lead | Influence: High | Interest: High | Engagement Level: Daily
+4. **AI/Knowledge Engineering:** Key Individuals: Neeraj | Role: AI/ML lead | Influence: High | Interest: High | Engagement Level: Daily
+5. **UX/UI:** Key Individuals: Sourav | Role: Design lead | Influence: Medium | Interest: High | Engagement Level: Weekly
+6. **Content Operations:** Key Individuals: Vignesh, GopiChand | Role: Content owners | Influence: High | Interest: High | Engagement Level: Daily
+7. **Support Team:** Key Individuals: Balaji | Role: Support lead | Influence: Medium | Interest: High | Engagement Level: Weekly
+8. **Support Agents:** Key Individuals: [TBD] | Role: End users | Influence: Low | Interest: High | Engagement Level: Training, feedback
+9. **Platform Users:** Key Individuals: All Virima users | Role: End users | Influence: Low | Interest: Medium | Engagement Level: Launch communication
+10. **Partners:** Key Individuals: Partner implementers | Role: End users | Influence: Low | Interest: High | Engagement Level: Training, feedback
+11. **Security/Compliance:** Key Individuals: [TBD] | Role: Reviewers | Influence: Medium | Interest: Medium | Engagement Level: As needed
+12. **Legal:** Key Individuals: [TBD] | Role: Reviewers | Influence: Low | Interest: Low | Engagement Level: As needed
+13. **Finance:** Key Individuals: [TBD] | Role: Budget approval | Influence: Medium | Interest: Low | Engagement Level: Budget reviews
 
 ### 36.2 Stakeholder Influence-Interest Matrix
 
@@ -3135,15 +3174,13 @@ All ROI calculations align with success metrics defined in Section 6. Metrics wi
 
 **Stakeholder-Specific Communication:**
 
-| Stakeholder | Communication Method | Frequency | Content Focus |
-|-------------|----------------------|-----------|---------------|
-| Executive Leadership | Monthly executive update | Monthly | Progress, KPIs, risks, decisions needed |
-| Product Management | Daily standup, weekly status | Daily/Weekly | Execution, blockers, decisions |
-| Engineering | Daily standup, technical reviews | Daily | Technical progress, architecture, dependencies |
-| Content Operations | Weekly content review | Weekly | Content quality, migration progress |
-| Support Team | Weekly training, feedback sessions | Weekly | Feature training, feedback collection |
-| Platform Users | Launch announcement, in-app notifications | Launch + ongoing | Feature availability, how to use |
-| Partners | Partner portal, training sessions | Monthly | Training materials, certification |
+1. **Executive Leadership:** Communication Method: Monthly executive update | Frequency: Monthly | Content Focus: Progress, KPIs, risks, decisions needed
+2. **Product Management:** Communication Method: Daily standup, weekly status | Frequency: Daily/Weekly | Content Focus: Execution, blockers, decisions
+3. **Engineering:** Communication Method: Daily standup, technical reviews | Frequency: Daily | Content Focus: Technical progress, architecture, dependencies
+4. **Content Operations:** Communication Method: Weekly content review | Frequency: Weekly | Content Focus: Content quality, migration progress
+5. **Support Team:** Communication Method: Weekly training, feedback sessions | Frequency: Weekly | Content Focus: Feature training, feedback collection
+6. **Platform Users:** Communication Method: Launch announcement, in-app notifications | Frequency: Launch + ongoing | Content Focus: Feature availability, how to use
+7. **Partners:** Communication Method: Partner portal, training sessions | Frequency: Monthly | Content Focus: Training materials, certification
 
 **Communication Schedule (Cross-Stakeholder):**
 
@@ -3191,14 +3228,12 @@ All ROI calculations align with success metrics defined in Section 6. Metrics wi
 
 ### 36.4 Stakeholder Concerns and Mitigation
 
-| Stakeholder | Primary Concerns | Mitigation Strategy |
-|-------------|------------------|---------------------|
-| Executive Leadership | ROI, timeline, resource allocation | Monthly ROI tracking, clear milestones, resource planning |
-| Engineering | Technical complexity, dependencies | Early POCs, vendor selection, dependency management |
-| Content Operations | Migration effort, quality standards | Phased migration, automation tools, training |
-| Support Team | Adoption, training, workflow changes | Early training, feedback loops, gradual rollout |
-| Platform Users | Usability, content quality | Beta testing, user feedback, iterative improvement |
-| Partners | Training materials, certification | Early partner engagement, dedicated portal |
+1. **Executive Leadership:** Primary Concerns: ROI, timeline, resource allocation | Mitigation Strategy: Monthly ROI tracking, clear milestones, resource planning
+2. **Engineering:** Primary Concerns: Technical complexity, dependencies | Mitigation Strategy: Early POCs, vendor selection, dependency management
+3. **Content Operations:** Primary Concerns: Migration effort, quality standards | Mitigation Strategy: Phased migration, automation tools, training
+4. **Support Team:** Primary Concerns: Adoption, training, workflow changes | Mitigation Strategy: Early training, feedback loops, gradual rollout
+5. **Platform Users:** Primary Concerns: Usability, content quality | Mitigation Strategy: Beta testing, user feedback, iterative improvement
+6. **Partners:** Primary Concerns: Training materials, certification | Mitigation Strategy: Early partner engagement, dedicated portal
 
 ---
 
@@ -3266,14 +3301,12 @@ All ROI calculations align with success metrics defined in Section 6. Metrics wi
 
 ### 37.3 Assumption Validation Plan
 
-| Assumption | Validation Method | Target Date | Owner |
-|------------|-------------------|-------------|-------|
-| User adoption rate | Beta program metrics | Day 60 | PM |
-| Content quality sustainability | Quality dashboard monitoring | Day 90 | Docs |
-| Support ticket reduction | Ticketing system analytics | Day 120 | Support |
-| Vector DB scalability | Load testing | Day 45 | Eng |
-| LLM performance | Golden Questions evaluation | Day 50 | AI |
-| Integration readiness | API availability check | Day 15 | Eng |
+1. **User adoption rate:** Validation Method: Beta program metrics | Target Date: Day 60 | Owner: PM
+2. **Content quality sustainability:** Validation Method: Quality dashboard monitoring | Target Date: Day 90 | Owner: Docs
+3. **Support ticket reduction:** Validation Method: Ticketing system analytics | Target Date: Day 120 | Owner: Support
+4. **Vector DB scalability:** Validation Method: Load testing | Target Date: Day 45 | Owner: Eng
+5. **LLM performance:** Validation Method: Golden Questions evaluation | Target Date: Day 50 | Owner: AI
+6. **Integration readiness:** Validation Method: API availability check | Target Date: Day 15 | Owner: Eng
 
 ### 37.4 Risk if Assumptions Fail
 
@@ -3315,14 +3348,12 @@ All ROI calculations align with success metrics defined in Section 6. Metrics wi
 
 **Competitive Differentiation:**
 
-| Feature | Virima KB (SSOT) | Confluence | Zendesk Guide | Notion |
-|---------|------------------|------------|---------------|--------|
-| **AI with Citations** | ✓ (RAG-based) | ✗ | Limited | ✗ |
-| **Platform Integration** | ✓ (Native) | Limited | Limited | Limited |
-| **Partner Enablement** | ✓ (Derived assets) | ✗ | ✗ | ✗ |
-| **Content Governance** | ✓ (Lifecycle management) | Limited | Limited | Limited |
-| **Hybrid Search** | ✓ (Keyword + Semantic) | Keyword only | Keyword only | Keyword only |
-| **Multi-Channel Publishing** | ✓ (Web, in-product, AI) | Web only | Web only | Web only |
+1. **AI with Citations:** Virima KB (SSOT): ✓ (RAG-based) | Confluence: ✗ | Zendesk Guide: Limited | Notion: ✗
+2. **Platform Integration:** Virima KB (SSOT): ✓ (Native) | Confluence: Limited | Zendesk Guide: Limited | Notion: Limited
+3. **Partner Enablement:** Virima KB (SSOT): ✓ (Derived assets) | Confluence: ✗ | Zendesk Guide: ✗ | Notion: ✗
+4. **Content Governance:** Virima KB (SSOT): ✓ (Lifecycle management) | Confluence: Limited | Zendesk Guide: Limited | Notion: Limited
+5. **Hybrid Search:** Virima KB (SSOT): ✓ (Keyword + Semantic) | Confluence: Keyword only | Zendesk Guide: Keyword only | Notion: Keyword only
+6. **Multi-Channel Publishing:** Virima KB (SSOT): ✓ (Web, in-product, AI) | Confluence: Web only | Zendesk Guide: Web only | Notion: Web only
 
 ### 38.2 Competitive Advantages
 
@@ -3512,13 +3543,11 @@ KnowledgeObject (1) ----< (N) ContentVersion
 
 **Source Data Mapping:**
 
-| Source System | Data Type | Mapping to Target | Transformation Required |
-|---------------|-----------|-------------------|------------------------|
-| Confluence | Documents | Knowledge Objects | Template conversion, metadata extraction |
-| Support Macros | Text | Knowledge Objects | Template conversion |
-| In-Product Tips | Short text | Knowledge Objects | Template conversion, enrichment |
-| Release Notes | Change notes | Change Note objects | Template conversion |
-| Internal Runbooks | Procedures | Task/Troubleshooting objects | Template conversion |
+1. **Confluence:** Data Type: Documents | Mapping to Target: Knowledge Objects | Transformation Required: Template conversion, metadata extraction
+2. **Support Macros:** Data Type: Text | Mapping to Target: Knowledge Objects | Transformation Required: Template conversion
+3. **In-Product Tips:** Data Type: Short text | Mapping to Target: Knowledge Objects | Transformation Required: Template conversion, enrichment
+4. **Release Notes:** Data Type: Change notes | Mapping to Target: Change Note objects | Transformation Required: Template conversion
+5. **Internal Runbooks:** Data Type: Procedures | Mapping to Target: Task/Troubleshooting objects | Transformation Required: Template conversion
 
 **Data Validation:**
 
@@ -3827,27 +3856,23 @@ KnowledgeObject (1) ----< (N) ContentVersion
 
 **Core Team (Full-Time):**
 
-| Role | Count | Names | Allocation | Duration |
-|------|-------|-------|------------|----------|
-| Product Manager | 1 | Mamatha Naganna | 100% | Full project |
-| Engineering Lead | 1 | LNR | 100% | Full project |
-| AI/Knowledge Engineer | 1 | Neeraj | 100% | Full project |
-| UX/UI Designer | 1 | Sourav | 50% | Days 0-60 |
-| Content Operations | 2 | Vignesh, GopiChand | 100% | Full project |
-| Support Lead | 1 | Balaji | 25% | Full project |
-| Backend Engineers | 2 | [TBD] | 100% | Days 31-90 |
-| Frontend Engineers | 2 | [TBD] | 100% | Days 31-90 |
-| QA Engineers | 2 | [TBD] | 100% | Days 31-90 |
-| DevOps Engineer | 1 | [TBD] | 50% | Days 0-90 |
+1. **Product Manager:** Count: 1 | Names: Mamatha Naganna | Allocation: 100% | Duration: Full project
+2. **Engineering Lead:** Count: 1 | Names: LNR | Allocation: 100% | Duration: Full project
+3. **AI/Knowledge Engineer:** Count: 1 | Names: Neeraj | Allocation: 100% | Duration: Full project
+4. **UX/UI Designer:** Count: 1 | Names: Sourav | Allocation: 50% | Duration: Days 0-60
+5. **Content Operations:** Count: 2 | Names: Vignesh, GopiChand | Allocation: 100% | Duration: Full project
+6. **Support Lead:** Count: 1 | Names: Balaji | Allocation: 25% | Duration: Full project
+7. **Backend Engineers:** Count: 2 | Names: [TBD] | Allocation: 100% | Duration: Days 31-90
+8. **Frontend Engineers:** Count: 2 | Names: [TBD] | Allocation: 100% | Duration: Days 31-90
+9. **QA Engineers:** Count: 2 | Names: [TBD] | Allocation: 100% | Duration: Days 31-90
+10. **DevOps Engineer:** Count: 1 | Names: [TBD] | Allocation: 50% | Duration: Days 0-90
 
 **Extended Team (Part-Time/Consulted):**
 
-| Role | Count | Allocation | Duration |
-|------|-------|------------|----------|
-| Security Engineer | 1 | 25% | Days 0-90 |
-| Data Engineer | 1 | 25% | Days 0-60 |
-| Technical Writer | 1 | 50% | Days 15-90 |
-| Change Management | 1 | 25% | Days 30-90 |
+1. **Security Engineer:** Count: 1 | Allocation: 25% | Duration: Days 0-90
+2. **Data Engineer:** Count: 1 | Allocation: 25% | Duration: Days 0-60
+3. **Technical Writer:** Count: 1 | Allocation: 50% | Duration: Days 15-90
+4. **Change Management:** Count: 1 | Allocation: 25% | Duration: Days 30-90
 
 ### 42.2 Skill Requirements
 
@@ -3927,18 +3952,16 @@ KnowledgeObject (1) ----< (N) ContentVersion
 
 ### 43.1 Decision Tracking
 
-| Decision ID | Date | Decision | Rationale | Decision Maker | Status | Impact |
-|-------------|------|----------|-----------|----------------|--------|--------|
-| DEC-001 | [Date] | Use RAG approach (not fine-tuning) | Faster time-to-market, proven approach | AI Lead (Neeraj) | Approved | High |
-| DEC-002 | [Date] | Modular microservices architecture | Scalability, team autonomy | Eng Lead (LNR) | Approved | High |
-| DEC-003 | [Date] | Vector DB vendor: [TBD] | [TBD - after POC] | AI Lead, Eng Lead | Pending | High |
-| DEC-004 | [Date] | LLM provider: [TBD] | [TBD - after POC] | AI Lead | Pending | High |
-| DEC-005 | [Date] | CMS platform: [TBD] | [TBD - after evaluation] | Eng Lead, Docs | Pending | Medium |
-| DEC-006 | [Date] | English only for v1 | Scope management, faster launch | PM (Mamatha) | Approved | Medium |
-| DEC-007 | [Date] | 25 objects for MVP | Minimum viable content | PM, Docs | Approved | Medium |
-| DEC-008 | [Date] | Hybrid search (40% keyword, 60% semantic) | Balance precision and recall | AI Lead | Approved | Low |
-| DEC-009 | [Date] | SBERT embedding model: [TBD] | [TBD - after evaluation] | AI Lead | Pending | Medium |
-| DEC-010 | [Date] | Partner enablement in v1 | Business requirement | PM, Executive | Approved | High |
+1. **DEC-001:** Date: [Date] | Decision: Use RAG approach (not fine-tuning) | Rationale: Faster time-to-market, proven approach | Decision Maker: AI Lead (Neeraj) | Status: Approved | Impact: High
+2. **DEC-002:** Date: [Date] | Decision: Modular microservices architecture | Rationale: Scalability, team autonomy | Decision Maker: Eng Lead (LNR) | Status: Approved | Impact: High
+3. **DEC-003:** Date: [Date] | Decision: Vector DB vendor: [TBD] | Rationale: [TBD - after POC] | Decision Maker: AI Lead, Eng Lead | Status: Pending | Impact: High
+4. **DEC-004:** Date: [Date] | Decision: LLM provider: [TBD] | Rationale: [TBD - after POC] | Decision Maker: AI Lead | Status: Pending | Impact: High
+5. **DEC-005:** Date: [Date] | Decision: CMS platform: [TBD] | Rationale: [TBD - after evaluation] | Decision Maker: Eng Lead, Docs | Status: Pending | Impact: Medium
+6. **DEC-006:** Date: [Date] | Decision: English only for v1 | Rationale: Scope management, faster launch | Decision Maker: PM (Mamatha) | Status: Approved | Impact: Medium
+7. **DEC-007:** Date: [Date] | Decision: 25 objects for MVP | Rationale: Minimum viable content | Decision Maker: PM, Docs | Status: Approved | Impact: Medium
+8. **DEC-008:** Date: [Date] | Decision: Hybrid search (40% keyword, 60% semantic) | Rationale: Balance precision and recall | Decision Maker: AI Lead | Status: Approved | Impact: Low
+9. **DEC-009:** Date: [Date] | Decision: SBERT embedding model: [TBD] | Rationale: [TBD - after evaluation] | Decision Maker: AI Lead | Status: Pending | Impact: Medium
+10. **DEC-010:** Date: [Date] | Decision: Partner enablement in v1 | Rationale: Business requirement | Decision Maker: PM, Executive | Status: Approved | Impact: High
 
 ### 43.2 Decision Process
 
@@ -4069,93 +4092,87 @@ KnowledgeObject (1) ----< (N) ContentVersion
 
 ### 45.1 Acronyms and Abbreviations
 
-| Acronym | Full Form | Definition |
-|---------|-----------|------------|
-| **AI** | Artificial Intelligence | Technology enabling machines to perform tasks requiring human intelligence |
-| **API** | Application Programming Interface | Interface for software components to communicate |
-| **BM25** | Best Matching 25 | Ranking function used in information retrieval |
-| **CMS** | Content Management System | System for managing digital content |
-| **CMDB** | Configuration Management Database | Database storing IT infrastructure information |
-| **CSRF** | Cross-Site Request Forgery | Security attack exploiting user authentication |
-| **DoD** | Definition of Done | Criteria that must be met for work to be considered complete |
-| **E2E** | End-to-End | Complete user journey from start to finish |
-| **FTE** | Full-Time Equivalent | Unit of work representing one full-time employee |
-| **GDPR** | General Data Protection Regulation | EU data protection regulation |
-| **IRR** | Internal Rate of Return | Financial metric for investment evaluation |
-| **KB** | Knowledge Base | Repository of information and knowledge |
-| **LLM** | Large Language Model | AI model trained on large text datasets |
-| **LMS** | Learning Management System | Platform for managing educational content |
-| **MRR** | Mean Reciprocal Rank | Metric for evaluating search result quality |
-| **MVP** | Minimum Viable Product | Product with minimum features for launch |
-| **NDCG** | Normalized Discounted Cumulative Gain | Metric for evaluating ranking quality |
-| **NPV** | Net Present Value | Financial metric for investment evaluation |
-| **OIDC** | OpenID Connect | Authentication protocol built on OAuth 2.0 |
-| **OWASP** | Open Web Application Security Project | Organization focused on web security |
-| **PII** | Personally Identifiable Information | Data that can identify an individual |
-| **POC** | Proof of Concept | Demonstration of feasibility |
-| **PRD** | Product Requirements Document | This document |
-| **QA** | Quality Assurance | Process of ensuring product quality |
-| **RAG** | Retrieval-Augmented Generation | AI technique combining retrieval and generation |
-| **RBAC** | Role-Based Access Control | Access control based on user roles |
-| **ROI** | Return on Investment | Financial metric for investment evaluation |
-| **RPO** | Recovery Point Objective | Maximum acceptable data loss |
-| **RTO** | Recovery Time Objective | Maximum acceptable downtime |
-| **SAML** | Security Assertion Markup Language | Authentication protocol |
-| **SBERT** | Sentence-BERT | Sentence embedding model |
-| **SLA** | Service Level Agreement | Agreement on service quality metrics |
-| **SME** | Subject Matter Expert | Expert in specific domain |
-| **SOC 2** | System and Organization Controls 2 | Security compliance framework |
-| **SSO** | Single Sign-On | Authentication allowing access to multiple systems |
-| **SSOT** | Single Source of Truth | One authoritative source of information |
-| **TLS** | Transport Layer Security | Encryption protocol |
-| **UAT** | User Acceptance Testing | Testing by end users |
-| **UI** | User Interface | Visual interface for user interaction |
-| **UX** | User Experience | Overall experience of using a product |
-| **VPC** | Virtual Private Cloud | Isolated cloud network |
-| **WAF** | Web Application Firewall | Security system protecting web applications |
-| **WCAG** | Web Content Accessibility Guidelines | Accessibility standards |
-| **WYSIWYG** | What You See Is What You Get | Editor showing formatted output |
-| **XSS** | Cross-Site Scripting | Security attack injecting malicious scripts |
+1. **AI:** Full Form: Artificial Intelligence | Definition: Technology enabling machines to perform tasks requiring human intelligence
+2. **API:** Full Form: Application Programming Interface | Definition: Interface for software components to communicate
+3. **BM25:** Full Form: Best Matching 25 | Definition: Ranking function used in information retrieval
+4. **CMS:** Full Form: Content Management System | Definition: System for managing digital content
+5. **CMDB:** Full Form: Configuration Management Database | Definition: Database storing IT infrastructure information
+6. **CSRF:** Full Form: Cross-Site Request Forgery | Definition: Security attack exploiting user authentication
+7. **DoD:** Full Form: Definition of Done | Definition: Criteria that must be met for work to be considered complete
+8. **E2E:** Full Form: End-to-End | Definition: Complete user journey from start to finish
+9. **FTE:** Full Form: Full-Time Equivalent | Definition: Unit of work representing one full-time employee
+10. **GDPR:** Full Form: General Data Protection Regulation | Definition: EU data protection regulation
+11. **IRR:** Full Form: Internal Rate of Return | Definition: Financial metric for investment evaluation
+12. **KB:** Full Form: Knowledge Base | Definition: Repository of information and knowledge
+13. **LLM:** Full Form: Large Language Model | Definition: AI model trained on large text datasets
+14. **LMS:** Full Form: Learning Management System | Definition: Platform for managing educational content
+15. **MRR:** Full Form: Mean Reciprocal Rank | Definition: Metric for evaluating search result quality
+16. **MVP:** Full Form: Minimum Viable Product | Definition: Product with minimum features for launch
+17. **NDCG:** Full Form: Normalized Discounted Cumulative Gain | Definition: Metric for evaluating ranking quality
+18. **NPV:** Full Form: Net Present Value | Definition: Financial metric for investment evaluation
+19. **OIDC:** Full Form: OpenID Connect | Definition: Authentication protocol built on OAuth 2.0
+20. **OWASP:** Full Form: Open Web Application Security Project | Definition: Organization focused on web security
+21. **PII:** Full Form: Personally Identifiable Information | Definition: Data that can identify an individual
+22. **POC:** Full Form: Proof of Concept | Definition: Demonstration of feasibility
+23. **PRD:** Full Form: Product Requirements Document | Definition: This document
+24. **QA:** Full Form: Quality Assurance | Definition: Process of ensuring product quality
+25. **RAG:** Full Form: Retrieval-Augmented Generation | Definition: AI technique combining retrieval and generation
+26. **RBAC:** Full Form: Role-Based Access Control | Definition: Access control based on user roles
+27. **ROI:** Full Form: Return on Investment | Definition: Financial metric for investment evaluation
+28. **RPO:** Full Form: Recovery Point Objective | Definition: Maximum acceptable data loss
+29. **RTO:** Full Form: Recovery Time Objective | Definition: Maximum acceptable downtime
+30. **SAML:** Full Form: Security Assertion Markup Language | Definition: Authentication protocol
+31. **SBERT:** Full Form: Sentence-BERT | Definition: Sentence embedding model
+32. **SLA:** Full Form: Service Level Agreement | Definition: Agreement on service quality metrics
+33. **SME:** Full Form: Subject Matter Expert | Definition: Expert in specific domain
+34. **SOC 2:** Full Form: System and Organization Controls 2 | Definition: Security compliance framework
+35. **SSO:** Full Form: Single Sign-On | Definition: Authentication allowing access to multiple systems
+36. **SSOT:** Full Form: Single Source of Truth | Definition: One authoritative source of information
+37. **TLS:** Full Form: Transport Layer Security | Definition: Encryption protocol
+38. **UAT:** Full Form: User Acceptance Testing | Definition: Testing by end users
+39. **UI:** Full Form: User Interface | Definition: Visual interface for user interaction
+40. **UX:** Full Form: User Experience | Definition: Overall experience of using a product
+41. **VPC:** Full Form: Virtual Private Cloud | Definition: Isolated cloud network
+42. **WAF:** Full Form: Web Application Firewall | Definition: Security system protecting web applications
+43. **WCAG:** Full Form: Web Content Accessibility Guidelines | Definition: Accessibility standards
+44. **WYSIWYG:** Full Form: What You See Is What You Get | Definition: Editor showing formatted output
+45. **XSS:** Full Form: Cross-Site Scripting | Definition: Security attack injecting malicious scripts
 
 ### 45.2 Technical Terms
 
-| Term | Definition |
-|------|------------|
-| **Canonical Knowledge Object** | The smallest "unit of truth" treated as authoritative in the knowledge base |
-| **Chunking** | Process of breaking documents into smaller pieces for embedding |
-| **Citation** | Reference to source knowledge object in AI response |
-| **Context Bundle** | Package of user/session context attached to support request |
-| **Cross-Encoder** | Model for re-ranking search results based on query-document relevance |
-| **Embedding** | Vector representation of text for semantic similarity |
-| **Golden Questions** | Curated set of questions used to evaluate AI assistant quality |
-| **Hallucination** | AI generating incorrect or unsupported information |
-| **Hybrid Search** | Combination of keyword and semantic search |
-| **Knowledge Object Model** | Data model defining structure and metadata of knowledge objects |
-| **Metadata Filtering** | Filtering search results by metadata (domain, type, persona) before vector search |
-| **Pogo-Sticking** | User behavior of clicking back immediately after viewing result |
-| **Query Expansion** | Technique of expanding search query with synonyms or related terms |
-| **Re-ranking** | Process of re-ordering search results to improve relevance |
-| **Semantic Search** | Search based on meaning rather than exact keyword matching |
-| **Vector Database** | Database optimized for storing and querying vector embeddings |
-| **Vector Similarity** | Measure of similarity between vectors (typically cosine similarity) |
+1. **Canonical Knowledge Object:** Definition: The smallest "unit of truth" treated as authoritative in the knowledge base
+2. **Chunking:** Definition: Process of breaking documents into smaller pieces for embedding
+3. **Citation:** Definition: Reference to source knowledge object in AI response
+4. **Context Bundle:** Definition: Package of user/session context attached to support request
+5. **Cross-Encoder:** Definition: Model for re-ranking search results based on query-document relevance
+6. **Embedding:** Definition: Vector representation of text for semantic similarity
+7. **Golden Questions:** Definition: Curated set of questions used to evaluate AI assistant quality
+8. **Hallucination:** Definition: AI generating incorrect or unsupported information
+9. **Hybrid Search:** Definition: Combination of keyword and semantic search
+10. **Knowledge Object Model:** Definition: Data model defining structure and metadata of knowledge objects
+11. **Metadata Filtering:** Definition: Filtering search results by metadata (domain, type, persona) before vector search
+12. **Pogo-Sticking:** Definition: User behavior of clicking back immediately after viewing result
+13. **Query Expansion:** Definition: Technique of expanding search query with synonyms or related terms
+14. **Re-ranking:** Definition: Process of re-ordering search results to improve relevance
+15. **Semantic Search:** Definition: Search based on meaning rather than exact keyword matching
+16. **Vector Database:** Definition: Database optimized for storing and querying vector embeddings
+17. **Vector Similarity:** Definition: Measure of similarity between vectors (typically cosine similarity)
 
 ### 45.3 Business Terms
 
-| Term | Definition |
-|------|------------|
-| **Beta Program** | Limited release to selected users for testing and feedback |
-| **Content Gap** | Topic or question without adequate knowledge base coverage |
-| **Content Migration** | Process of moving content from legacy systems to new knowledge base |
-| **Content Owner** | Team or role accountable for accuracy and review of knowledge objects |
-| **Governance Model** | Framework for managing content lifecycle, quality, and ownership |
-| **Launch Readiness** | Criteria that must be met before production launch |
-| **Partner Enablement** | Process of training and enabling partners to deliver Virima |
-| **Platform Domain** | Taxonomy category organizing knowledge by platform area (e.g., Identity & Access) |
-| **Review SLA** | Service level agreement for content review cadence |
-| **Self-Service** | Users finding answers independently without support assistance |
-| **Stale Content** | Content that has not been reviewed within review SLA |
-| **Support Deflection** | Reducing support tickets through self-service |
-| **Taxonomy** | Hierarchical classification system for organizing knowledge |
+1. **Beta Program:** Definition: Limited release to selected users for testing and feedback
+2. **Content Gap:** Definition: Topic or question without adequate knowledge base coverage
+3. **Content Migration:** Definition: Process of moving content from legacy systems to new knowledge base
+4. **Content Owner:** Definition: Team or role accountable for accuracy and review of knowledge objects
+5. **Governance Model:** Definition: Framework for managing content lifecycle, quality, and ownership
+6. **Launch Readiness:** Definition: Criteria that must be met before production launch
+7. **Partner Enablement:** Definition: Process of training and enabling partners to deliver Virima
+8. **Platform Domain:** Definition: Taxonomy category organizing knowledge by platform area (e.g., Identity & Access)
+9. **Review SLA:** Definition: Service level agreement for content review cadence
+10. **Self-Service:** Definition: Users finding answers independently without support assistance
+11. **Stale Content:** Definition: Content that has not been reviewed within review SLA
+12. **Support Deflection:** Definition: Reducing support tickets through self-service
+13. **Taxonomy:** Definition: Hierarchical classification system for organizing knowledge
 
 ---
 
